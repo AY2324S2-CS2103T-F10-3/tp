@@ -118,6 +118,7 @@
         "deleting-a-person-delete": "Deleting a person : delete",
         "adding-an-appointment-addapp": "Adding an Appointment: addApp",
         "cancelling-an-appointment-cancelapp": "Cancelling an Appointment: cancelApp",
+        "finding-appointments-findappt": "Finding appointments: findAppt",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
