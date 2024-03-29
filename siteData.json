@@ -51,6 +51,7 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
+        "add-patient-feature": "Add Patient Feature",
         "add-appointment-for-a-patient": "Add Appointment for a Patient",
         "edit-appointment-for-a-patient": "Edit Appointment for a Patient",
         "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
