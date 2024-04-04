@@ -134,6 +134,9 @@
         "faq": "FAQ",
         "known-issues": "Known issues",
         "glossary": "Glossary",
+        "prefix-summary-for-patients": "Prefix summary for patients",
+        "prefix-summary-for-appointments": "Prefix summary for appointments",
+        "additional-information": "Additional Information",
         "command-summary": "Command summary"
       },
       "headingKeywords": {}
