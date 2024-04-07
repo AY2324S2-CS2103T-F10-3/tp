@@ -6,215 +6,14 @@
 
 # CLInic User Guide
 
-Welcome to **CLInic**, your dedicated digital assistant helping you to efficiently manage your patients and their appointments.
+Welcome to **CLInic**, your digital assistant for managing patients and appointments! CLInic is a desktop app designed for clinic assistants, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). <br/> <br/>If you're familiar with digitalized software or have used a CLI before, you'll find CLInic intuitive. Don't worry if you're new to CLI; we'll guide you through every step.
 
-CLInic is tailored specifically for clinic assistants like yourself! Our goal? To create a seamless appointment management experience, allowing you more time to focus on what truly matters - your patients!
-
-We understand that managing appointments in a clinic can be complex, but with CLInic, we hope to simplify this process for you. No more struggling with messy user interfaces and having too many buttons to click! Our user-friendly interface and intuitive commands make it easy for you to keep track of your patients and their appointments.
-
-So, let's get started! Whether you're familiar with the Command Line Interface (CLI) or need a bit of guidance, we're here to guide you through each step of the way. Follow this User Guide to uncover the potential of CLInic!
-
+As part of our Beta Testing, we would greatly appreciate feedback from actual users. Help us improve CLInic together [**here**](https://forms.gle/RSBeinMHPMYXyYyGA)!
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
-
----
-
-## Using this guide
-
-This User Guide contains all the essential information you need to use CLInic. For new users, we have detailed sections explaining the
-[**installation**](#installing-clinic)  process, the [**design**](#orientation-to-clinic) of our interface and a simple
-[**tutorial**](#tutorial-adding-an-appointment-for-a-new-patient) to get you familiarised with the basic commands.
-
-Familarise yourselves with these terminologies! These definitions will be used throughout the User Guide:
-
-| Term           | Explanation                                                                                                                                               |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CLI**        | Command Line Interface, a text-based interface for interacting with software by typing commands.                                                          |
-| **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.            |
-| **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                        |
-| **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                    |
-| **Parameters** | An input value or field for a command                                                                                                                     |
-| **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name so `n/John` tells the command that name to be input is "John" |
-
-
-Also, if you see these information boxes scattered throughout the User Guide, here is what they mean:
-
-<box type="warning" seamless>
-
-**Caution:** Warns of potential causes of error
-</box>
-
-<box type="info" seamless>
-
-**Note:** Highlights useful information
-</box>
-
-<box type="success" light>
-
-**Success**: Highlights successful execution
-</box>
-<box type="wrong" light>
-
-**Error**: Highlights failed executions
-
-<box type="tip" seamless>
-
-**What to Do:** Highlights possible solutions to the problem
-</box>
-</box>
-
----
-
-## Quick start
-
-### Installing CLInic
-
-Let's install CLInic together! Here are the step-by-step instructions on getting CLInic started. Don't worry, just follow the instructions for your operating system and you should be good to go!
-
-1. System Requirements: Ensure you have [**Java 11**](https://www.oracle.com/java/technologies/downloads/#java11) or above installed on your computer.
-
-2. Download the latest `CLInic.jar` from [**here**](https://github.com/AY2324S2-CS2103T-F10-3/tp/releases).
-
-3. Save the file to a location on your computer that will serve as your home folder for CLInic.
-
-4. Open a command terminal on your computer. If you're unsure how to do this, we'll walk you through it.
-
-    - **Windows**: Press `Win + R`, type `cmd`, and press `Enter`.
-    - **MacOS**: Press `Cmd + Space`, type `Terminal`, and press `Enter`.
-    - **Linux**: Press `Ctrl + Alt + T`.
-
-5. Navigate to the folder where you saved the `CLInic.jar` file. If you saved it in your `Downloads` folder, you can use the following commands:
-
-    - **Windows**: `cd Downloads`
-    - **MacOS**: `cd ~/Downloads`
-    - **Linux**: `cd ~/Downloads`
-
-6. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
-   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/UiStart.png" alt="Ui" width="600"/>
-
-Simple, wasn't it? Let's now orientate you to the GUI and how CLInic works.
-
---- {.dashed}
-
-<br/>
-
-### Orientation to CLInic
-
-There are two different views in CLInic. The command section in both views are the same. <br/>
-
-#### Overall-View
-
-**Overall-View** is the default view, allowing you to see all patients and appointments on one screen. This view is useful for finding patients or appointments, which are commands that you will learn later!
-
-![UiOverallView](images/Ui.png)
-
-#### Day-View
-
-**Day-View** is the alternate view, allowing you to see all appointments scheduled today. This view is useful for you to manage upcoming appointments in the day.
-
-![UiDayView](images/UiDayView.png)
-
-#### Appointment Colour Coding
-
-Appointments are colour-coded in CLInic, allowing you to easily identify the status of each appointment. The breakdown is as follows:
-
-![UiApptColors](images/UiApptColors.png)
-
-
-
-For your easy reference, the table below outlines the purpose of each section.
-
-| Section                          | Purpose                                                                                                |
-|----------------------------------|--------------------------------------------------------------------------------------------------------|
-| **Command Input**                | This is where you will write the commands you will learn later.                                        |
-| **Command Feedback**             | This feedback box will show you success or error messages depending on the validity of commands input. |
-| **View Toggle**                  | These buttons allow you to toggle between the Overall-View or Day-View.                                |
-| **Patient List**                 | Shows you the list of patients in CLInic.                                                              |
-| **Appointment List**             | Shows you the list of appointments scheduled in CLInic.                                                |
-| **Appointment List for the Day** | Shows you the list of all appointments scheduled in the day, correct as at launch of the app.          |
-
-Great! You are now oriented to the layout of CLInic.
-
---- {.dashed}
-
-<br/>
-
-### Tutorial: Adding an appointment for a new patient
-
-Now that you've understood the layout of CLInic, let's get started with registering your very first patient and scheduling an appointment for them!
-This step-by-step tutorial covers the essential commands of adding a patient and an appointment. Follow along with the instructions given and learn to write
-your very first commands.
-
-If this is your first time launching CLInic, you might see sample data listed. Let's clear them before adding our new patient!
-
-* { text="1" t-size="32px" }
-
-  On the Command Input Box, type `clear` and press Enter on your keyboard.
-  ![UiTutStep1](images/UiTutorial1.png)
-  <box type="info" seamless>
-
-  **Note:** Commands in CLInic are case-sensitive! In order to ensure that your commands are recognised, ensure that they are of the same
-  case as the commands given in the guide.
-  </box>
-
-  After executing the command, you should see that all the entries have been deleted (see right side of the image above).
-  Wow! Just like that, you've successfully executed your very first command. Let's move on to something more challenging.
-
-  Your first patient, Bernice, enters the clinic. Before we can schedule any appointments, we need to first register her patient details.
-  This is achieved using the `addPatient` command. Let's learn how to use that.
-
-* { text="2" t-size="32px" }
-
-  On the Command Input Box, type the following command:
-
-  `addPatient i/T0123456A n/Bernice Yu b/2001-12-25 p/98765432 e/bernice@example.com a/Blk 555 Changi Ave 5 S555555`
-
-  Now press Enter on your keyboard.
-
-  ![UiTutStep2](images/UiTutorial2.png)
-
-  You have now registered a patient of **NRIC**: T0123456A, **Name**: Bernice Yu, **Date of Birth (DOB)**: 2001-12-25, **Email**: bernice<span></span>@example.com
-  and **Address**: Blk 555 Changi Ave 5 S555555 as seen on the right.
-
-    <box type="info" seamless>
-
-  **Note:** In CLInic, we use prefixes to denote the input parameters. The prefix `i/` is reserved for the patient's NRIC.
-  Therefore, in this case, `i/ T0123456A` means that patient we wish to add has the NRIC `T0123456A`. The remaining prefixes
-  `n/`, `b/`, `p/`, `e/` and `a/` take in the patient's name, birth date, phone number, email and address respectively.
-  The details and constraints of the parameters required for each command will be documented in the features section.
-  </box>
-
-  Awesome, you're learning fast! Now that Bernice is registered in our system, we can finally create an appointment for her.
-  We will need the `addAppt` command to do this!
-
-* { text="3" t-size="32px" }
-
-  On the Command Input Box, type the following command
-
-  `addAppt i/ T0123456A d/ 2024-05-06 from/ 10:00 to/ 11:00 t/ Medical Check-up`
-
-  Now press Enter on your keyboard.
-
-  ![UiTutStep3](images/UiTutorial3.png)
-
-  You have now created an appointment for Bernice using her **NRIC**: T0123456A. The details of her appointment are **Date**: 2024-05-06,
-  **Start Time**: 10:00, **End Time**: 11:00 and **Appointment Type**: Medical Check-up as seen on the right.
-
-    <box type="info" seamless>
-
-  **Note:** In CLInic, you will see that NRIC is used in most commands. We use NRIC numbers to identify each patient uniquely!
-  </box>
-
-  Well done! You have completed the tutorial! Your new patient, Bernice, now has an appointment scheduled for her.
-
-  Continue on to the [**Features**](#features) section below to learn more about the full list of commands available in CLInic!
-  If you are lost at anytime, typing the command **`help`** and pressing Enter will open the help window with a link that will lead you right back to this User Guide.
-
----
-
+--------------------------------------------------------------------------------------------------------------------
 ## Introducing CLInic
 
 CLInic is designed to keep track of your patient data and appointment schedules. To ensure a smooth and focused user experience, we have specified certain requirements for patient and appointment data.
@@ -240,7 +39,47 @@ Restrictions:
 * An appointment **cannot** span across different days or be overnight.
   * CLInic allows appointments to be made anytime within a single day **but not overnight** to simplify daily operations and avoid ambiguity.
 
----
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick start
+
+1. System Requirements: Ensure you have [**Java 11**](https://www.oracle.com/java/technologies/downloads/#java11) or above installed on your computer.
+
+1. Download the latest `CLInic.jar` from [**here**](https://github.com/AY2324S2-CS2103T-F10-3/tp/releases).
+
+1. Save the file to a location on your computer that will serve as your home folder for CLInic.
+
+1. Open a command terminal on your computer. If you're unsure how to do this, we'll walk you through it.
+   * **Windows**: Press `Win + R`, type `cmd`, and press `Enter`.
+   * **MacOS**: Press `Cmd + Space`, type `Terminal`, and press `Enter`.
+   * **Linux**: Press `Ctrl + Alt + T`.
+
+1. Navigate to the folder where you saved the `CLInic.jar` file. If you saved it in your `Downloads` folder, you can use the following commands:
+   * **Windows**: `cd Downloads`
+   * **MacOS**: `cd ~/Downloads`
+   * **Linux**: `cd ~/Downloads`
+
+1. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
+      A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+      ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * `list` : Lists all patients and appointments.
+
+   * `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CLInic.
+
+   * `deletePatient i/T0123456A` : Deletes patient with NRIC T0123456A and corresponding appointments.
+
+   * `clear` : Deletes all patients and appointments.
+
+   * `exit` : Exits the app.
+
+1. Refer to the [**Features**](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
@@ -273,259 +112,103 @@ Restrictions:
 * Initiating CLInic without CLInic.json will result in the loading of dummy data into CLInic.
 </box>
 
-### 1. Viewing help : `help`
+### Viewing help : `help`
 
-If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide!
-
-**Format:**
-<box>
-
-`help`
-</box>
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-### 2. Patient Commands
+Format: `help`
 
-**Input Fields:**
 
- Prefix | Field                                                                            | Constraints                                                                                                                                                                                                                                                       |
-|----------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **i/**         | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)                       | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> | 
-| **n/**         | Name of patient.                                                                 | - Restricted to alphanumeric characters. <br/> - Extra spacing is allowed within the name to allow for user convenience and flexibility.                                                                                                                          |
-| **b/**         | Date of birth of patient.                                                        | - Dates must be in YYYY-MM-DD format.<br/>- Only allows valid dates after 1990-01-01.                                                                                                                                                                             |
-| **p/**         | Emergency contact number.                                                        | - Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                 |
-| **e/**         | Email of patient.                                                                | NA                                                                                                                                                                                                                                                                |
-| **a/**         | Address of patient.                                                              | NA                                                                                                                                                                                                                                                                |
-| **t/**         | Tag attached to specify patient's medical allergies. e.g. `Paracetamol, Insulin` | - No constraints to allow for flexiblility, although it is recommended to use this tag for medical allergies.                                                                                                                                                     
+### Adding a patient: `addPatient` OR `ap`
 
-<box type="wrong" light>
+Adds a patient to CLInic.
 
-**Possible invalid input fields.**
-<box type="tip" seamless>
+Format: `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/>
+Shorthand: `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-Some of the inputs you have keyed in are invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
-</box>
-</box>
-
-### <a name="addPatient"></a>2.1 Adding a patient: `addPatient` OR `ap`
-
-Use this command if you wish to add a new patient to CLInic. You would be required to specify important patient personal information and can include the patient's medical allergies, if any.
-
-**Format:**
-<box>
-
-Full: `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​ `
-
-Shorthand: `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDiCAL_ALLERGY]…​`
-</box>
-
-<box type="warning" seamless>
-
-A patient must have a unique NRIC in CLInic.
-
-</box>
-
-**Examples:**
-<box>
-
-`addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-</box>
-<box>
-
-`addPatient i/S9876543A n/Betsy Crowe b/1998-02-03 t/Insulin e/betsycrowe@example.com a/Crowe street, block 234, #12-12 p/91234567 t/Paracetemol`
-</box>
-
-<box>
-
-`ap i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-</box>
-
-<box type="success" light>
-
-**Expected Outcome**:
-![Add patient expected outcome](./images/addPatient.png)
-
-</box>
-
-<box type="wrong" light>
-
-**This patient already exists in CLInic.**
+* Names must consist of only english alphanumeric characters
+* NRIC should start and end with capital letters with 7 numbers in between them, there is otherwise
+  no additional checks for what makes a valid NRIC, eg. `S0123456A` will work
+* Phone must be a Singapore-based phone number with 8 digits and starts with 6, 8 or 9
 
 <box type="tip" seamless>
 
-There already exists a patient with the NRIC you specified. To view the details of that patient, you can use the [findPatient](#findPatient) command.
-</box>
+**Tip:** A patient must have a unique NRIC in CLInic.
+
 </box>
 
-### 2.2 Deleting a patient : `deletePatient` OR `dp`
+Examples:
+* `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addPatient i/S1234567A n/Betsy Crowe b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/criminal`
+* `ap i/S1234567A n/Betsy Crowe b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/criminal`
 
-Use this command if you wish to delete a patient from CLInic.
+### Deleting a patient : `deletePatient` OR `dp`
+
+Deletes the specified patient (identified by NRIC) from CLInic.
 Corresponding appointments for the specified patient will be deleted too.
 
-<box type="warning" seamless>
-
-Corresponding appointments for the specified patient will be deleted from CLInic too.
-
-</box>
-
-**Format:**
-<box>
-
-Full: `deletePatient i/NRIC`
-
+Format: `deletePatient i/NRIC` <br/>
 Shorthand: `dp i/NRIC`
-</box>
 
-**Examples:**
-<box>
+* Deletes the patient and corresponding appointments with specified `NRIC`.
+* The patient with specified NRIC **must exist within database**.
 
-`deletePatient i/S9876543A`
-</box>
+Examples:
+* `deletePatient i/S1234567A` deletes the patient with NRIC S1234567A in CLInic.
 
-<box type="wrong" light>
+### Editing a patient : `editPatient` OR `ep`
 
-**The NRIC provided is not found in the system.**
+Edits an existing patient in CLInic.
 
-<box type="tip" seamless>
+Format: `editPatient i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​` <br/>
+Shorthand: `ep i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`
 
-CLInic does not have a patient with the provided NRIC, please double-check the NRIC provided.
-</box>
-</box>
+* Edits the patient with the specified NRIC.
+* The patient with specified NRIC **must exist within database**.
+* Provide at least one optional field for editing.
+* Existing values will be updated to the input values.
+* When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
 
-### 2.3 Editing a patient : `editPatient` OR `ep`
+Examples:
+*  `editPatient i/T0123456A newp/91234567 newe/johndoe@example.com` Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
+*  `editPatient i/S8765432Z newn/Betsy Crower newt/` Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
+*  `ep i/S8765432Z newn/Betsy Crower newt/`
 
-Use this command if you wish to edits an existing patient in CLInic.
+### Finding patients: `findPatient` OR `fp`
 
-**Format:**
-<box>
+Finds patients whose name OR NRIC fit the given keywords.
 
-Format: `editPatient i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
-
-Shorthand: `ep i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
-</box>
-
-<box type="warning" seamless>
-
-Existing values will be updated to the input values.
-
-When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
-
-</box>
-
-**Examples:**
-<box>
-
-> Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
-
-`editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`
-</box>
-
-<box>
-
-> Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
-
-`editPatient i/S98765432A newn/Betsy Crower newt/`
-</box>
-
-<box>
-
-> Executes the above command but uses shorthand format
-
-`ep i/S98765432A newn/Betsy Crower newt/`
-</box>
-
-<box type="wrong" light>
-
-**At least one field to edit must be provided.**
-
-<box type="tip" seamless>
-
-CLInic requires that at least one optional field is provided to execute the `editPatient` command.
-</box>
-</box>
-
-<box type="wrong" light>
-
-**The NRIC provided is not found in the system.**
-
-<box type="tip" seamless>
-
-CLInic does not have a patient with the provided NRIC, please double-check the NRIC provided or create a Patient using the [addPatient](#addPatient) command.
-</box>
-</box>
-
-### <a name="findPatient"></a>2.4 Finding patients: `findPatient` OR `fp`
-
-Use this command if you wish to finds patients whose name OR NRIC fit the given keywords.
-
-**Format:**
-<box>
-
-Format: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`
-
+Format: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD` <br/>
 Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`
-</box>
 
-<box type="warning" seamless>
+* Only the name OR NRIC is searched at once. e.g. `n/Bob i/T0123456A` is illegal
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Partial words will be matched only if the start of the word is the same e.g. `Han` will match `Hans`
+* To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`
 
-The search is case-insensitive. e.g `hans` will match `Hans`.
+Name Search
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Partial words will be matched only if the start of the word is the same e.g. `T01` will match `T0123456A`.
-
-To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`.
-
-If currently on Day View, this command will cause a `switchView` to automatically occur.
-</box>
-
-<box type="wrong" light>
-
-**Find by either NRIC or name, not both!**
-
-<box type="tip" seamless>
-
-CLInic currently only supports finding patients by a single field. 
-</box>
-</box>
-
-#### 2.4.1 Name Search
-
-**Examples:**
-<box>
-
-> Find all patients with name beginning with `john`
-
-`findPatient n/John`
-</box>
-
-**Examples:**
-<box>
-
-> Find all patients with name beginning with either `alex` or `david`, using shorthand command
-
-`fp n/ alex david`
-</box>
-
-#### 2.4.2 NRIC Search
-**Examples:**
-<box>
-
-> Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
-
-`findPatient i/t01`
-</box>
-
-<box type="wrong" light>
-
-**You have provided more than one word of NRIC keywords to match.**
+NRIC Search
+* Only patients matching the given keyword will be returned.
+  e.g. `n/T0` will return `T0123456A`, `T0234567B`
+  e.g. `n/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 <box type="tip" seamless>
 
-CLInic does not provide support for finding patients with different starting NRICs. Please only provide one starting NRIC.
+**Tip:** If currently on Day View, this command will cause a `switchView` to automatically occur.
 
-e.g. `n/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 </box>
-</box>
+
+Examples:
+* `findPatient i/S9` returns patients with NRICs `S9876543A` and `S9765432A`
+* `findPatient n/John` returns patients with names `john` and `John Doe`
+* `findPatient n/alex david` returns patients with names `Alex Yeoh`, `David Li`<br>
+* `fp n/ alex david` returns patients with names `Alex Yeoh`, `David Li`<br>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -642,71 +325,33 @@ Format: `unmark i/NRIC d/DATE from/START_TIME`
 Examples:
 * `unmark i/T0123456A d/2024-02-20 from/11:00`
 
-### 4. General Commands
+### Listing all patients and appointments : `list` OR `ls`
 
-Unlike the previous command sections, there are no prefixes in this section.
+Shows a list of all patients and appointments in CLInic.
 
-Any extraneous parameters for these commands will be ignored. 
+Format: `list` OR `ls`
 
-**Examples:**
-<box>
+### Switch between Overall View and Day View : `switchView` OR `sv`
 
-`list 123` will be interpreted as `list`
-</box>
-                                   
-### <a name="list"></a>4.1 Listing all patients and appointments : `list` OR `ls`
+Switches view from Overall View to Day View or vice versa.
 
-Use this command to show a list of all patients and appointments in CLInic.
+Format: `switchView` OR `sv`
 
-<box>
+### Clearing all entries : `clear`
 
-Full: `list`
+Clears all entries of patients and appointments from CLInic.
 
-Shorthand: `ls​`
-</box>
+Format: `clear`
 
-### <a name="switchView"></a>4.2 Switch between Overall View and Day View : `switchView` OR `sv`
+### Exiting the program : `exit`
 
-Use this command to show a list of all patients and appointments in CLInic.
+Exits the program.
 
-<box>
-
-Full: `switchView`
-
-Shorthand: `sv`
-</box>
-
-### <a name="clear"></a>4.3 Clearing all entries : `clear` 
-
-Use this command if you wish to clear all entries of patients and appointments from CLInic.
-
-<box>
-
-`clear`
-
-</box>
-
-<box type="warning" seamless>
-
-This action is irreversible. Please proceed with caution. 
-
-Once this command is executed, it would not be possible to restore the deleted data.
-
-</box>
-
-### <a name="exit"></a>4.4 Exiting the program : `exit` 
-
-Exits CLInic.
-
-<box>
-
-`exit`
-
-</box>
+Format: `exit`
 
 ### Saving the data
 
-CLInic data are saved in the hard disk automatically after any command that changes the data. You do not need to save manually.
+CLInic data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
