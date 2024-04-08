@@ -1016,9 +1016,10 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 **A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
 
 **Q**: Am I allowed to edit a patient's NRIC?
-**A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#a-nameaddpatienta21-adding-a-patient-addpatient-or-ap>[addPatient command]</a>.
+**A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
 
-
+**Q**: 
+**A**:
 
 ##### Appointments
 
@@ -1113,4 +1114,6 @@ Team size: 5
 ##### Patients
 1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly. 
 2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
-3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, whilst handling these cases internally to ensure consistency.
+3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, 
+
+
