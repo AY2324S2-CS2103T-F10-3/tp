@@ -533,19 +533,15 @@ Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
 
 CLInic does not provide support for finding patients with different starting NRICs. Please only provide one starting NRIC.
 
-e.g. `n/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
+e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 </box>
 </box>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-<<<<<<< Updated upstream
 --- {.dashed}
 
-### Adding an Appointment: `addAppt` OR `aa`
-=======
 ### 3. Appointment Commands
->>>>>>> Stashed changes
 
 **Input Fields:**
 
@@ -580,9 +576,13 @@ Use this command if you wish to add an appointment to CLInic. You would be requi
 
 <box>
 
-Full: `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]` <br/>
+Full: 
 
-Shorthand: `aa i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
+> `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]` <br/>
+
+Shorthand: 
+
+> `aa i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
 
 </box>
 
@@ -608,12 +608,20 @@ Add appointment for `john` whose IC is `T0123456A` and is coming for a `Medical 
 > `addAppt i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 </box>
 
-**Examples:**
 <box>
 
 Add appointment, using shorthand command, with above example
 
 > `aa i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Add appointment expected outcome](./images/AddApptSuccess.png)
+
 </box>
 
 <box type="wrong" light>
@@ -636,9 +644,13 @@ Use this command if you wish to delete an appointment from CLInic. You would be 
 
 <box>
 
-Full: `deleteAppt i/NRIC d/DATE from/START_TIME` <br/>
+Full: 
 
-Shorthand: `da i/NRIC d/DATE from/START_TIME`
+> `deleteAppt i/NRIC d/DATE from/START_TIME` <br/>
+
+Shorthand: 
+
+> `da i/NRIC d/DATE from/START_TIME`
 
 </box>
 
@@ -654,7 +666,7 @@ You would not need to input `END_TIME` as same patient can never have overlappin
 
 </box>
 
-### 3.2.1 Use Cases
+#### 3.2.1 Use Cases
 
 **Examples:**
 
@@ -684,9 +696,13 @@ Existing values will be updated to the input values.
 
 <box>
 
-Full: `editAppt i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` <br/>
+Full: 
 
-Shorthand: `ea i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]`
+> `editAppt i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` <br/>
+
+Shorthand: 
+
+> `ea i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]`
 
 </box>
 
@@ -769,7 +785,7 @@ If currently on Day View, this command will cause a `switchView` to automaticall
 
 </box>
 
-### 3.4.1 Use Cases
+#### 3.4.1 Use Cases
 
 **Examples:**
 
@@ -802,7 +818,7 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-### 3.5.1 Use Cases
+#### 3.5.1 Use Cases
 
 **Examples:**
 
@@ -839,7 +855,7 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-### 3.6.1 Use Cases
+#### 3.6.1 Use Cases
 
 **Examples:**
 
