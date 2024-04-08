@@ -1,7 +1,7 @@
 ---
   layout: default.md
   title: "User Guide"
-  pageNav: 3
+  pageNav: 4
 ---
 
 # CLInic User Guide
@@ -636,8 +636,6 @@ If new appointment overlaps with an existing appointment for the same patient, a
 
 </box>
 
-#### 3.1.1 Use Cases
-
 **Examples:**
 <box>
 
@@ -700,8 +698,6 @@ You would not need to input `END_TIME` as same patient can never have overlappin
 
 </box>
 
-#### 3.2.1 Use Cases
-
 **Examples:**
 
 <box>
@@ -747,8 +743,6 @@ You would need to provide at least one optional field for editing.
 You would need to ensure the NRIC is valid and exists in the system.
 
 </box>
-
-#### 3.3.1 Use Cases
 
 **Examples:**
 
@@ -818,8 +812,6 @@ Fetching for TIME without DATE will return all appointments whose start from tha
 If currently on Day View, this command will cause a `switchView` to automatically occur.
 
 </box>
-
-#### 3.4.1 Use Cases
 
 **Examples:**
 
