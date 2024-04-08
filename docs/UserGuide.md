@@ -235,12 +235,11 @@ Restrictions:
 
 ## Features
 
-CLInic is designed to keep track of your patient data and appointment schedules. We have 4 broad categories of features:
+CLInic is designed to keep track of your patient data and appointment schedules. We have 3 broad categories of features:
 
-1. [Seeking Help](#help)
-2. [Patient Commands](#patientCommands)
-3. [Appointment Commands](#appointmentCommands)
-4. [General Commands](#generalCommands)
+1. [Patient Commands](#patientCommands)
+2. [Appointment Commands](#appointmentCommands)
+3. [General Commands](#generalCommands)
 
 <box type="info" seamless>
 
@@ -275,30 +274,7 @@ Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
 <br/>
 
-### <a name="help"></a>1. Viewing help : `help`
-
-If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide!
-
-**Format:**
-<box>
-
-`help`
-</box>
-
-<box type="success" light>
-
-**Expected Outcome**: A window should pop up, with a link that brings you right back to this User Guide!
-![help message](images/helpMessage.png)
-
-</box>
-
-
-
---- {.dashed}
-
-<br/>
-
-### <a name="patientCommands"></a>2. Patient Commands
+### <a name="patientCommands"></a>1. Patient Commands
 
 CLInic stores your patients with the following information fields: NRIC (unique), Name, Date of Birth, Phone Number, Email, Address, Medical Allergies (if any).
 
@@ -330,7 +306,7 @@ Some of the inputs you have keyed in may be invalid, check out the constraints f
 
 <br/>
 
-### <a name="addPatient"></a>2.1 Adding a patient: `addPatient` OR `ap`
+### <a name="addPatient"></a>1.1 Adding a patient: `addPatient` OR `ap`
 
 Use this command if you wish to add a new patient to CLInic. You would be required to specify important patient personal information and can include the patient's medical allergies, if any.
 
@@ -381,7 +357,7 @@ There already exists a patient with the NRIC you specified. To view the details 
 
 <br/>
 
-### 2.2 Deleting a patient : `deletePatient` OR `dp`
+### 1.2 Deleting a patient : `deletePatient` OR `dp`
 
 Use this command if you wish to delete a patient from CLInic.
 Corresponding appointments for the specified patient will be deleted too.
@@ -420,7 +396,7 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 
 <br/>
 
-### 2.3 Editing a patient : `editPatient` OR `ep`
+### 1.3 Editing a patient : `editPatient` OR `ep`
 
 Use this command if you wish to edits an existing patient in CLInic.
 
@@ -484,7 +460,7 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 
 <br/>
 
-### <a name="findPatient"></a>2.4 Finding patients: `findPatient` OR `fp`
+### <a name="findPatient"></a>1.4 Finding patients: `findPatient` OR `fp`
 
 Use this command if you wish to finds patients whose name OR NRIC fit the given keywords.
 
@@ -519,7 +495,7 @@ CLInic currently only supports finding patients by a single field.
 
 <br/>
 
-#### 2.4.1 Name Search
+#### 1.4.1 Name Search
 
 **Examples:**
 <box>
@@ -546,7 +522,7 @@ Find all patients with name beginning with either `alex` or `david`, using short
 
 <br/>
 
-#### 2.4.2 NRIC Search
+#### 1.4.2 NRIC Search
 **Examples:**
 <box>
 
@@ -579,7 +555,7 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 --- {.dashed}
 
-### 3. Appointment Commands
+### 2. Appointment Commands
 
 **Input Fields:**
 
@@ -601,7 +577,7 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 Some of the inputs you have keyed in may be invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
 
-### 3.1 Adding an Appointment: `addAppt` OR `aa`
+### 2.1 Adding an Appointment: `addAppt` OR `aa`
 
 Use this command if you wish to add an appointment to CLInic. You would be required to specify:
 
@@ -636,7 +612,7 @@ If new appointment overlaps with an existing appointment for the same patient, a
 
 </box>
 
-#### 3.1.1 Use Cases
+#### 2.1.1 Use Cases
 
 **Examples:**
 <box>
@@ -674,7 +650,7 @@ e.g. `d/2024-02-20 from/23:00 to/01:00` will not be accepted as the appointment 
 </box>
 </box>
 
-### 3.2 Deleting an Appointment: `deleteAppt` OR `da`
+### 2.2 Deleting an Appointment: `deleteAppt` OR `da`
 
 Use this command if you wish to delete an appointment from CLInic. You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
@@ -704,7 +680,7 @@ You would not need to input `END_TIME` as same patient can never have overlappin
 
 </box>
 
-#### 3.2.1 Use Cases
+#### 2.2.1 Use Cases
 
 **Examples:**
 
@@ -724,7 +700,7 @@ Delete appointment, using shorthand command, with above example
 
 </box>
 
-### 3.3 Editing an Appointment : `editAppointment` OR `ea`
+### 2.3 Editing an Appointment : `editAppointment` OR `ea`
 
 Use this command if you wish to edit an existing appointment in CLInic. 
 You would require the appointment details, specifically patient's NRIC, date, and start time.
@@ -752,7 +728,7 @@ You would need to ensure the NRIC is valid and exists in the system.
 
 </box>
 
-#### 3.3.1 Use Cases
+#### 2.3.1 Use Cases
 
 **Examples:**
 
@@ -794,7 +770,7 @@ patient within that time frame.
 </box>
 </box>
 
-### 3.4 Finding appointments: `findAppt` OR `fa`
+### 2.4 Finding appointments: `findAppt` OR `fa`
 
 Use this command if you wish to find appointments based on certain identifiers.
 You can use any combination of the three: NRIC, date or start time.
@@ -823,7 +799,7 @@ If currently on Day View, this command will cause a `switchView` to automaticall
 
 </box>
 
-#### 3.4.1 Use Cases
+#### 2.4.1 Use Cases
 
 **Examples:**
 
@@ -843,7 +819,7 @@ Find all appointments, using shorthand command, with above example.
 
 </box>
 
-### 3.5 Marking an Appointment: `mark`
+### 2.5 Marking an Appointment: `mark`
 
 Use this command if you wish to mark an appointment from CLInic.
 You would be required to specify the patient's NRIC, the date and start time of the appointment.
@@ -856,7 +832,7 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-#### 3.5.1 Use Cases
+#### 2.5.1 Use Cases
 
 **Examples:**
 
@@ -880,7 +856,7 @@ You would not need `END_TIME` as same patient can never have overlapping appoint
 
 </box>
 
-### 3.6 Unmarking an Appointment: `unmark`
+### 2.6 Unmarking an Appointment: `unmark`
 
 Use this command if you wish to unmark an appointment from the address book.
 You would be required to specify the patient's NRIC, the date and start time of the appointment.
@@ -893,7 +869,7 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-#### 3.6.1 Use Cases
+#### 2.6.1 Use Cases
 
 **Examples:**
 
@@ -919,18 +895,18 @@ You would not need `END_TIME` as same patient can never have overlapping appoint
 
 --- {.dashed}
 
-### <a name="generalCommands"></a>4. General Commands
+### <a name="generalCommands"></a>3. General Commands
 
 General commands are simple commands with no prefixes.
 
-<box type="warning" seamless>
+<box type="info" seamless>
 
 Any extraneous parameters for these commands will be ignored.
 
 e.g. `list 123` will be interpreted as `list`
 </box>
                                    
-### <a name="list"></a>4.1 Listing all patients and appointments : `list` OR `ls`
+### <a name="list"></a>3.1 Listing all patients and appointments : `list` OR `ls`
 
 Use this command to show the full list of all patients and appointments in CLInic.
 
@@ -943,9 +919,9 @@ Full: `list`
 Shorthand: `ls​`
 </box>
 
-### <a name="switchView"></a>4.2 Switch between Overall View and Day View : `switchView` OR `sv`
+### <a name="switchView"></a>3.2 Switch between Overall-View and Day-View : `switchView` OR `sv`
 
-You can use this command to switch views from Overall View to Day View and vice versa, without having to click on the interface buttons.
+You can use this command to switch views from Overall-View to Day-View and vice versa, without having to click on the interface buttons.
 
 <box>
 
@@ -954,7 +930,7 @@ Full: `switchView`
 Shorthand: `sv`
 </box>
 
-### <a name="clear"></a>4.3 Clearing all entries : `clear` 
+### <a name="clear"></a>3.3 Clearing all entries : `clear` 
 
 Use this command if you wish to clear all entries of patients and appointments from CLInic.
 
@@ -966,19 +942,38 @@ Use this command if you wish to clear all entries of patients and appointments f
 
 <box type="warning" seamless>
 
+**Warning:**
+
 This action is irreversible. Please proceed with caution. 
 
 Once this command is executed, it would not be possible to restore the deleted data.
 
 </box>
 
-### <a name="exit"></a>4.4 Exiting the program : `exit` 
+### <a name="exit"></a>3.4 Exiting the program : `exit` 
 
 Exits CLInic.
 
 <box>
 
 `exit`
+
+</box>
+
+### <a name="help"></a>3.4 Exiting the program : `help` 
+
+If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide!
+
+**Format:**
+<box>
+
+`help`
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**: A window should pop up, with a link that brings you right back to this User Guide!
+![help message](images/helpMessage.png)
 
 </box>
 
