@@ -945,6 +945,30 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 
 ## FAQ
 
+##### Patients
+**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?
+**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
+
+**Q**: Will `EMAIL` accept emails without an .xx domain? Will emails like user@local, user@nus.edu.sg be accepted?
+**A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
+
+**Q**: Will foreign ID or phone numbers be accepted?
+**A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
+
+**Q**: Am I able to put NA for the address field?
+**A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
+
+**Q**: Why am I allowed to add duplicate phone numbers for different patients?
+**A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
+
+**Q**: Am I allowed to edit a patient's NRIC?
+**A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the [addPatient command](#a-nameaddpatienta21-adding-a-patient-addpatient-or-ap).
+
+
+
+##### Appointments
+
+##### General
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
 
@@ -1029,3 +1053,10 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Planned Enhancements
+
+Team size: 5
+
+##### Patients
+1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly. 
+2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
+3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, whilst handling these cases internally to ensure consistency.
