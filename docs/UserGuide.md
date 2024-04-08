@@ -273,6 +273,8 @@ Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
 --- {.dashed}
 
+<br/>
+
 ### <a name="help"></a>1. Viewing help : `help`
 
 If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide!
@@ -283,9 +285,18 @@ If you are facing any issues while using CLInic, you can use this help command w
 `help`
 </box>
 
+<box type="success" light>
+
+**Expected Outcome**: A window should pop up, with a link that brings you right back to this User Guide!
 ![help message](images/helpMessage.png)
 
+</box>
+
+
+
 --- {.dashed}
+
+<br/>
 
 ### <a name="patientCommands"></a>2. Patient Commands
 
@@ -316,6 +327,8 @@ CLInic stores your patients with the following information fields: NRIC (unique)
 Some of the inputs you have keyed in may be invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
 </box>
 </box>
+
+<br/>
 
 ### <a name="addPatient"></a>2.1 Adding a patient: `addPatient` OR `ap`
 
@@ -352,7 +365,7 @@ Adds a patient with 2 medical allergies (Insulin and Paracetamol), using the sho
 <box type="success" light>
 
 **Expected Outcome**:
-![Add patient expected outcome](./images/addPatient.png)
+![Add patient expected outcome](./images/addPatientSuccess.png)
 
 </box>
 
@@ -365,6 +378,8 @@ Adds a patient with 2 medical allergies (Insulin and Paracetamol), using the sho
 There already exists a patient with the NRIC you specified. To view the details of that patient, you can use the [findPatient](#findPatient) command.
 </box>
 </box>
+
+<br/>
 
 ### 2.2 Deleting a patient : `deletePatient` OR `dp`
 
@@ -402,6 +417,8 @@ Delete patient with NRIC number S9876543A.
 CLInic does not have a patient with the provided NRIC, please double-check the NRIC provided.
 </box>
 </box>
+
+<br/>
 
 ### 2.3 Editing a patient : `editPatient` OR `ep`
 
@@ -465,6 +482,8 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 </box>
 </box>
 
+<br/>
+
 ### <a name="findPatient"></a>2.4 Finding patients: `findPatient` OR `fp`
 
 Use this command if you wish to finds patients whose name OR NRIC fit the given keywords.
@@ -498,6 +517,8 @@ CLInic currently only supports finding patients by a single field.
 </box>
 </box>
 
+<br/>
+
 #### 2.4.1 Name Search
 
 **Examples:**
@@ -516,6 +537,15 @@ Find all patients with name beginning with either `alex` or `david`, using short
 >`fp n/ alex david`
 </box>
 
+<box type="success" light>
+
+**Expected Outcome**:
+![Find patient by name expected outcome](./images/findPatientNameSuccess.png)
+
+</box>
+
+<br/>
+
 #### 2.4.2 NRIC Search
 **Examples:**
 <box>
@@ -523,6 +553,14 @@ Find all patients with name beginning with either `alex` or `david`, using short
 Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
 
 >`findPatient i/t01`
+</box>
+
+
+<box type="success" light>
+
+**Expected Outcome**:
+![Find patient by NRIC expected outcome](./images/findPatientNricSuccess.png)
+
 </box>
 
 <box type="wrong" light>
@@ -537,7 +575,7 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 </box>
 </box>
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
 
 --- {.dashed}
 
