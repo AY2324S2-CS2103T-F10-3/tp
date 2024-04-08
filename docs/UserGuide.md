@@ -978,53 +978,102 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 ## FAQ
 
 ##### Patients
-**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?<br>
-**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
+<box>
 
-**Q**: Will `EMAIL` accept emails without an .xx domain? Will emails like user@local, user@nus.edu.sg be accepted?<br>
-**A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
+**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?<br>
+>**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
+
+</box>
+<box>
+
+**Q**: Will `EMAIL` accept emails without an .xx domain? Will valid emails like user@local be accepted?<br>
+>**A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
+
+</box>
+<box>
 
 **Q**: Will foreign ID or phone numbers be accepted?<br>
-**A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
+>**A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
+
+</box>
+<box>
 
 **Q**: Am I able to put NA for the `ADDRESS` field?<br>
-**A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
+>**A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
+
+</box>
+<box>
 
 **Q**: Why am I allowed to add duplicate phone numbers for different patients?<br>
-**A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
+>**A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
+
+</box>
+<box>
 
 **Q**: Am I allowed to edit a patient's `NRIC`?<br>
-**A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
+>**A**: No, CLInic does not support editing a patient's NRIC. We decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
+
+</box>
+<box>
 
 **Q**: Why is there a character limit to `NAME`?<br>
-**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
+>**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
 
+</box>
 
 ##### Appointments
+<box>
+
 **Q**: I'm editing an appointment, and the new appointment information is flagged as overlapping. What can I do?<br>
-**A**: When the new time slot you input overlaps with an existing appointment, CLInic will show you all the existing appointments for the same date you had hoped would be free. This way, you can simply choose a time that does not overlap with those existing appointments. 
+>**A**: When the new time slot you input overlaps with an existing appointment, CLInic will show you all the existing appointments for the same date you had hoped would be free. This way, you can simply choose a time that does not overlap with those existing appointments. 
+
+</box>
+<box>
 
 **Q**: Is marking future appointments allowed? Is adding past appointments allowed? <br>
-**A**: Yes, CLInic supports you in the flexibility of marking and adding appointments. If a patient decides to turn up early, or walk-in on the day, you can easily mark a future appointment. If you forgot to add a past appointment, you can do so retroactively.
+>**A**: Yes, CLInic supports you in the flexibility of marking and adding appointments. If a patient decides to turn up early, or walk-in on the day, you can easily mark a future appointment. If you forgot to add a past appointment, you can do so retroactively.
+
+</box>
+<box>
 
 **Q**: Does editing a marked appointment to the future change its status to unmarked?<br>
-**A**: No, CLInic allows you to move appointments independently of if they were marked, such that you can have flexibility in scheduling of appointments.
+>**A**: No, CLInic allows you to move appointments independently of if they were marked, such that you can have flexibility in scheduling of appointments.
+
+</box>
 
 ##### General
+<box>
+
 **Q**: As a new user, should I change the order of prefixes?<br>
-**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced work flows.
+>**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced work flows.
+
+</box>
+<box>
 
 **Q**: What does "Unknown Command" mean? What should I do if I encounter it?<br>
-**A**: "Unknown Command" means that you have used a different syntax or unsupported command. Refer to [features](#features) for valid commands.
+>**A**: "Unknown Command" means that you have used a different syntax or unsupported command. Refer to [features](#features) for valid commands.
+
+</box>
+<box>
 
 **Q**: Can I use CLInic overseas?<br>
-**A**: CLInic is meant to be used in situ and not on the go. Using it overseas will not update appointment times.
+>**A**: CLInic is intended to be used in Singapore and not on the go. Using it overseas will not update appointment times.
+
+</box>
+
+<box>
 
 **Q**: Why does CLInic use `NRIC` rather than an index for identifying patients and appointments?<br>
-**A**: Weighing the pros and cons, using the unique `NRIC` prevents errors that could be costly, especially in the healthcare industry.
+>**A**: Using the unique `NRIC` prevents errors that could be costly, especially in the healthcare industry.
+
+</box>
+
+<box>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
+>**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
+
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1118,7 +1167,8 @@ Team size: 5
 5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 31/02/1967, which was when this synchronisation was implemented.
 
 ##### Appointments
-6. **Accommodate for overnight appointments and updated day view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for an end date, and for the end time to be on a later date than the start time. Along with this, the day view can be updated to show appointments that start on the current day, even if they end on a later date.
+6. **Accommodate for overnight appointments and updated day-view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show appointments that start on the current date or spans the current date as well.
+7. **Editing marked appointment to future time unmarks it automatically**: Currently, an appointment remains marked even if it is edited to a future time. We plan to automatically unmark an appointment when it is moved to a future time, to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
 
 ##### Error handling
-7. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
+8. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
