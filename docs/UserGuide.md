@@ -988,29 +988,30 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 ## FAQ
 
 ##### Patients
-**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?
+**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?<br>
 **A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
 
-**Q**: Will `EMAIL` accept emails without an .xx domain? Will emails like user@local, user@nus.edu.sg be accepted?
+**Q**: Will `EMAIL` accept emails without an .xx domain? Will emails like user@local, user@nus.edu.sg be accepted?<br>
 **A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
 
-**Q**: Will foreign ID or phone numbers be accepted?
+**Q**: Will foreign ID or phone numbers be accepted?<br>
 **A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
 
-**Q**: Am I able to put NA for the `ADDRESS` field?
+**Q**: Am I able to put NA for the `ADDRESS` field?<br>
 **A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
 
-**Q**: Why am I allowed to add duplicate phone numbers for different patients?
+**Q**: Why am I allowed to add duplicate phone numbers for different patients?<br>
 **A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
 
-**Q**: Am I allowed to edit a patient's `NRIC`?
+**Q**: Am I allowed to edit a patient's `NRIC`?<br>
 **A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
 
-**Q**: Why is there a character limit to `NAME`?
+**Q**: Why is there a character limit to `NAME`?<br>
 **A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
 
 
 ##### Appointments
+
 
 ##### General
 **Q**: How do I transfer my data to another Computer?<br>
