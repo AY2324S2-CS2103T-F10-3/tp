@@ -1011,9 +1011,28 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 
 
 ##### Appointments
+**Q**: I'm editing an appointment, and the new appointment information is flagged as overlapping. What can I do?<br>
+**A**: When the new time slot you input overlaps with an existing appointment, CLInic will show you all the existing appointments for the same date you had hoped would be free. This way, you can simply choose a time that does not overlap with those existing appointments. 
 
+**Q**: Is marking future appointments allowed? Is adding past appointments allowed? <br>
+**A**: Yes, CLInic supports you in the flexibility of marking and adding appointments. If a patient decides to turn up early, or walk-in on the day, you can easily mark a future appointment. If you forgot to add a past appointment, you can do so retroactively.
+
+**Q**: Does editing a marked appointment to the future change its status to unmarked?<br>
+**A**: No, CLInic allows you to move appointments independently of if they were marked, such that you can have flexibility in scheduling of appointments.
 
 ##### General
+**Q**: As a new user, should I change the order of prefixes?<br>
+**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced work flows.
+
+**Q**: What does "Unknown Command" mean? What should I do if I encounter it?<br>
+**A**: "Unknown Command" means that you have used a different syntax or unsupported command. Refer to [features](#features) for valid commands.
+
+**Q**: Can I use CLInic overseas?<br>
+**A**: CLInic is meant to be used in situ and not on the go. Using it overseas will not update appointment times.
+
+**Q**: Why does CLInic use `NRIC` rather than an index for identifying patients and appointments?<br>
+**A**: Weighing the pros and cons, using the unique `NRIC` prevents errors that could be costly, especially in the healthcare industry.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
 
@@ -1106,5 +1125,10 @@ Team size: 5
 2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
 3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, 
 4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
+5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 31/02/1967, which was when this synchronisation was implemented.
 
+##### Appointments
+6. **Accommodate for overnight appointments and updated day view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for an end date, and for the end time to be on a later date than the start time. Along with this, the day view can be updated to show appointments that start on the current day, even if they end on a later date.
 
+##### Error handling
+7. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
