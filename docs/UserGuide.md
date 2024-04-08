@@ -1237,7 +1237,7 @@ Team size: 5
 2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
 3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, 
 4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
-5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 31/02/1967, which was when this synchronisation was implemented.
+5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>.
 
 ##### Appointments
 6. **Accommodate for overnight appointments and updated day-view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show appointments that start on the current date or spans the current date as well.
@@ -1245,3 +1245,4 @@ Team size: 5
 
 ##### Error handling
 8. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
+
