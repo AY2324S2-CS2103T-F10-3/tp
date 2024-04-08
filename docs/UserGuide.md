@@ -270,6 +270,9 @@ CLInic is designed to keep track of your patient data and appointment schedules.
 
 **Notes:**<br>
 
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -285,11 +288,10 @@ CLInic is designed to keep track of your patient data and appointment schedules.
 
 <box type="warning" seamless>
 
+**Caution**:
 Commands are case-sensitive, including shorthand formats.<br>
   e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` and `Ap` will not be recognised by CLInic.
 
-Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
 </box>
 
 --- {.dashed}
@@ -335,16 +337,19 @@ Use this command if you wish to add a new patient to CLInic. You would be requir
 **Format:**
 <box>
 
-Full: `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​ `
+Full: 
+>`addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​ `
 
-Shorthand: `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDiCAL_ALLERGY]…​`
+Shorthand: 
+> `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDiCAL_ALLERGY]…​`
+
 </box>
 
 [More information on prefixes](#patient-command-prefixes)
 
 <box type="warning" seamless>
 
-A patient must have a unique NRIC in CLInic.
+**Caution**: A patient must have a unique NRIC in CLInic.
 
 </box>
 
@@ -388,16 +393,19 @@ Corresponding appointments for the specified patient will be deleted too.
 
 <box type="warning" seamless>
 
-Corresponding appointments for the specified patient will be deleted from CLInic too.
+**Caution**: Corresponding appointments for the specified patient will be deleted from CLInic too.
 
 </box>
 
 **Format:**
 <box>
 
-Full: `deletePatient i/NRIC`
+Full: 
+>`deletePatient i/NRIC`
 
-Shorthand: `dp i/NRIC`
+Shorthand: 
+>`dp i/NRIC`
+
 </box>
 
 [More information on prefixes](#patient-command-prefixes)
@@ -429,18 +437,22 @@ Use this command if you wish to edits an existing patient in CLInic.
 **Format:**
 <box>
 
-Format: `editPatient i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
+Full: 
+>`editPatient i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
 
-Shorthand: `ep i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
+Shorthand: 
+>`ep i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
+
 </box>
 
 [More information on prefixes](#patient-command-prefixes)
 
 <box type="warning" seamless>
 
-Existing values will be updated to the input values.
+**Caution** 
+* Existing values will be updated to the input values.
 
-When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
+* When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
 
 </box>
 
@@ -488,7 +500,7 @@ Use this command if you wish to finds patients whose name OR NRIC fit the given 
 **Format:**
 <box>
 
-Format: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`
+Full: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`
 
 Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`
 </box>
@@ -497,13 +509,14 @@ Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`
 
 <box type="warning" seamless>
 
-The search is case-insensitive. e.g `hans` will match `Hans`.
+**Caution**:
+* The search is case-insensitive. e.g `hans` will match `Hans`.
 
-Partial words will be matched only if the start of the word is the same e.g. `T01` will match `T0123456A`.
+* Partial words will be matched only if the start of the word is the same e.g. `T01` will match `T0123456A`.
 
-To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`.
+* To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`.
 
-If currently on Day-View, this command will cause a `switchView` to automatically occur.
+* If currently on Day-View, this command will cause a `switchView` to automatically occur.
 </box>
 
 <box type="wrong" light>
@@ -576,6 +589,8 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 --- {.dashed}
 
+<br/>
+
 ### <a name="appointmentCommands"></a> 2. Appointment Commands
 
 CLInic stores your appointments with the following information fields: NRIC (unique), Date, Start Time, End Time, Appointment Type, Note (if any).
@@ -607,6 +622,8 @@ Some of the inputs you have keyed in may be invalid, check out the constraints f
 </box>
 </box>
 
+<br/>
+
 ### 2.1 Adding an Appointment: `addAppt` OR `aa`
 
 Use this command if you wish to add an appointment to CLInic. You would be required to specify:
@@ -634,13 +651,14 @@ Shorthand:
 
 <box type="warning" seamless>
 
-Patient with this NRIC **must exist within CLInic**. <br/>
+**Warning**:
+* Patient with this NRIC **must exist within CLInic**. <br/>
 
-You cannot schedule an appointment for a patient on a date before their date of birth.</box>
+* You cannot schedule an appointment for a patient on a date before their date of birth.</box>
 
 <box type="info" seamless>
 
-If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
+**Note**: If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
 </box>
 
@@ -688,6 +706,8 @@ e.g. `d/2024-05-20 from/23:00 to/01:00` will not be accepted as the appointment 
 
 </box>
 </box>
+
+<br/>
 
 ### 2.2 Deleting an Appointment: `deleteAppt` OR `da`
 
@@ -740,6 +760,8 @@ e.g. `da i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if t
 </box>
 </box>
 
+<br/>
+
 ### 2.3 Editing an Appointment : `editAppointment` OR `ea`
 
 Use this command if you wish to edit an existing appointment in CLInic. 
@@ -764,9 +786,10 @@ Shorthand:
 
 <box type="warning" seamless>
 
-You would need to provide at least one optional field for editing.
+**Caution**:
+* You would need to provide at least one optional field for editing.
 
-You would need to ensure the NRIC is valid and exists in the system.
+* You would need to ensure the NRIC is valid and exists in the system.
 
 </box>
 
@@ -810,14 +833,15 @@ patient within that time frame.
 </box>
 </box>
 
+<br/>
+
 ### 2.4 Finding appointments: `findAppt` OR `fa`
 
 Use this command if you wish to find appointments based on certain identifiers.
 You can use any combination of the three: NRIC, date or start time.
 
-<box>
-
 **Format:**
+<box>
 
 Full: 
 
@@ -833,7 +857,7 @@ Shorthand:
 
 <box type="info" seamless>
 
-If currently on Day-View, this command will cause a `switchView` to automatically occur.
+**Note**: If currently on Day-View, this command will cause a `switchView` to automatically occur.
 
 </box>
 
@@ -855,6 +879,8 @@ Find all appointments, using shorthand command, on 2024-05-20, starting from 11:
 
 </box>
 
+<br/>
+
 #### 2.4.1 Find by NRIC
 
 **Examples:**
@@ -869,11 +895,14 @@ Find all appointments for patient with exact NRIC T0123456A.
 
 <box type="warning" seamless>
 
-If NRIC does not exist within CLInic, no appointments will be returned to you.
+**Caution** 
+* If NRIC does not exist within CLInic, no appointments will be returned to you.
 
-Please ensure existence of patient with NRIC within CLInic.
+* Please ensure existence of patient with NRIC within CLInic.
 
 </box>
+
+<br/>
 
 #### 2.4.2 Find by Date
 
@@ -886,6 +915,8 @@ Finds all appointments on the date 2024-05-20.
 > `findAppt d/2024-05-20`
 
 </box>
+
+<br/>
 
 #### 2.4.3 Find by Time
 
@@ -901,7 +932,11 @@ Finds all appointments starting from 11:00 and later on any date.
 
 <box type="success" light>
 
+![Find appointment by time expected outcome](./images/FindApptByTimeSuccess.png)
 </box>
+
+
+<br/>
 
 ### 2.5 Marking an Appointment: `mark`
 
@@ -928,6 +963,14 @@ Mark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
 
 </box>
 
+</box>
+
+<box type="success" light>
+
+![Mark appointment expected outcome](./images/MarkApptSuccess.png)
+</box>
+
+
 <box type="wrong" light>
 
 **The appointment provided is not found in the system**.
@@ -940,6 +983,8 @@ e.g. `mark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if
 
 </box>
 </box>
+
+<br/>
 
 ### 2.6 Unmarking an Appointment: `unmark`
 
@@ -981,22 +1026,29 @@ e.g. `unmark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted 
 
 --- {.dashed}
 
+<br/>
+
 ### <a name="generalCommands"></a>3. General Commands
 
 General commands are simple commands with no prefixes.
 
 <box type="info" seamless>
 
-Any extraneous parameters for these commands will be ignored.
+**Note**: Any extraneous parameters for these commands will be ignored.
 
 e.g. `list 123` will be interpreted as `list`
 </box>
-                                   
+
+<br/>
+
 ### <a name="list"></a>3.1 Listing all patients and appointments : `list` OR `ls`
 
 Use this command to show the full list of all patients and appointments in CLInic.
 
-You can use this command after using commands like `findPatient` and `findAppointment` to retrieve back the full list. 
+<box type="info" seamless>
+
+**Note**: This command is useful for viewing the full list after commands like `findPatient` or `findAppointment`!
+</box>
 
 <box>
 
@@ -1007,6 +1059,8 @@ Full:
 Shorthand: 
 > `ls​`
 </box>
+
+<br/>
 
 ### <a name="switchView"></a>3.2 Switch between Overall-View and Day-View : `switchView` OR `sv`
 
@@ -1022,11 +1076,15 @@ Shorthand:
 
 </box>
 
+<br/>
+
 ### <a name="clear"></a>3.3 Clearing all entries : `clear` 
 
 Use this command if you wish to clear all entries of patients and appointments from CLInic.
 
 <box>
+
+<br/>
 
 > `clear`
 
@@ -1042,6 +1100,8 @@ Once this command is executed, it would not be possible to restore the deleted d
 
 </box>
 
+<br/>
+
 ### <a name="exit"></a>3.4 Exiting the program : `exit` 
 
 Exits CLInic.
@@ -1051,6 +1111,8 @@ Exits CLInic.
 > `exit`
 
 </box>
+
+<br/>
 
 ### <a name="help"></a>3.5 Viewing help : `help`
 
@@ -1069,9 +1131,13 @@ If you are facing any issues while using CLInic, you can use this help command w
 
 </box>
 
+<br/>
+
 ### Saving the data
 
 CLInic data are saved in the hard disk automatically after any command that changes the data. You do not need to save manually.
+
+<br/>
 
 ### Editing the data file
 
