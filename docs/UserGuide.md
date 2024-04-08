@@ -1183,19 +1183,6 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
-| Term                 | Explanation                                                                                                                                    |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CLI**              | Command Line Interface, a text-based interface for interacting with software by typing commands.                                               |
-| **GUI**              | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons. |
-| **JSON**             | JavaScript Object Notation, a lightweight data-interchange format.                                                                             |
-| **NRIC**             | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                         |
-| **TAG**              | A keyword or term assigned to a piece of information, making it easier to search for and organize.                                             |
-| **APPOINTMENT_TYPE** | The type of appointment, e.g., Medical Check-up, Blood Test, etc.                                                                              |
-| **NOTE**             | Additional information or comments about an appointment.                                                                                       |
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Prefix summary for patients
 | Prefix | Field                                                                             | Caveats                                                                                                                                                                                                                                                                                                                                                                       
 |-----------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
