@@ -597,9 +597,16 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 | **newt/**            | New type of appointment if change required.                                                | NA                                                                                                                                                                                                                                                                                                                                                                            
 | **newnote/**         | New note of appointment if change required.                                                | NA                                                                                                                                                                                                                                                                                                                                                                            
 
-**Possible invalid input fields.** 
+<box type="wrong" light>
+
+**Possible invalid input fields.**
+
+<box type="tip" seamless>
 
 Some of the inputs you have keyed in may be invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
+
+</box>
+</box>
 
 ### 3.1 Adding an Appointment: `addAppt` OR `aa`
 
@@ -632,7 +639,7 @@ You cannot schedule an appointment for a patient on a date before their date of 
 
 <box type="info" seamless>
 
-If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
+If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
 </box>
 
@@ -662,13 +669,22 @@ Add appointment, using shorthand command, with above example.
 
 <box type="wrong" light>
 
-**You have provided an appointment that carries onto the next day.**
+**End time of appointment cannot be earlier than start time.**
+
+<box type="tip" seamless>
+
+Appointments should not have an end time that is earlier than the start time.
+
+e.g. `d/2024-05-20 from/11:00 to/10:30` will not be accepted.
+
+</box>
 
 <box type="tip" seamless>
 
 CLInic does not provide support for overnight appointments. Please only provide an appointment within the same day.
 
 e.g. `d/2024-05-20 from/23:00 to/01:00` will not be accepted as the appointment spans across two days.
+
 </box>
 </box>
 
@@ -690,14 +706,6 @@ Shorthand:
 
 </box>
 
-<box type="warning" seamless>
-
-Appointment with the stated details **must exist within CLInic**.
-
-You would not need to input `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is unique.
-
-</box>
-
 **Examples:**
 
 <box>
@@ -714,6 +722,19 @@ Delete appointment, using shorthand command, with above example.
 
 > `da i/T0123456A d/2024-05-20 from/11:00`
 
+</box>
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `da i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 ### 3.3 Editing an Appointment : `editAppointment` OR `ea`
@@ -776,7 +797,7 @@ Clears note for appointments.
 
 <box type="tip" seamless>
 
-All overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
+All overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
 e.g. `d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
 patient within that time frame.
@@ -803,17 +824,9 @@ Shorthand:
 
 </box>
 
-<box type="warning" seamless>
-
-For argument concerning `TIME`, all appointments that start at the given time and later than that are returned.
-
-Fetching for `TIME` without `DATE` will return all appointments whose start from that time or later than that on any date.
-
-</box>
-
 <box type="info" seamless>
 
-If currently on Day View, this command will cause a `switchView` to automatically occur.
+If currently on Day-View, this command will cause a `switchView` to automatically occur.
 
 </box>
 
@@ -821,17 +834,65 @@ If currently on Day View, this command will cause a `switchView` to automaticall
 
 <box>
 
-Find all appointments on 2024-05-20 starting from 11:00 and later.
+Find all appointments for patient with NRIC T0123456A on 2024-05-20 starting from 11:00 and later.
 
-> `findAppt d/2024-05-20 from/11:00`
+> `findAppt i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
 <box>
 
-Find all appointments, using shorthand command, with above example.
+Find all appointments, using shorthand command, on 2024-05-20, starting from 11:00 and later.
 
 > `fa d/2024-05-20 from/11:00`
+
+</box>
+
+#### 3.4.1 Find by NRIC
+
+**Examples:**
+
+<box>
+
+Find all appointments for patient with exact NRIC T0123456A.
+
+> `findAppt i/T0123456A`
+
+</box>
+
+<box type="warning" seamless>
+
+If NRIC does not exist within CLInic, no appointments will be returned to you.
+
+Please ensure existence of patient with NRIC within CLInic.
+
+</box>
+
+#### 3.4.2 Find by Date
+
+**Examples:**
+
+<box>
+
+Finds all appointments on the date 2024-05-20.
+
+> `findAppt d/2024-05-20`
+
+</box>
+
+#### 3.4.3 Find by Time
+
+**Examples:**
+
+<box>
+
+Finds all appointments starting from 11:00 and later on any date.
+
+> `findAppt from/11:00`
+
+</box>
+
+<box type="success" light>
 
 </box>
 
@@ -848,8 +909,6 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-#### 3.5.1 Use Cases
-
 **Examples:**
 
 <box>
@@ -860,10 +919,17 @@ Mark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
 
 </box>
 
-<box type="warning" seamless>
+<box type="wrong" light>
 
-Appointment with the stated details **must exist within CLInic**.
+**The appointment provided is not found in the system**.
 
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `mark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 ### 3.6 Unmarking an Appointment: `unmark`
@@ -889,10 +955,17 @@ Unmark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00
 
 </box>
 
-<box type="warning" seamless>
+<box type="wrong" light>
 
-Appointment with the stated details **must exist within CLInic**.
+**The appointment provided is not found in the system**.
 
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `unmark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 --- {.dashed}
