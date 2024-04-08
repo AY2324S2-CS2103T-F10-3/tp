@@ -1009,17 +1009,18 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 **Q**: Will foreign ID or phone numbers be accepted?
 **A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
 
-**Q**: Am I able to put NA for the address field?
+**Q**: Am I able to put NA for the `ADDRESS` field?
 **A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
 
 **Q**: Why am I allowed to add duplicate phone numbers for different patients?
 **A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
 
-**Q**: Am I allowed to edit a patient's NRIC?
+**Q**: Am I allowed to edit a patient's `NRIC`?
 **A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
 
-**Q**: 
-**A**:
+**Q**: Why is there a character limit to `NAME`?
+**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
+
 
 ##### Appointments
 
@@ -1115,5 +1116,6 @@ Team size: 5
 1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly. 
 2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
 3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, 
+4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
 
 
