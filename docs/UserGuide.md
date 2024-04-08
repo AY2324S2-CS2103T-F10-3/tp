@@ -6,13 +6,13 @@
 
 # CLInic User Guide
 
-Welcome to **CLInic**, your dedicated digital assistant helping you to efficiently manage your patients and their appointments.
+Welcome to **CLInic**, your dedicated digital assistant that can help you efficiently manage your patients and their appointments.
 
 CLInic is tailored specifically for clinic assistants like yourself! Our goal? To create a seamless appointment management experience, allowing you more time to focus on what truly matters - your patients!
 
 We understand that managing appointments in a clinic can be complex, but with CLInic, we hope to simplify this process for you. No more struggling with messy user interfaces and having too many buttons to click! Our user-friendly interface and intuitive commands make it easy for you to keep track of your patients and their appointments.
 
-So, let's get started! Whether you're familiar with the Command Line Interface (CLI) or need a bit of guidance, we're here to guide you through each step of the way. Follow this User Guide to uncover the potential of CLInic!
+So, let's get started! Whether you're familiar with the Command Line Interface (CLI) or need a bit of guidance, we're here to guide you every step of the way. Follow this User Guide to uncover the potential of CLInic!
 
 
 <!-- * Table of Contents -->
@@ -29,17 +29,17 @@ This User Guide contains all the essential information you need to use CLInic. F
 
 Familarise yourselves with these terminologies! These definitions will be used throughout the User Guide:
 
-| Term           | Explanation                                                                                                                                               |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CLI**        | Command Line Interface, a text-based interface for interacting with software by typing commands.                                                          |
-| **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.            |
-| **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                        |
-| **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                    |
-| **Parameters** | An input value or field for a command                                                                                                                     |
-| **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name so `n/John` tells the command that name to be input is "John" |
+| Term           | Explanation                                                                                                                                                     |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**        | Command Line Interface, a text-based interface for interacting with software by typing commands.                                                                |
+| **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.                  |
+| **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                              |
+| **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                          |
+| **Parameters** | An input value or field for a command                                                                                                                           |
+| **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name, so `n/John` tells the command that name to be input is "John" |
 
 
-Also, if you see these information boxes scattered throughout the User Guide, here is what they mean:
+Also, if you see these information boxes scattered throughout the User Guide, this is what they mean:
 
 <box type="warning" seamless>
 
@@ -110,7 +110,7 @@ There are two different views in CLInic. The command section in both views are t
 
 #### Overall-View
 
-**Overall-View** is the default view, allowing you to see all patients and appointments on one screen. This view is useful for finding patients or appointments, which are commands that you will learn later!
+**Overall-View** is the default view, allowing you to see all patients and appointments on one screen. This view is useful for finding patients or appointments, which you will learn how to do later!
 
 ![UiOverallView](images/Ui.png)
 
@@ -226,10 +226,10 @@ If this is your first time launching CLInic, you might see sample data listed. L
 * An appointment can be: added, deleted, edited, found, marked, unmarked
 
 Restrictions:
-* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen [here](#adding-an-appointment-addappt-or-aa).
+* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen [here](#31-adding-an-appointment-addappt-or-aa).
   * CLInic allows appointments of different patients to overlap as they may be seen concurrently by different doctors or have different tests.
 * An appointment **cannot** span across different days or be overnight.
-  * CLInic allows appointments to be made anytime within a single day **but not overnight** to simplify daily operations and avoid ambiguity.
+  * CLInic allows appointments to be made anytime within a single day **but not overnight** to simplify daily operations and avoid ambiguity. However, plans for future extensions can be found [here](#appendix-planned-enhancements).
 
 ---
 
@@ -594,7 +594,7 @@ You cannot schedule an appointment for a patient on a date before their date of 
 
 <box type="info" seamless>
 
-If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall View. If currently on Day View, see [here](#switch-between-overall-view-and-day-view--switchview-or-sv).
+If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
 
 </box>
 
@@ -732,7 +732,7 @@ Clears note for appointments.
 
 <box type="tip" seamless>
 
-All overlapping appointments will be shown on Overall View. If currently on Day View, see [here](#switch-between-overall-view-and-day-view--switchview-or-sv)
+All overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
 
 e.g. `d/2024-02-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
 patient within that time frame.
@@ -1025,3 +1025,7 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 | **Clear**         | `clear`                                                                                                                                                                                                          |
 | **Exit**          | `exit`                                                                                                                                                                                                           |
 | **Help**          | `help`                                                                                                                                                                                                           |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
