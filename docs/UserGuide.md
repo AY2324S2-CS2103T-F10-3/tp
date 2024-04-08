@@ -988,9 +988,12 @@ You can use this command after using commands like `findPatient` and `findAppoin
 
 <box>
 
-Full: `list`
 
-Shorthand: `ls​`
+Full: 
+> `list`
+
+Shorthand: 
+> `ls​`
 </box>
 
 ### <a name="switchView"></a>3.2 Switch between Overall-View and Day-View : `switchView` OR `sv`
@@ -999,9 +1002,12 @@ You can use this command to switch views from Overall-View to Day-View and vice 
 
 <box>
 
-Full: `switchView`
+Full: 
+> `switchView`
 
-Shorthand: `sv`
+Shorthand: 
+> `sv`
+
 </box>
 
 ### <a name="clear"></a>3.3 Clearing all entries : `clear` 
@@ -1010,7 +1016,7 @@ Use this command if you wish to clear all entries of patients and appointments f
 
 <box>
 
-`clear`
+> `clear`
 
 </box>
 
@@ -1030,7 +1036,7 @@ Exits CLInic.
 
 <box>
 
-`exit`
+> `exit`
 
 </box>
 
@@ -1041,7 +1047,7 @@ If you are facing any issues while using CLInic, you can use this help command w
 **Format:**
 <box>
 
-`help`
+> `help`
 </box>
 
 <box type="success" light>
