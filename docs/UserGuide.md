@@ -579,7 +579,7 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 --- {.dashed}
 
-### 3. Appointment Commands
+### <a name="appointmentCommands"></a> 3. Appointment Commands
 
 **Input Fields:**
 
@@ -695,10 +695,6 @@ Shorthand:
 <box type="warning" seamless>
 
 Appointment with the stated details **must exist within CLInic**.
-
-</box>
-
-<box type="info" seamless>
 
 You would not need to input `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is unique.
 
@@ -872,10 +868,6 @@ Mark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `11
 
 Appointment with the stated details **must exist within CLInic**.
 
-</box>
-
-<box type="info" seamless>
-
 You would not need `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is sufficient.
 
 </box>
@@ -908,10 +900,6 @@ Unmark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `
 <box type="warning" seamless>
 
 Appointment with the stated details **must exist within CLInic**.
-
-</box>
-
-<box type="info" seamless>
 
 You would not need `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is sufficient.
 
