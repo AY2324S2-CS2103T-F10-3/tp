@@ -10,7 +10,11 @@ Welcome to **CLInic**, your dedicated digital assistant that can help you effici
 
 CLInic is tailored specifically for clinic assistants like yourself! Our goal? To create a seamless appointment management experience, allowing you more time to focus on what truly matters - your patients!
 
-We understand that managing appointments in a clinic can be complex, but with CLInic, we hope to simplify this process for you. No more struggling with messy user interfaces and having too many buttons to click! Our user-friendly interface and intuitive commands make it easy for you to keep track of your patients and their appointments.
+We understand that managing appointments in a clinic can be complex, but with CLInic, we hope to simplify this process for you. No more struggling with messy user interfaces and having too many buttons to click! 
+Our user-friendly interface and intuitive commands make it easy for you to:
+* Manage patient's data
+* Register appointments for patients
+* Track the completion rate for appointments
 
 So, let's get started! Whether you're familiar with the Command Line Interface (CLI) or need a bit of guidance, we're here to guide you every step of the way. Follow this User Guide to uncover the potential of CLInic!
 
@@ -35,6 +39,7 @@ Familarise yourselves with these terminologies! These definitions will be used t
 | **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.                  |
 | **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                              |
 | **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                          |
+| **Command**    | An instruction given to CLInic to complete a certain task                                                                                                       |
 | **Parameters** | An input value or field for a command                                                                                                                           |
 | **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name, so `n/John` tells the command that name to be input is "John" |
 
@@ -43,25 +48,25 @@ Also, if you see these information boxes scattered throughout the User Guide, th
 
 <box type="warning" seamless>
 
-**Caution:** Warns of potential causes of error
+**Caution:** Warns you of potential causes of error
 </box>
 
 <box type="info" seamless>
 
-**Note:** Highlights useful information
+**Note:** Highlights useful information that you should know
 </box>
 
 <box type="success" light>
 
-**Success**: Highlights successful execution
+**Success**: Highlights successful execution of command
 </box>
 <box type="wrong" light>
 
-**Error**: Highlights failed executions
+**Error**: Highlights failed execution of command
 
 <box type="tip" seamless>
 
-**What to Do:** Highlights possible solutions to the problem
+**What to Do:** Highlights possible solutions you can try to overcome the problem
 </box>
 </box>
 
@@ -94,7 +99,7 @@ Let's install CLInic together! Here are the step-by-step instructions on getting
     - **Linux**: `cd ~/Downloads`
 
 6. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
-   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+   A GUI similar to the one below should appear in a few seconds. Note how the application contains some sample dummy data.
 
    <img src="images/UiStart.png" alt="Ui" width="600"/>
 
@@ -106,7 +111,7 @@ Simple, wasn't it? Let's now orientate you to the GUI and how CLInic works.
 
 ### Orientation to CLInic
 
-There are two different views in CLInic. The command section in both views are the same. <br/>
+There are two different views in CLInic. **Command Input** and **Feedback** in both views are the same. <br/>
 
 #### Overall-View
 
@@ -120,14 +125,6 @@ There are two different views in CLInic. The command section in both views are t
 
 ![UiDayView](images/UiDayView.png)
 
-#### Appointment Colour Coding
-
-Appointments are colour-coded in CLInic, allowing you to easily identify the status of each appointment. The breakdown is as follows:
-
-![UiApptColors](images/UiApptColors.png)
-
-
-
 For your easy reference, the table below outlines the purpose of each section.
 
 | Section                          | Purpose                                                                                                |
@@ -138,6 +135,13 @@ For your easy reference, the table below outlines the purpose of each section.
 | **Patient List**                 | Shows you the list of patients in CLInic.                                                              |
 | **Appointment List**             | Shows you the list of appointments scheduled in CLInic.                                                |
 | **Appointment List for the Day** | Shows you the list of all appointments scheduled in the day, correct as at launch of the app.          |
+
+#### Appointment Colour Coding
+
+Appointments are colour-coded in CLInic, allowing you to easily identify the status of each appointment. The breakdown is as follows:
+
+![UiApptColors](images/UiApptColors.png)
+
 
 Great! You are now oriented to the layout of CLInic.
 
@@ -151,16 +155,24 @@ Now that you've understood the layout of CLInic, let's get started with register
 This step-by-step tutorial covers the essential commands of adding a patient and an appointment. Follow along with the instructions given and learn to write
 your very first commands.
 
-If this is your first time launching CLInic, you might see sample data listed. Let's clear them before adding our new patient!
+If this is your first time launching CLInic, you might see sample data being loaded. Let's clear them before adding our new patient!
 
 * { text="1" t-size="32px" }
 
-  On the Command Input Box, type `clear` and press Enter on your keyboard.
+  On the Command Input Box, type the following command:
+
+  <box>
+  
+  `clear` 
+  
+  </box>
+
+  Now press Enter on your keyboard.
 
   ![UiTutStep1](images/UiTutorial1.png)
-  <box type="info" seamless>
+  <box type="warning" seamless>
 
-  **Note:** Commands in CLInic are case-sensitive! In order to ensure that your commands are recognised, ensure that they are of the same
+  **Caution:** Commands in CLInic are case-sensitive! In order to ensure that your commands are recognised, ensure that they are of the same
   case as the commands given in the guide.
   </box>
 
@@ -174,14 +186,21 @@ If this is your first time launching CLInic, you might see sample data listed. L
 
   On the Command Input Box, type the following command:
 
-  `addPatient i/T0123456A n/Bernice Yu b/2001-12-25 p/98765432 e/bernice@example.com a/Blk 555 Changi Ave 5 S555555`
+  <box>
+  
+  `addPatient i/T0123456A n/Bernice Yu b/2001-12-25 p/98765432 e/bernice@example.com a/Blk 555 Changi Ave 5 #05-05 S(555555)`
+
+  </box>
+  
+ 
+
 
   Now press Enter on your keyboard.
 
   ![UiTutStep2](images/UiTutorial2.png)
 
   You have now registered a patient of **NRIC**: T0123456A, **Name**: Bernice Yu, **Date of Birth (DOB)**: 2001-12-25, **Email**: bernice<span></span>@example.com
-  and **Address**: Blk 555 Changi Ave 5 S555555 as seen on the right.
+  and **Address**: Blk 555 Changi Ave 5 #05-05 S(555555) as seen on the right.
 
     <box type="info" seamless>
 
@@ -198,7 +217,11 @@ If this is your first time launching CLInic, you might see sample data listed. L
 
   On the Command Input Box, type the following command
 
+  <box>
+
   `addAppt i/ T0123456A d/ 2024-05-06 from/ 10:00 to/ 11:00 t/ Medical Check-up`
+
+  </box>
 
   Now press Enter on your keyboard.
 
@@ -365,7 +388,7 @@ Adds a patient with 2 medical allergies (Insulin and Paracetamol), using the sho
 <box type="success" light>
 
 **Expected Outcome**:
-![Add patient expected outcome](./images/addPatientSuccess.png)
+![Add patient expected outcome](./images/AddPatientSuccess.png)
 
 </box>
 
@@ -540,7 +563,7 @@ Find all patients with name beginning with either `alex` or `david`, using short
 <box type="success" light>
 
 **Expected Outcome**:
-![Find patient by name expected outcome](./images/findPatientNameSuccess.png)
+![Find patient by name expected outcome](./images/FindPatientNameSuccess.png)
 
 </box>
 
@@ -559,7 +582,7 @@ Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
 <box type="success" light>
 
 **Expected Outcome**:
-![Find patient by NRIC expected outcome](./images/findPatientNricSuccess.png)
+![Find patient by NRIC expected outcome](./images/FindPatientNricSuccess.png)
 
 </box>
 
