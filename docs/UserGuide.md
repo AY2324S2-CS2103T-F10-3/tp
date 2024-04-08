@@ -1,7 +1,7 @@
 ---
   layout: default.md
   title: "User Guide"
-  pageNav: 3
+  pageNav: 4
 ---
 
 # CLInic User Guide
@@ -73,9 +73,9 @@ Also, if you see these information boxes scattered throughout the User Guide, th
 
 Let's install CLInic together! Here are the step-by-step instructions on getting CLInic started. Don't worry, just follow the instructions for your operating system and you should be good to go!
 
-1. System Requirements: Ensure you have [**Java 11**](https://www.oracle.com/java/technologies/downloads/#java11) or above installed on your computer.
+1. System Requirements: Ensure you have <a href="https://www.oracle.com/java/technologies/downloads/#java11" target="_blank">**Java 11**</a> or above installed on your computer.
 
-2. Download the latest `CLInic.jar` from [**here**](https://github.com/AY2324S2-CS2103T-F10-3/tp/releases).
+2. Download the latest `CLInic.jar` from <a href="https://github.com/AY2324S2-CS2103T-F10-3/tp/releases" target="_blank">**here**</a>.
 
 3. Save the file to a location on your computer that will serve as your home folder for CLInic.
 
@@ -226,7 +226,7 @@ If this is your first time launching CLInic, you might see sample data listed. L
 * An appointment can be: added, deleted, edited, found, marked, unmarked
 
 Restrictions:
-* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen [here](#31-adding-an-appointment-addappt-or-aa).
+* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen <a href=#addPatient>here</a>.
   * CLInic allows appointments of different patients to overlap as they may be seen concurrently by different doctors or have different tests.
 * An appointment **cannot** span across different days or be overnight.
   * CLInic allows appointments to be made anytime within a single day **but not overnight** to simplify daily operations and avoid ambiguity. However, plans for future extensions can be found [here](#appendix-planned-enhancements).
@@ -235,7 +235,7 @@ Restrictions:
 
 ## Features
 
-CLInic is designed to keep track of your patient data and appointment schedules. We have 3 broad categories of features:
+CLInic is designed to keep track of your patient data and appointment schedules. We have 4 broad categories of features:
 
 1. [Patient Commands](#patientCommands)
 2. [Appointment Commands](#appointmentCommands)
@@ -480,7 +480,7 @@ Partial words will be matched only if the start of the word is the same e.g. `T0
 
 To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`.
 
-If currently on Day View, this command will cause a `switchView` to automatically occur.
+If currently on Day-View, this command will cause a `switchView` to automatically occur.
 </box>
 
 <box type="wrong" light>
@@ -555,14 +555,14 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 --- {.dashed}
 
-### 2. Appointment Commands
+### <a name="appointmentCommands"></a> 2. Appointment Commands
 
 **Input Fields:**
 
 | Prefix | Field                                                                                      | Constraints                                                                                                                                                                                                                                                                                                                                                                   
 |----------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **i/**               | Unique ID in Singapore's context - NRIC <br/> (e.g. `T0123456A`) <br/> to identify patient | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> - For foreign visitors, placeholder NRIC eg. `K0000001A`, since foreigners should not be staying long-term. |
-| **d/**               | Date of appointment in YYYY-MM-DD format e.g. `2024-02-20`                                 | - Valid dates after 1990-01-01                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                         |
+| **d/**               | Date of appointment in YYYY-MM-DD format e.g. `2024-02-20`                                 | - Valid dates after 1900-01-01                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                         |
 | **from/**            | Start time of appointment in HH:mm format e.g. `13:00`                                     | - Start time has to be earlier than end time                                                                                                                                                                                                                                                                                                                                  |
 | **to/**              | End time of appointment in HH:mm format e.g. `14:30`                                       | - End time has to be later than start time <br/> - To timing is taken to be on same day as `from/`                                                                                                                                                                                                                                                                            |
 | **t/**               | Appointment type e.g. `Medical check-up`                                                   | NA                                                                                                                                                                                                                                                                                                                                                                            
@@ -573,9 +573,16 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 | **newt/**            | New type of appointment if change required.                                                | NA                                                                                                                                                                                                                                                                                                                                                                            
 | **newnote/**         | New note of appointment if change required.                                                | NA                                                                                                                                                                                                                                                                                                                                                                            
 
-**Possible invalid input fields.** 
+<box type="wrong" light>
+
+**Possible invalid input fields.**
+
+<box type="tip" seamless>
 
 Some of the inputs you have keyed in may be invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
+
+</box>
+</box>
 
 ### 2.1 Adding an Appointment: `addAppt` OR `aa`
 
@@ -608,25 +615,23 @@ You cannot schedule an appointment for a patient on a date before their date of 
 
 <box type="info" seamless>
 
-If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
+If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
 </box>
-
-#### 2.1.1 Use Cases
 
 **Examples:**
 <box>
 
-Add appointment for `john` whose IC is `T0123456A` and is coming for a `Medical Check-up` on `2024-02-20` from `11:00` to `11:30` with a note `Routine check-in`
+Add appointment for patient whose IC is T0123456A and is coming on 2024-05-20 from 11:00 to 11:30 for a Medical Check-up with a note Routine check-in.
 
-> `addAppt i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+> `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 </box>
 
 <box>
 
-Add appointment, using shorthand command, with above example
+Add appointment, using shorthand command, with above example.
 
-> `aa i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+> `aa i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 
 </box>
 
@@ -640,13 +645,22 @@ Add appointment, using shorthand command, with above example
 
 <box type="wrong" light>
 
-**You have provided an appointment that carries onto the next day.**
+**End time of appointment cannot be earlier than start time.**
+
+<box type="tip" seamless>
+
+Appointments should not have an end time that is earlier than the start time.
+
+e.g. `d/2024-05-20 from/11:00 to/10:30` will not be accepted.
+
+</box>
 
 <box type="tip" seamless>
 
 CLInic does not provide support for overnight appointments. Please only provide an appointment within the same day.
 
-e.g. `d/2024-02-20 from/23:00 to/01:00` will not be accepted as the appointment spans across two days.
+e.g. `d/2024-05-20 from/23:00 to/01:00` will not be accepted as the appointment spans across two days.
+
 </box>
 </box>
 
@@ -668,36 +682,35 @@ Shorthand:
 
 </box>
 
-<box type="warning" seamless>
-
-Appointment with the stated details **must exist within CLInic**.
-
-</box>
-
-<box type="info" seamless>
-
-You would not need to input `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is unique.
-
-</box>
-
-#### 2.2.1 Use Cases
-
 **Examples:**
 
 <box>
 
-Delete appointment for `john` whose IC is `T0123456A` on `2024-02-20` starting from `11:00`
+Delete appointment for patient whose IC is T0123456A on 2024-05-20 starting from 11:00.
 
-> `deleteAppt i/T0123456A d/2024-02-20 from/11:00`
+> `deleteAppt i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
 <box>
 
-Delete appointment, using shorthand command, with above example
+Delete appointment, using shorthand command, with above example.
 
-> `da i/T0123456A d/2024-02-20 from/11:00`
+> `da i/T0123456A d/2024-05-20 from/11:00`
 
+</box>
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `da i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 ### 2.3 Editing an Appointment : `editAppointment` OR `ea`
@@ -728,15 +741,13 @@ You would need to ensure the NRIC is valid and exists in the system.
 
 </box>
 
-#### 2.3.1 Use Cases
-
 **Examples:**
 
 <box>
 
-Edit the date of the appointment with NRIC:`T0123456A`, DATE: `2024-02-20`, START_TIME: `11:00`, to be `2024-02-21` instead.
+Edit the date of the appointment with NRIC:T0123456A, DATE: 2024-05-20, START_TIME: 11:00, to be 2024-05-21 instead.
 
-> `editAppt i/T0123456A d/2024-02-20 from/11:00 newd/2024-02-21`
+> `editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`
 
 </box>
 
@@ -744,7 +755,7 @@ Edit the date of the appointment with NRIC:`T0123456A`, DATE: `2024-02-20`, STAR
 
 Edit appointment, using shorthand, with above example.
 
-> `ea i/T0123456A d/2024-02-20 from/11:00 newd/2024-02-21`
+> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-02-21`
 
 </box>
 
@@ -762,9 +773,9 @@ Clears note for appointments.
 
 <box type="tip" seamless>
 
-All overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
+All overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
-e.g. `d/2024-02-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
+e.g. `d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
 patient within that time frame.
 
 </box>
@@ -791,37 +802,79 @@ Shorthand:
 
 <box type="info" seamless>
 
-For argument concerning TIME, all appointments that start at the given time and later than that are returned.
-
-Fetching for TIME without DATE will return all appointments whose start from that time or later than that on any date.
-
-If currently on Day View, this command will cause a `switchView` to automatically occur.
+If currently on Day-View, this command will cause a `switchView` to automatically occur.
 
 </box>
-
-#### 2.4.1 Use Cases
 
 **Examples:**
 
 <box>
 
-Find all appointments on `2024-02-20` starting from `11:00` and later.
+Find all appointments for patient with NRIC T0123456A on 2024-05-20 starting from 11:00 and later.
 
-> `findAppt d/2024-02-20 from/11:00`
+> `findAppt i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
 <box>
 
-Find all appointments, using shorthand command, with above example.
+Find all appointments, using shorthand command, on 2024-05-20, starting from 11:00 and later.
 
-> `fa d/2024-02-20 from/11:00`
+> `fa d/2024-05-20 from/11:00`
+
+</box>
+
+#### 2.4.1 Find by NRIC
+
+**Examples:**
+
+<box>
+
+Find all appointments for patient with exact NRIC T0123456A.
+
+> `findAppt i/T0123456A`
+
+</box>
+
+<box type="warning" seamless>
+
+If NRIC does not exist within CLInic, no appointments will be returned to you.
+
+Please ensure existence of patient with NRIC within CLInic.
+
+</box>
+
+#### 2.4.2 Find by Date
+
+**Examples:**
+
+<box>
+
+Finds all appointments on the date 2024-05-20.
+
+> `findAppt d/2024-05-20`
+
+</box>
+
+#### 2.4.3 Find by Time
+
+**Examples:**
+
+<box>
+
+Finds all appointments starting from 11:00 and later on any date.
+
+> `findAppt from/11:00`
+
+</box>
+
+<box type="success" light>
 
 </box>
 
 ### 2.5 Marking an Appointment: `mark`
 
-Use this command if you wish to mark an appointment from CLInic.
+Use this command if you wish to mark an appointment as attended from CLInic.
 You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
 <box>
@@ -832,33 +885,32 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-#### 2.5.1 Use Cases
-
 **Examples:**
 
 <box>
 
-Mark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `11:00`.
+Mark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
 
-> `mark i/T0123456A d/2024-02-20 from/11:00`
-
-</box>
-
-<box type="warning" seamless>
-
-Appointment with the stated details **must exist within CLInic**.
+> `mark i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
-<box type="info" seamless>
+<box type="wrong" light>
 
-You would not need `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is sufficient.
+**The appointment provided is not found in the system**.
 
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `mark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 ### 2.6 Unmarking an Appointment: `unmark`
 
-Use this command if you wish to unmark an appointment from the address book.
+Use this command if you wish to unmark an appointment from CLInic.
 You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
 <box>
@@ -869,28 +921,27 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-#### 2.6.1 Use Cases
-
 **Examples:**
 
 <box>
 
-Unmark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `11:00`.
+Unmark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
 
-> `unmark i/T0123456A d/2024-02-20 from/11:00`
-
-</box>
-
-<box type="warning" seamless>
-
-Appointment with the stated details **must exist within CLInic**.
+> `unmark i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
-<box type="info" seamless>
+<box type="wrong" light>
 
-You would not need `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is sufficient.
+**The appointment provided is not found in the system**.
 
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `unmark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 --- {.dashed}
@@ -960,7 +1011,7 @@ Exits CLInic.
 
 </box>
 
-### <a name="help"></a>3.4 Exiting the program : `help` 
+### <a name="help"></a>3.5 Viewing help : `help`
 
 If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide!
 
@@ -997,32 +1048,102 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 ## FAQ
 
 ##### Patients
-**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?
-**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
+<box>
 
-**Q**: Will `EMAIL` accept emails without an .xx domain? Will emails like user@local, user@nus.edu.sg be accepted?
-**A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
+**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?<br>
+>**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
 
-**Q**: Will foreign ID or phone numbers be accepted?
-**A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
+</box>
+<box>
 
-**Q**: Am I able to put NA for the address field?
-**A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
+**Q**: Will `EMAIL` accept emails without an .xx domain? Will valid emails like user@local be accepted?<br>
+>**A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
 
-**Q**: Why am I allowed to add duplicate phone numbers for different patients?
-**A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
+</box>
+<box>
 
-**Q**: Am I allowed to edit a patient's NRIC?
-**A**: No, CLInic does not support editing a patient's NRIC. Weighing the pros and cons, we decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
+**Q**: Will foreign ID or phone numbers be accepted?<br>
+>**A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
 
-**Q**: 
-**A**:
+</box>
+<box>
+
+**Q**: Am I able to put NA for the `ADDRESS` field?<br>
+>**A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
+
+</box>
+<box>
+
+**Q**: Why am I allowed to add duplicate phone numbers for different patients?<br>
+>**A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
+
+</box>
+<box>
+
+**Q**: Am I allowed to edit a patient's `NRIC`?<br>
+>**A**: No, CLInic does not support editing a patient's NRIC. We decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
+
+</box>
+<box>
+
+**Q**: Why is there a character limit to `NAME`?<br>
+>**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
+
+</box>
 
 ##### Appointments
+<box>
+
+**Q**: I'm editing an appointment, and the new appointment information is flagged as overlapping. What can I do?<br>
+>**A**: When the new time slot you input overlaps with an existing appointment, CLInic will show you all the existing appointments for the same date you had hoped would be free. This way, you can simply choose a time that does not overlap with those existing appointments. 
+
+</box>
+<box>
+
+**Q**: Is marking future appointments allowed? Is adding past appointments allowed? <br>
+>**A**: Yes, CLInic supports you in the flexibility of marking and adding appointments. If a patient decides to turn up early, or walk-in on the day, you can easily mark a future appointment. If you forgot to add a past appointment, you can do so retroactively.
+
+</box>
+<box>
+
+**Q**: Does editing a marked appointment to the future change its status to unmarked?<br>
+>**A**: No, CLInic allows you to move appointments independently of if they were marked, such that you can have flexibility in scheduling of appointments.
+
+</box>
 
 ##### General
+<box>
+
+**Q**: As a new user, should I change the order of prefixes?<br>
+>**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced work flows.
+
+</box>
+<box>
+
+**Q**: What does "Unknown Command" mean? What should I do if I encounter it?<br>
+>**A**: "Unknown Command" means that you have used a different syntax or unsupported command. Refer to [features](#features) for valid commands.
+
+</box>
+<box>
+
+**Q**: Can I use CLInic overseas?<br>
+>**A**: CLInic is intended to be used in Singapore and not on the go. Using it overseas will not update appointment times.
+
+</box>
+
+<box>
+
+**Q**: Why does CLInic use `NRIC` rather than an index for identifying patients and appointments?<br>
+>**A**: Using the unique `NRIC` prevents errors that could be costly, especially in the healthcare industry.
+
+</box>
+
+<box>
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
+>**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
+
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1112,5 +1233,12 @@ Team size: 5
 1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly. 
 2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
 3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, 
+4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
+5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>.
 
+##### Appointments
+6. **Accommodate for overnight appointments and updated day-view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show appointments that start on the current date or spans the current date as well.
+7. **Editing marked appointment to future time unmarks it automatically**: Currently, an appointment remains marked even if it is edited to a future time. We plan to automatically unmark an appointment when it is moved to a future time, to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
 
+##### Error handling
+8. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
