@@ -73,9 +73,9 @@ Also, if you see these information boxes scattered throughout the User Guide, th
 
 Let's install CLInic together! Here are the step-by-step instructions on getting CLInic started. Don't worry, just follow the instructions for your operating system and you should be good to go!
 
-1. System Requirements: Ensure you have [**Java 11**](https://www.oracle.com/java/technologies/downloads/#java11) or above installed on your computer.
+1. System Requirements: Ensure you have <a href="https://www.oracle.com/java/technologies/downloads/#java11" target="_blank">**Java 11**</a> or above installed on your computer.
 
-2. Download the latest `CLInic.jar` from [**here**](https://github.com/AY2324S2-CS2103T-F10-3/tp/releases).
+2. Download the latest `CLInic.jar` from <a href="https://github.com/AY2324S2-CS2103T-F10-3/tp/releases" target="_blank">**here**</a>.
 
 3. Save the file to a location on your computer that will serve as your home folder for CLInic.
 
@@ -226,7 +226,7 @@ If this is your first time launching CLInic, you might see sample data listed. L
 * An appointment can be: added, deleted, edited, found, marked, unmarked
 
 Restrictions:
-* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen [here](#31-adding-an-appointment-addappt-or-aa).
+* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen <a href=#addPatient>here</a>.
   * CLInic allows appointments of different patients to overlap as they may be seen concurrently by different doctors or have different tests.
 * An appointment **cannot** span across different days or be overnight.
   * CLInic allows appointments to be made anytime within a single day **but not overnight** to simplify daily operations and avoid ambiguity. However, plans for future extensions can be found [here](#appendix-planned-enhancements).
