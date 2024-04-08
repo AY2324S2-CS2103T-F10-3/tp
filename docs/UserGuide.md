@@ -82,17 +82,20 @@ Let's install CLInic together! Here are the step-by-step instructions on getting
 4. Open a command terminal on your computer. If you're unsure how to do this, we'll walk you through it.
 
     - **Windows**: Press `Win + R`, type `cmd`, and press `Enter`.
+   
     - **MacOS**: Press `Cmd + Space`, type `Terminal`, and press `Enter`.
     - **Linux**: Press `Ctrl + Alt + T`.
-
+   
 5. Navigate to the folder where you saved the `CLInic.jar` file. If you saved it in your `Downloads` folder, you can use the following commands:
 
     - **Windows**: `cd Downloads`
+   
     - **MacOS**: `cd ~/Downloads`
     - **Linux**: `cd ~/Downloads`
 
 6. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
-   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+
    <img src="images/UiStart.png" alt="Ui" width="600"/>
 
 Simple, wasn't it? Let's now orientate you to the GUI and how CLInic works.
@@ -153,6 +156,7 @@ If this is your first time launching CLInic, you might see sample data listed. L
 * { text="1" t-size="32px" }
 
   On the Command Input Box, type `clear` and press Enter on your keyboard.
+
   ![UiTutStep1](images/UiTutorial1.png)
   <box type="info" seamless>
 
@@ -215,19 +219,6 @@ If this is your first time launching CLInic, you might see sample data listed. L
 
 ---
 
-## Introducing CLInic
-
-CLInic is designed to keep track of your patient data and appointment schedules. To ensure a smooth and focused user experience, we have specified certain requirements for patient and appointment data.
-
-**Patient**
-* Each patient is identified by a unique `NRIC`
-* A patient has: NRIC, Name, Date of Birth, Phone Number, Email, Address, Tags
-* A patient can be: added, deleted, edited, found
-
-Restrictions:
-* A patient's `NRIC` is restricted to Singapore's official NRIC format. 
-  * CLInic assumes that foreign patients may instead use a Foreign Identification Number (FIN) that is according to the Singaporean NRIC format.
-
 **Appointment**
 * An appointment belongs to one patient. 
 * Each appointment is identified by a unique `NRIC`, `DATE` and `START_TIME`
@@ -244,27 +235,25 @@ Restrictions:
 
 ## Features
 
+CLInic is designed to keep track of your patient data and appointment schedules. We have 4 broad categories of features:
+
+1. [Seeking Help](#help)
+2. [Patient Commands](#patientCommands)
+3. [Appointment Commands](#appointmentCommands)
+4. [General Commands](#generalCommands)
+
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
 
-* Commands are case-sensitive, including shorthand formats.<br>
-  e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` and `Ap` will not be recognised by CLInic. 
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
-
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used zero or more times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `switchView` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   
@@ -273,7 +262,18 @@ Restrictions:
 * Initiating CLInic without CLInic.json will result in the loading of dummy data into CLInic.
 </box>
 
-### 1. Viewing help : `help`
+<box type="warning" seamless>
+
+Commands are case-sensitive, including shorthand formats.<br>
+  e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` and `Ap` will not be recognised by CLInic.
+
+Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
+</box>
+
+--- {.dashed}
+
+### <a name="help"></a>1. Viewing help : `help`
 
 If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide!
 
@@ -285,7 +285,11 @@ If you are facing any issues while using CLInic, you can use this help command w
 
 ![help message](images/helpMessage.png)
 
-### 2. Patient Commands
+--- {.dashed}
+
+### <a name="patientCommands"></a>2. Patient Commands
+
+CLInic stores your patients with the following information fields: NRIC (unique), Name, Date of Birth, Phone Number, Email, Address, Medical Allergies (if any).
 
 **Input Fields:**
 
@@ -297,7 +301,7 @@ If you are facing any issues while using CLInic, you can use this help command w
 | **p/**         | Emergency contact number.                                                        | - Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                 |
 | **e/**         | Email of patient.                                                                | NA                                                                                                                                                                                                                                                                |
 | **a/**         | Address of patient.                                                              | NA                                                                                                                                                                                                                                                                |
-| **t/**         | Tag attached to specify patient's medical allergies. e.g. `Paracetamol, Insulin` | - No constraints to allow for flexiblility, although it is recommended to use this tag for medical allergies.                                                                                                                                                     
+| **t/**         | Tag attached to specify patient's medical allergies. e.g. `Paracetamol, Insulin` | - No constraints to allow for flexiblility, although it is recommended to use this tag for medical allergies.
 
 <box type="wrong" light>
 
@@ -329,16 +333,15 @@ A patient must have a unique NRIC in CLInic.
 **Examples:**
 <box>
 
-`addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+Adds a patient without any medical allergies.
+
+>`addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 </box>
 <box>
 
-`addPatient i/S9876543A n/Betsy Crowe b/1998-02-03 t/Insulin e/betsycrowe@example.com a/Crowe street, block 234, #12-12 p/91234567 t/Paracetemol`
-</box>
+Adds a patient with 2 medical allergies (Insulin and Paracetamol), using the shorthand format.
 
-<box>
-
-`ap i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+>`ap i/S9876543A n/Betsy Crowe b/1998-02-03 t/Insulin e/betsycrowe@example.com a/Crowe street, block 234, #12-12 p/91234567 t/Paracetamol`
 </box>
 
 <box type="success" light>
@@ -380,7 +383,9 @@ Shorthand: `dp i/NRIC`
 **Examples:**
 <box>
 
-`deletePatient i/S9876543A`
+Delete patient with NRIC number S9876543A.
+
+>`deletePatient i/S9876543A`
 </box>
 
 <box type="wrong" light>
@@ -416,23 +421,23 @@ When editing tags, existing tags of the patient will be removed, i.e., adding ta
 **Examples:**
 <box>
 
-> Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
+Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
 
-`editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`
+>`editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`
 </box>
 
 <box>
 
-> Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
+Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
-`editPatient i/S98765432A newn/Betsy Crower newt/`
+>`editPatient i/S98765432A newn/Betsy Crower newt/`
 </box>
 
 <box>
 
-> Executes the above command but uses shorthand format
+Executes the above command but uses shorthand format
 
-`ep i/S98765432A newn/Betsy Crower newt/`
+>`ep i/S98765432A newn/Betsy Crower newt/`
 </box>
 
 <box type="wrong" light>
@@ -493,26 +498,26 @@ CLInic currently only supports finding patients by a single field.
 **Examples:**
 <box>
 
-> Find all patients with name beginning with `john`
+Find all patients with name beginning with `john`
 
-`findPatient n/John`
+>`findPatient n/John`
 </box>
 
 **Examples:**
 <box>
 
-> Find all patients with name beginning with either `alex` or `david`, using shorthand command
+Find all patients with name beginning with either `alex` or `david`, using shorthand command
 
-`fp n/ alex david`
+>`fp n/ alex david`
 </box>
 
 #### 2.4.2 NRIC Search
 **Examples:**
 <box>
 
-> Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
+Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
 
-`findPatient i/t01`
+>`findPatient i/t01`
 </box>
 
 <box type="wrong" light>
@@ -528,6 +533,8 @@ e.g. `n/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 </box>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+--- {.dashed}
 
 ### Adding an Appointment: `addAppt` OR `aa`
 
@@ -642,16 +649,17 @@ Format: `unmark i/NRIC d/DATE from/START_TIME`
 Examples:
 * `unmark i/T0123456A d/2024-02-20 from/11:00`
 
-### 4. General Commands
+--- {.dashed}
 
-Unlike the previous command sections, there are no prefixes in this section.
+### <a name="generalCommands"></a>4. General Commands
 
-Any extraneous parameters for these commands will be ignored. 
+General commands are simple commands with no prefixes.
 
-**Examples:**
-<box>
+<box type="warning" seamless>
 
-`list 123` will be interpreted as `list`
+Any extraneous parameters for these commands will be ignored.
+
+e.g. `list 123` will be interpreted as `list`
 </box>
                                    
 ### <a name="list"></a>4.1 Listing all patients and appointments : `list` OR `ls`
