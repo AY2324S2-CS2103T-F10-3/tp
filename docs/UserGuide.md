@@ -586,7 +586,7 @@ e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 | Prefix | Field                                                                                      | Constraints                                                                                                                                                                                                                                                                                                                                                                   
 |----------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **i/**               | Unique ID in Singapore's context - NRIC <br/> (e.g. `T0123456A`) <br/> to identify patient | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> - For foreign visitors, placeholder NRIC eg. `K0000001A`, since foreigners should not be staying long-term. |
-| **d/**               | Date of appointment in YYYY-MM-DD format e.g. `2024-02-20`                                 | - Valid dates after 1990-01-01                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                         |
+| **d/**               | Date of appointment in YYYY-MM-DD format e.g. `2024-02-20`                                 | - Valid dates after 1900-01-01                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                         |
 | **from/**            | Start time of appointment in HH:mm format e.g. `13:00`                                     | - Start time has to be earlier than end time                                                                                                                                                                                                                                                                                                                                  |
 | **to/**              | End time of appointment in HH:mm format e.g. `14:30`                                       | - End time has to be later than start time <br/> - To timing is taken to be on same day as `from/`                                                                                                                                                                                                                                                                            |
 | **t/**               | Appointment type e.g. `Medical check-up`                                                   | NA                                                                                                                                                                                                                                                                                                                                                                            
@@ -639,16 +639,16 @@ If new appointment overlaps with an existing appointment for the same patient, a
 **Examples:**
 <box>
 
-Add appointment for `john` whose IC is `T0123456A` and is coming for a `Medical Check-up` on `2024-02-20` from `11:00` to `11:30` with a note `Routine check-in`
+Add appointment for patient whose IC is T0123456A and is coming on 2024-05-20 from 11:00 to 11:30 for a Medical Check-up with a note Routine check-in.
 
-> `addAppt i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+> `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 </box>
 
 <box>
 
-Add appointment, using shorthand command, with above example
+Add appointment, using shorthand command, with above example.
 
-> `aa i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+> `aa i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 
 </box>
 
@@ -668,7 +668,7 @@ Add appointment, using shorthand command, with above example
 
 CLInic does not provide support for overnight appointments. Please only provide an appointment within the same day.
 
-e.g. `d/2024-02-20 from/23:00 to/01:00` will not be accepted as the appointment spans across two days.
+e.g. `d/2024-05-20 from/23:00 to/01:00` will not be accepted as the appointment spans across two days.
 </box>
 </box>
 
@@ -702,17 +702,17 @@ You would not need to input `END_TIME` as same patient can never have overlappin
 
 <box>
 
-Delete appointment for `john` whose IC is `T0123456A` on `2024-02-20` starting from `11:00`
+Delete appointment for patient whose IC is T0123456A on 2024-05-20 starting from 11:00.
 
-> `deleteAppt i/T0123456A d/2024-02-20 from/11:00`
+> `deleteAppt i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
 <box>
 
-Delete appointment, using shorthand command, with above example
+Delete appointment, using shorthand command, with above example.
 
-> `da i/T0123456A d/2024-02-20 from/11:00`
+> `da i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
@@ -748,9 +748,9 @@ You would need to ensure the NRIC is valid and exists in the system.
 
 <box>
 
-Edit the date of the appointment with NRIC:`T0123456A`, DATE: `2024-02-20`, START_TIME: `11:00`, to be `2024-02-21` instead.
+Edit the date of the appointment with NRIC:T0123456A, DATE: 2024-05-20, START_TIME: 11:00, to be 2024-05-21 instead.
 
-> `editAppt i/T0123456A d/2024-02-20 from/11:00 newd/2024-02-21`
+> `editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`
 
 </box>
 
@@ -758,7 +758,7 @@ Edit the date of the appointment with NRIC:`T0123456A`, DATE: `2024-02-20`, STAR
 
 Edit appointment, using shorthand, with above example.
 
-> `ea i/T0123456A d/2024-02-20 from/11:00 newd/2024-02-21`
+> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-02-21`
 
 </box>
 
@@ -778,7 +778,7 @@ Clears note for appointments.
 
 All overlapping appointments will be shown on Overall View. If currently on Day View, see <a href=#switchView>here</a>.
 
-e.g. `d/2024-02-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
+e.g. `d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
 patient within that time frame.
 
 </box>
@@ -803,11 +803,15 @@ Shorthand:
 
 </box>
 
+<box type="warning" seamless>
+
+For argument concerning `TIME`, all appointments that start at the given time and later than that are returned.
+
+Fetching for `TIME` without `DATE` will return all appointments whose start from that time or later than that on any date.
+
+</box>
+
 <box type="info" seamless>
-
-For argument concerning TIME, all appointments that start at the given time and later than that are returned.
-
-Fetching for TIME without DATE will return all appointments whose start from that time or later than that on any date.
 
 If currently on Day View, this command will cause a `switchView` to automatically occur.
 
@@ -817,9 +821,9 @@ If currently on Day View, this command will cause a `switchView` to automaticall
 
 <box>
 
-Find all appointments on `2024-02-20` starting from `11:00` and later.
+Find all appointments on 2024-05-20 starting from 11:00 and later.
 
-> `findAppt d/2024-02-20 from/11:00`
+> `findAppt d/2024-05-20 from/11:00`
 
 </box>
 
@@ -827,13 +831,13 @@ Find all appointments on `2024-02-20` starting from `11:00` and later.
 
 Find all appointments, using shorthand command, with above example.
 
-> `fa d/2024-02-20 from/11:00`
+> `fa d/2024-05-20 from/11:00`
 
 </box>
 
 ### 3.5 Marking an Appointment: `mark`
 
-Use this command if you wish to mark an appointment from CLInic.
+Use this command if you wish to mark an appointment as attended from CLInic.
 You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
 <box>
@@ -850,9 +854,9 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 <box>
 
-Mark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `11:00`.
+Mark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
 
-> `mark i/T0123456A d/2024-02-20 from/11:00`
+> `mark i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
@@ -860,13 +864,11 @@ Mark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `11
 
 Appointment with the stated details **must exist within CLInic**.
 
-You would not need `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is sufficient.
-
 </box>
 
 ### 3.6 Unmarking an Appointment: `unmark`
 
-Use this command if you wish to unmark an appointment from the address book.
+Use this command if you wish to unmark an appointment from CLInic.
 You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
 <box>
@@ -877,23 +879,19 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-#### 3.6.1 Use Cases
-
 **Examples:**
 
 <box>
 
-Unmark appointment for the patient with NRIC:`T0123456A`, on `2024-02-20` from `11:00`.
+Unmark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
 
-> `unmark i/T0123456A d/2024-02-20 from/11:00`
+> `unmark i/T0123456A d/2024-05-20 from/11:00`
 
 </box>
 
 <box type="warning" seamless>
 
 Appointment with the stated details **must exist within CLInic**.
-
-You would not need `END_TIME` as same patient can never have overlapping appointments, hence `START_TIME` is sufficient.
 
 </box>
 
