@@ -656,7 +656,9 @@ Any extraneous parameters for these commands will be ignored.
                                    
 ### <a name="list"></a>4.1 Listing all patients and appointments : `list` OR `ls`
 
-Use this command to show a list of all patients and appointments in CLInic.
+Use this command to show the full list of all patients and appointments in CLInic.
+
+You can use this command after using commands like `findPatient` and `findAppointment` to retrieve back the full list. 
 
 <box>
 
@@ -667,7 +669,7 @@ Shorthand: `ls​`
 
 ### <a name="switchView"></a>4.2 Switch between Overall View and Day View : `switchView` OR `sv`
 
-Use this command to show a list of all patients and appointments in CLInic.
+You can use this command to switch views from Overall View to Day View and vice versa, without having to click on the interface buttons.
 
 <box>
 
