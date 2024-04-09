@@ -207,11 +207,12 @@ If this is your first time launching CLInic, you might see sample data being loa
   <box type="info" seamless>
 
   **Note:** <br/>
-  In CLInic, we use prefixes to denote the input parameters. The prefix `i/` is reserved for the patient's NRIC.
-  Therefore, in this case, `i/ T0123456A` means that patient we wish to add has the NRIC `T0123456A`. The remaining prefixes
-  `n/`, `b/`, `p/`, `e/` and `a/` take in the patient's name, birth date, phone number, email and address respectively.
+  In CLInic, we use prefixes to denote the input parameters. 
+  The prefix `i/` is reserved for the patient's NRIC. Therefore, in this case, `i/ T0123456A` means that patient we wish to add has the NRIC `T0123456A`.
+  The remaining prefixes `n/`, `b/`, `p/`, `e/` and `a/` take in the patient's name, birth date, phone number, email and address respectively.
   The details and constraints of the parameters required for each command will be documented in the features section.
-  </box>
+  
+</box>
 
   Awesome, you're learning fast! Now that Bernice is registered in our system, we can finally create an appointment for her.
   We will need the `addAppt` command to do this!
@@ -294,20 +295,20 @@ CLInic stores your patients with the following information fields: NRIC (unique)
 
 #### Patient Command Prefixes
 
- Prefix | Field                                                                            | Constraints                                                                                                                                                                                                                                                                                                                                          |
-|----------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ Prefix | Field                                                                            | Constraints                                                                                                                                                                                                                                                                                                                                         |
+|----------------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **i/**         | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)                       | - NRICs must start and end with capital letters with 7 numbers in between them <br/>- Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> | 
-| **n/**         | Name of patient.                                                                 | - Names are restricted to 55 alphanumeric characters. <br/> - Extra spacing is allowed within the name to allow for user convenience and flexibility.                                                                                                                                                                                                |
-| **b/**         | Date of birth of patient.                                                        | - Dates must be in YYYY-MM-DD format.<br/>- Only allows valid dates after 1990-01-01.                                                                                                                                                                                                                                                                |
-| **p/**         | Phone number / Emergency contact number.                                         | - Phone numbers must contain 8 numbers.<br/>- Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                                                        |
-| **e/**         | Email of patient.                                                                | - Emails follow the format of [local-part]@[domain]<br/>- Domain portion must contain at least 2 characters.                                                                                                                                                                                                                                         |
-| **a/**         | Address of patient.                                                              | - Addresses are restricted to 60 alphanumeric characters.                                                                                                                                                                                                                                                                                            |
-| **t/**         | Tag attached to specify patient's medical allergies. e.g. `Paracetamol, Insulin` | - No constraints to allow for flexiblility, although it is recommended to use this tag for medical allergies.                                                                                                                                                                                                                                        
-| **newn/**      | New name of patient if change required.                                          | - As per constraints in n/                                                                                                                                                                                                                                                                                                                           |
-| **newp/**      | New phone number of patient if change required.                                  | - As per constraints in p/                                                                                                                                                                                                                                                                                                                           |
-| **newe/**      | New email of patient if change required.                                         | - As per constraints in e/                                                                                                                                                                                                                                                                                                                           |
-| **newa/**      | New address of patient if change required.                                       | - As per constraints in a/                                                                                                                                                                                                                                                                                                                           
-| **newt/**      | New tag of patient if change required.                                           | - As per constraints in t/                                                                                                                                                                                                                                                                                                                           
+| **n/**         | Name of patient.                                                                 | - Names are restricted to 55 alphanumeric characters. <br/> - Extra spacing is allowed within the name to allow for user convenience and flexibility.                                                                                                                                                                                               |
+| **b/**         | Date of birth of patient.                                                        | - Dates must be in YYYY-MM-DD format.<br/>- Only allows valid dates after 1990-01-01.                                                                                                                                                                                                                                                               |
+| **p/**         | Phone number / Emergency contact number.                                         | - Phone numbers must contain 8 numbers.<br/>- Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                                                       |
+| **e/**         | Email of patient.                                                                | - Emails follow the format of [local-part]@[domain]<br/>- Domain portion must contain at least 2 characters.                                                                                                                                                                                                                                        |
+| **a/**         | Address of patient.                                                              | - Addresses are restricted to 60 alphanumeric characters.                                                                                                                                                                                                                                                                                           |
+| **t/**         | Tag attached to specify patient's medical allergies. e.g. `Paracetamol, Insulin` | - No constraints to allow for flexiblility, although it is recommended to use this tag for medical allergies.                                                                                                                                                                                                                                       
+| **newn/**      | New name of patient if change required.                                          | - As per constraints in `n/`                                                                                                                                                                                                                                                                                                                        |
+| **newp/**      | New phone number of patient if change required.                                  | - As per constraints in `p/`                                                                                                                                                                                                                                                                                                                        |
+| **newe/**      | New email of patient if change required.                                         | - As per constraints in `e/`                                                                                                                                                                                                                                                                                                                        |
+| **newa/**      | New address of patient if change required.                                       | - As per constraints in `a/`                                                                                                                                                                                                                                                                                                                        
+| **newt/**      | New tag of patient if change required.                                           | - As per constraints in `t/`                                                                                                                                                                                                                                                                                                                        
 
 <box type="wrong" light>
 
@@ -335,7 +336,7 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#patient-command-prefixes)
+[More information on prefixes & parameters](#patient-command-prefixes)
 
 <box type="warning" seamless>
 
@@ -400,7 +401,7 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#patient-command-prefixes)
+[More information on prefixes & parameters](#patient-command-prefixes)
 
 **Examples:**
 <box>
@@ -424,7 +425,7 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 
 ### 1.3 Editing a patient : `editPatient` OR `ep`
 
-Use this command if you wish to edits an existing patient in CLInic.
+Use this command if you wish to edit an existing patient in CLInic.
 
 **Format:**
 <box>
@@ -437,7 +438,7 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#patient-command-prefixes)
+[More information on prefixes & parameters](#patient-command-prefixes)
 
 <box type="warning" seamless>
 
@@ -497,7 +498,7 @@ Full: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_K
 Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`
 </box>
 
-[More information on prefixes](#patient-command-prefixes)
+[More information on prefixes & parameters](#patient-command-prefixes)
 
 <box type="warning" seamless>
 
@@ -528,7 +529,7 @@ CLInic currently only supports finding patients by a single field.
 **Examples:**
 <box>
 
-Find all patients with name beginning with `john`
+Find all patients whose name begins with `john`
 
 >`findPatient n/John`
 </box>
@@ -536,7 +537,7 @@ Find all patients with name beginning with `john`
 **Examples:**
 <box>
 
-Find all patients with name beginning with either `alex` or `david`, using shorthand command
+Find all patients whose name begins with either `alex` or `david`, using shorthand command
 
 >`fp n/ alex david`
 </box>
@@ -589,19 +590,19 @@ CLInic stores your appointments with the following information fields: NRIC (uni
 
 #### Appointment Command Prefixes
 
-| Prefix | Field                                                                                     | Constraints                                                                                                                                                                                                                                                                                                                                           
-|----------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **i/**         | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)                      | - NRICs must start and end with capital letters with 7 numbers in between them <br/> - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> | 
-| **d/**               | Date of appointment                                 | - Dates must be in YYYY-MM-DD format <br/> - Only allows valid dates after 1900-01-01                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                         |
-| **from/**            | Start time of appointment                                   | - Time in HH:mm format <br/> - Start time has to be earlier than end time <br/>                                                                                                                                                                                                                                                                       |
-| **to/**              | End time of appointment                                       | - Time in HH:mm format  <br/> - End time has to be later than start time <br/> - `to/` timing is taken to be on same day as `from/` <br/>                                                                                                                                                                                                              |
-| **t/**               | Appointment type                                                  | - No constraints to allow for flexiblility, although it is recommended to use this for types of visits e.g. `Medical check-up`.                                                                                                                                                                                                                                 
-| **note/**            | Additional notes for appointment                                           | - No constraints to allow for flexiblility, although it is recommended to use this for notes e.g. `Chinese speaking`.                                                                                                                                                                                                                                 
-| **newd/**            | New date of appointment if change required.                                               | - As per constraints in d/                                                                                                                                                                                                                                                                                                                            
-| **newfrom/**         | New start time of appointment if change required.                                         | - As per constraints in from/                                                                                                                                                                                                                                                                                                                         
-| **newto/**           | New end time of appointment if change required.                                           | - As per constraints in to/                                                                                                                                                                                                                                                                                                                           
-| **newt/**            | New type of appointment if change required.                                               | - As per constraints in t/                                                                                                                                                                                                                                                                                                                            
-| **newnote/**         | New note of appointment if change required.                                               | - As per constraints in note/                                                                                                                                                                                                                                                                                                                         
+| Prefix           | Field                                                          | Constraints                                                                                                                                                                                                                                                                                                                                           
+|------------------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **i/**           | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)     | - NRICs must start and end with capital letters with 7 numbers in between them <br/> - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> | 
+| **d/**           | Date of appointment                                            | - Dates must be in YYYY-MM-DD format <br/> - Only allows valid dates after 1900-01-01                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                         |
+| **from/**        | Start time of appointment                                      | - Time in HH:mm format <br/> - Start time has to be earlier than end time <br/>                                                                                                                                                                                                                                                                       |
+| **to/**          | End time of appointment                                        | - Time in HH:mm format  <br/> - End time has to be later than start time <br/> - `to/` timing is taken to be on same day as `from/` <br/>                                                                                                                                                                                                              |
+| **t/**           | Appointment type                                               | - No constraints to allow for flexiblility, although it is recommended to use this for types of visits e.g. `Medical check-up`.                                                                                                                                                                                                                                 
+| **note/**        | Additional notes for appointment                               | - No constraints to allow for flexiblility, although it is recommended to use this for notes e.g. `Chinese speaking`.                                                                                                                                                                                                                                 
+| **newd/**        | New date of appointment if change required.                    | - As per constraints in `d/`                                                                                                                                                                                                                                                                                                                           
+| **newfrom/**     | New start time of appointment if change required.              | - As per constraints in `from/`                                                                                                                                                                                                                                                                                                                         
+| **newto/**       | New end time of appointment if change required.                | - As per constraints in `to/`                                                                                                                                                                                                                                                                                                                           
+| **newt/**        | New type of appointment if change required.                    | - As per constraints in `t/`                                                                                                                                                                                                                                                                                                                            
+| **newnote/**     | New note of appointment if change required.                    | - As per constraints in `note/`                                                                                                                                                                                                                                                                                                                         
 
 <box type="wrong" light>
 
@@ -618,12 +619,7 @@ Some of the inputs you have keyed in may be invalid, check out the constraints f
 
 ### 2.1 Adding an Appointment: `addAppt` OR `aa`
 
-Use this command if you wish to add an appointment to CLInic. You would be required to specify:
-
-1. who the patient is (identified by their NRIC)
-2. their desired time frame
-3. their purpose of visit
-4. include additional notes for the appointment.
+Use this command if you wish to add an appointment to CLInic.
 
 **Format:**
 
@@ -639,11 +635,11 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#appointment-command-prefixes)
+[More information on prefixes & parameters](#appointment-command-prefixes)
 
 <box type="warning" seamless>
 
-**Warning**:
+**Caution**:
 * Patient with this NRIC **must exist within CLInic**. <br/>
 
 * You cannot schedule an appointment for a patient on a date before their date of birth.</box>
@@ -712,7 +708,7 @@ patient within that time frame.
 
 ### 2.2 Deleting an Appointment: `deleteAppt` OR `da`
 
-Use this command if you wish to delete an appointment from CLInic. You would be required to specify the patient's NRIC, the date and start time of the appointment.
+Use this command if you wish to delete an appointment from CLInic.
 
 **Format:**
 
@@ -728,7 +724,7 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#appointment-command-prefixes)
+[More information on prefixes & parameters](#appointment-command-prefixes)
 
 **Examples:**
 
@@ -765,8 +761,7 @@ e.g. `da i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if t
 
 ### 2.3 Editing an Appointment : `editAppointment` OR `ea`
 
-Use this command if you wish to edit an existing appointment in CLInic. 
-You would require the appointment details, specifically patient's NRIC, date, and start time.
+Use this command if you wish to edit an existing appointment in CLInic.
 Existing values will be updated to the input values.
 
 **Format:**
@@ -783,7 +778,7 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#appointment-command-prefixes)
+[More information on prefixes & parameters](#appointment-command-prefixes)
 
 
 **Examples:**
@@ -869,7 +864,7 @@ Shorthand:
 
 </box>
 
-[More information on prefixes](#appointment-command-prefixes)
+[More information on prefixes & parameters](#appointment-command-prefixes)
 
 <box type="info" seamless>
 
@@ -958,7 +953,6 @@ Finds all appointments starting from 11:00 and later on any date.
 ### 2.5 Marking an Appointment: `mark`
 
 Use this command if you wish to mark an appointment as attended from CLInic.
-You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
 <box>
 
@@ -968,7 +962,7 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-[More information on prefixes](#appointment-command-prefixes)
+[More information on prefixes & parameters](#appointment-command-prefixes)
 
 **Examples:**
 
@@ -1006,7 +1000,6 @@ e.g. `mark i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if
 ### 2.6 Unmarking an Appointment: `unmark`
 
 Use this command if you wish to unmark an appointment from CLInic.
-You would be required to specify the patient's NRIC, the date and start time of the appointment.
 
 <box>
 
@@ -1016,7 +1009,7 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 </box>
 
-[More information on prefixes](#appointment-command-prefixes)
+[More information on prefixes & parameters](#appointment-command-prefixes)
 
 <box type="info" seamless>
 
@@ -1284,43 +1277,6 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **When missing read/write permissions**, the application may not work. Ensure that read/write permissions are enabled for CLInic.
 
---------------------------------------------------------------------------------------------------------------------
-
-## Prefix summary for patients
-| Prefix | Field                                                                             | Caveats                                                                                                                                                                                                                                                                                                                                                                       
-|-----------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **i/**          | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)                        | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> - For foreign visitors, placeholder NRIC eg. `K0000001A`, since foreigners should not be staying long-term. |
-| **n/**          | Name of patient.                                                                  | - Will restrict to alphanumeric characters to avoid parsing errors, since data is stored as JSON. <br/> - Extra spacing is allowed within the name to allow for user convenience and flexibility.                                                                                                                                                                             |                                                                 |
-| **b/**          | Date of birth of patient.                                                         | - Only allows valid dates after 1 Jan 1990.                                                                                                                                                                                                                                                                                                                                   |
-| **p/**          | Emergency contact number.                                                         | - Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                                                                                                                             |
-| **e/**          | Email of patient.                                                                 |                                                                                                                                                                                                                                                                                                                                                                               |
-| **a/**          | Address of patient.                                                               |                                                                                                                                                                                                                                                                                                                                                                               |
-| **t/**          | Tag attached to patient for extra information. e.g. `Fall risk, Hokkien speaking` |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newn/**       | New name of patient if change required.                                           |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newp/**       | New phone number of patient if change required.                                   |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newe/**       | New email of patient if change required.                                          |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newa/**       | New address of patient if change required.                                        |                                                                                                                                                                                                                                                                                                               
-| **newt/**       | New tag of patient if change required.                                            |
-
-## Prefix summary for appointments
-| Prefix | Field                                                                                      | Caveats                                                                                                                                                                                                                                                           
-|----------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **i/**               | Unique ID in Singapore's context - NRIC <br/> (e.g. `T0123456A`) <br/> to identify patient | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> - For foreign visitors, placeholder NRIC eg. `K0000001A`, since foreigners should not be staying long-term. |
-| **d/**               | Date of appointment in YYYY-MM-DD format e.g. `2024-02-20`                                 | - Valid dates after 1 Jan 1990                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                         |
-| **from/**            | Start time of appointment in HH:mm format e.g. `13:00`                                     | - Start time has to be earlier than end time                                                                                                                                                                                                                      |
-| **to/**              | End time of appointment in HH:mm format e.g. `14:30`                                       | - End time has to be later than start time <br/> - To timing is taken to be on same day as `from/`                                                                                                                                                                |
-| **t/**               | Appointment type e.g. `Medical check-up`                                                   |
-| **note/**            | Additional notes for appointment e.g. `X-ray`                                              |
-| **newd/**            | New date of appointment if change required.                                                |
-| **newfrom/**         | New start time of appointment if change required.                                          
-| **newto/**           | New end time of appointment if change required.                                            
-| **newt/**            | New type of appointment if change required.                                                |
-| **newnote/**         | New note of appointment if change required.                                                |
-
-### Additional Information
-- Our commands check for the validity of the input data and will prompt the user if the input is invalid.
-- Usage of prefixes (from this list above) in commands that do not require them will result in an error.
-- This includes unintentional use of known prefixes in other fields
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
