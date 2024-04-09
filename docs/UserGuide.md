@@ -975,6 +975,13 @@ Use this command if you wish to mark an appointment as attended from CLInic.
 
 [More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
 
+<box type="warning" seamless>
+
+**Caution:** <br/>
+You can mark a marked appointment. The appointment will remain marked and no errors will be raised.
+
+</box>
+
 <box type="info" seamless>
 
 **Note:** <br/>
@@ -1028,6 +1035,13 @@ Use this command if you wish to unmark an appointment from CLInic.
 </box>
 
 [More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+<box type="warning" seamless>
+
+**Caution:** <br/>
+You can unmark an appointment that is not marked. Appointment will remain unmarked and there will be no errors raised.
+
+</box>
 
 <box type="info" seamless>
 
