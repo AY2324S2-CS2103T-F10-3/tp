@@ -595,7 +595,7 @@ CLInic stores your appointments with the following information fields: NRIC (uni
 | **d/**               | Date of appointment                                 | - Dates must be in YYYY-MM-DD format <br/> - Only allows valid dates after 1900-01-01                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                         |
 | **from/**            | Start time of appointment                                   | - Time in HH:mm format <br/> - Start time has to be earlier than end time <br/>                                                                                                                                                                                                                                                                       |
 | **to/**              | End time of appointment                                       | - Time in HH:mm format  <br/> - End time has to be later than start time <br/> - `to/` timing is taken to be on same day as `from/` <br/>                                                                                                                                                                                                              |
-| **t/**               | Appointment type                                                  | - No constraints to allow for flexiblility, although it is recommended to use this for types e.g. `Medical check-up`.                                                                                                                                                                                                                                 
+| **t/**               | Appointment type                                                  | - No constraints to allow for flexiblility, although it is recommended to use this for types of visits e.g. `Medical check-up`.                                                                                                                                                                                                                                 
 | **note/**            | Additional notes for appointment                                           | - No constraints to allow for flexiblility, although it is recommended to use this for notes e.g. `Chinese speaking`.                                                                                                                                                                                                                                 
 | **newd/**            | New date of appointment if change required.                                               | - As per constraints in d/                                                                                                                                                                                                                                                                                                                            
 | **newfrom/**         | New start time of appointment if change required.                                         | - As per constraints in from/                                                                                                                                                                                                                                                                                                                         
@@ -690,14 +690,22 @@ Appointments should not have an end time that is earlier than the start time.
 e.g. `d/2024-05-20 from/11:00 to/10:30` will not be accepted.
 
 </box>
+</box>
+
+<box type="wrong" light>
+
+**You have provided an appointment that overlaps with an existing appointment for the same patient.**
 
 <box type="tip" seamless>
 
-CLInic does not provide support for overnight appointments. Please only provide an appointment within the same day.
+All overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
-e.g. `d/2024-05-20 from/23:00 to/01:00` will not be accepted as the appointment spans across two days.
+e.g. `d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for the same
+patient within that time frame.
 
 </box>
+</box>
+
 </box>
 
 <br/>
@@ -820,7 +828,7 @@ Clears note for appointments.
 
 All overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
-e.g. `d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for another
+e.g. `d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is an existing appointment for the same
 patient within that time frame.
 
 </box>
@@ -995,6 +1003,13 @@ You would be required to specify the patient's NRIC, the date and start time of 
 
 [More information on prefixes](#appointment-command-prefixes)
 
+<box type="info" seamless>
+
+**Note:** <br/>
+Unmarking it will colour the appointment to red (if past scheduled timing), else beige.
+
+</box>
+
 **Examples:**
 
 <box>
@@ -1089,9 +1104,9 @@ Use this command if you wish to clear all entries of patients and appointments f
 <box type="warning" seamless>
 
 **Caution:**<br/>
-This action is irreversible. Please proceed with caution. 
+* This action is irreversible. Please proceed with caution. 
 
-Once this command is executed, it would not be possible to restore the deleted data.
+* Once this command is executed, it would not be possible to restore the deleted data.
 
 </box>
 
