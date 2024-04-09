@@ -785,14 +785,6 @@ Shorthand:
 
 [More information on prefixes](#appointment-command-prefixes)
 
-<box type="warning" seamless>
-
-**Caution**:
-* You would need to provide at least one optional field for editing.
-
-* You would need to ensure the NRIC is valid and exists in the system.
-
-</box>
 
 **Examples:**
 
@@ -818,6 +810,29 @@ Clears note for appointments.
 
 > `editAppt i/S8743880A d/2024-10-20 from/14:00 newnote/`
 
+</box>
+
+<box type="wrong" light>
+
+**At least one field to edit must be provided.**
+
+<box type="tip" seamless>
+
+CLInic requires that at least one optional field is provided to execute the `editAppt` command.
+</box>
+</box>
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+Please only provide a valid appointment.
+
+e.g. `ea i/T0123456A d/2024-05-20 from/10:00 to/11:00` will not be accepted if there is no such scheduled appointment.
+
+</box>
 </box>
 
 <box type="wrong" light>
