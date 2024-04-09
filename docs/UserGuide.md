@@ -1,94 +1,265 @@
 ---
   layout: default.md
   title: "User Guide"
-  pageNav: 3
+  pageNav: 4
 ---
 
 # CLInic User Guide
 
-Welcome to **CLInic**, your digital assistant for managing patients and appointments! CLInic is a desktop app designed for clinic assistants, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). <br/> <br/>If you're familiar with digitalized software or have used a CLI before, you'll find CLInic intuitive. Don't worry if you're new to CLI; we'll guide you through every step.
+Welcome to **CLInic**, your dedicated digital assistant that can help you efficiently manage your patients and their appointments.
 
-As part of our Beta Testing, we would greatly appreciate feedback from actual users. Help us improve CLInic together [**here**](https://forms.gle/RSBeinMHPMYXyYyGA)!
+CLInic is tailored specifically for clinic assistants like yourself! Our goal? To create a seamless appointment management experience, allowing you more time to focus on what truly matters - your patients!
+
+We understand that managing appointments in a clinic can be complex, but with CLInic, we hope to simplify this process for you. No more struggling with messy user interfaces and having too many buttons to click! 
+Our user-friendly interface and intuitive commands make it easy for you to:
+* Manage patient's data
+* Register appointments for patients
+* Track the completion of appointments
+
+So, let's get started! Whether you're familiar with the Command Line Interface (CLI) or need a bit of guidance, we're here to guide you every step of the way. Follow this User Guide to uncover the potential of CLInic!
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
-## Introducing CLInic
 
-CLInic is designed to keep track of your patient data and appointment schedules. To ensure a smooth and focused user experience, we have specified certain requirements for patient and appointment data.
+---
 
-**Patient**
-* Each patient is identified by a unique `NRIC`
-* A patient has: NRIC, Name, Date of Birth, Phone Number, Email, Address, Tags
-* A patient can be: added, deleted, edited, found
+## Using this Guide
 
-Restrictions:
-* A patient's `NRIC` is restricted to Singapore's official NRIC format. 
-  * CLInic assumes that foreign patients may instead use a Foreign Identification Number (FIN) that is according to the Singaporean NRIC format.
+This User Guide contains all the essential information you need to use CLInic. For new users, we have detailed sections explaining the
+[**installation**](#installing-clinic)  process, the [**design**](#orientation-to-clinic) of our interface and a simple
+[**tutorial**](#tutorial-adding-an-appointment-for-a-new-patient) to get you familiarised with the basic commands.
 
-**Appointment**
-* An appointment belongs to one patient. 
-* Each appointment is identified by a unique `NRIC`, `DATE` and `START_TIME`
-* An appointment has: NRIC, Date, Start Time, End Time, Appointment Type, Note
-* An appointment can be: added, deleted, edited, found, marked, unmarked
+Familarise yourselves with these terminologies! These definitions will be used throughout the User Guide:
 
-Restrictions:
-* An appointment **cannot** be added if it overlaps with an existing appointment for the same patient. Otherwise, it will be flagged as seen [here](#adding-an-appointment-addappt-or-aa).
-  * CLInic allows appointments of different patients to overlap as they may be seen concurrently by different doctors or have different tests.
-* An appointment **cannot** span across different days or be overnight.
-  * CLInic allows appointments to be made anytime within a single day **but not overnight** to simplify daily operations and avoid ambiguity.
+| Term           | Explanation                                                                                                                                                     |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**        | Command Line Interface, a text-based interface for interacting with software by typing commands.                                                                |
+| **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.                  |
+| **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                              |
+| **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                          |
+| **Command**    | An instruction given to CLInic to complete a certain task                                                                                                       |
+| **Parameters** | An input value or field for a command                                                                                                                           |
+| **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name, so `n/John` tells the command that name to be input is "John" |
+| **Shorthand**  | Command keyword which is short form for the full command equivalent but still works. <br/> e.g. ep is shorthand for editPatient command                         |
 
 
---------------------------------------------------------------------------------------------------------------------
+Also, if you see these information boxes scattered throughout the User Guide, this is what they mean:
 
-## Quick start
+<box type="warning" seamless>
 
-1. System Requirements: Ensure you have [**Java 11**](https://www.oracle.com/java/technologies/downloads/#java11) or above installed on your computer.
-
-1. Download the latest `CLInic.jar` from [**here**](https://github.com/AY2324S2-CS2103T-F10-3/tp/releases).
-
-1. Save the file to a location on your computer that will serve as your home folder for CLInic.
-
-1. Open a command terminal on your computer. If you're unsure how to do this, we'll walk you through it.
-   * **Windows**: Press `Win + R`, type `cmd`, and press `Enter`.
-   * **MacOS**: Press `Cmd + Space`, type `Terminal`, and press `Enter`.
-   * **Linux**: Press `Ctrl + Alt + T`.
-
-1. Navigate to the folder where you saved the `CLInic.jar` file. If you saved it in your `Downloads` folder, you can use the following commands:
-   * **Windows**: `cd Downloads`
-   * **MacOS**: `cd ~/Downloads`
-   * **Linux**: `cd ~/Downloads`
-
-1. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
-      A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-      ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all patients and appointments.
-
-   * `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CLInic.
-
-   * `deletePatient i/T0123456A` : Deletes patient with NRIC T0123456A and corresponding appointments.
-
-   * `clear` : Deletes all patients and appointments.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [**Features**](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Features
+**Caution:** Warns you of potential causes of error
+</box>
 
 <box type="info" seamless>
 
-**Notes about the command format:**<br>
+**Note:** Highlights useful information that you should know
+</box>
 
-* Commands are case-sensitive, including shorthand formats.<br>
-  e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` and `Ap` will not be recognised by CLInic. 
+<box type="success" light>
+
+**Success**: Highlights successful execution of command
+</box>
+<box type="wrong" light>
+
+**Error**: Highlights failed execution of command
+
+<box type="tip" seamless>
+
+**What to Do:** Highlights possible solutions you can try to overcome the problem
+</box>
+</box>
+
+---
+
+## Quick Start
+
+### Installing CLInic
+
+Let's install CLInic together! Here are the step-by-step instructions on getting CLInic started. Don't worry, just follow the instructions for your operating system and you should be good to go!
+
+1. System Requirements: Ensure you have <a href="https://www.oracle.com/java/technologies/downloads/#java11" target="_blank">**Java 11**</a> or above installed on your computer.
+
+2. Download the latest `CLInic.jar` from <a href="https://github.com/AY2324S2-CS2103T-F10-3/tp/releases" target="_blank">**here**</a>.
+
+3. Save the file to a location on your computer that will serve as your home folder for CLInic.
+
+4. Open a command terminal on your computer. If you're unsure how to do this, we'll walk you through it.
+
+    - **Windows**: Press `Win + R`, type `cmd`, and press `Enter`.
+   
+    - **MacOS**: Press `Cmd + Space`, type `Terminal`, and press `Enter`.
+    - **Linux**: Press `Ctrl + Alt + T`.
+   
+5. Navigate to the folder where you saved the `CLInic.jar` file. If you saved it in your `Downloads` folder, you can use the following commands:
+
+    - **Windows**: `cd Downloads`
+   
+    - **MacOS**: `cd ~/Downloads`
+    - **Linux**: `cd ~/Downloads`
+
+6. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
+   A GUI similar to the one below should appear in a few seconds. Note how the application contains some sample dummy data.
+
+   <img src="images/UiStart.png" alt="Ui" width="600"/>
+
+Simple, wasn't it? Let's now orientate you to the GUI and how CLInic works.
+
+--- {.dashed}
+
+<br/>
+
+### Orientation to CLInic
+
+There are two different views in CLInic. **Command Input** and **Feedback** in both views are the same. <br/>
+
+#### Overall-View
+
+**Overall-View** is the default view, allowing you to see all patients and appointments on one screen. This view is useful for finding patients or appointments, which you will learn how to do later!
+
+![UiOverallView](images/Ui.png)
+
+#### Day-View
+
+**Day-View** is the alternate view, allowing you to see all appointments scheduled today. This view is useful for you to manage upcoming appointments in the day.
+
+![UiDayView](images/UiDayView.png)
+
+For your easy reference, the table below outlines the purpose of each section.
+
+| Section                          | Purpose                                                                                                |
+|----------------------------------|--------------------------------------------------------------------------------------------------------|
+| **Command Input**                | This is where you will write the commands you will learn later.                                        |
+| **Command Feedback**             | This feedback box will show you success or error messages depending on the validity of commands input. |
+| **View Toggle**                  | These buttons allow you to toggle between the Overall-View or Day-View.                                |
+| **Patient List**                 | Shows you the list of patients in CLInic.                                                              |
+| **Appointment List**             | Shows you the list of appointments scheduled in CLInic.                                                |
+| **Appointment List for the Day** | Shows you the list of all appointments scheduled in the day, correct as at launch of the app.          |
+
+#### Appointment Colour Coding
+
+Appointments are colour-coded in CLInic, allowing you to easily identify the status of each appointment. The breakdown is as follows:
+
+![UiApptColors](images/UiApptColors.png)
+
+
+Great! You are now oriented to the layout of CLInic.
+
+--- {.dashed}
+
+<br/>
+
+### Tutorial: Adding an Appointment for a New Patient
+
+Now that you've understood the layout of CLInic, let's get started with registering your very first patient and scheduling an appointment for them!
+This step-by-step tutorial covers the essential commands of adding a patient and an appointment. Follow along with the instructions given and learn to write
+your very first commands.
+
+If this is your first time launching CLInic, you might see sample data being loaded. Let's clear them before adding our new patient!
+
+* { text="1" t-size="32px" }
+
+  On the Command Input Box, type the following command:
+
+  <box>
+  
+  `clear` 
+  
+  </box>
+
+  Now press `Enter` on your keyboard.
+
+  ![UiTutStep1](images/UiTutorial1.png)
+  <box type="warning" seamless>
+
+  **Caution:** <br/>
+  Commands in CLInic are case-sensitive! In order to ensure that your commands are recognised, ensure that they are of the same
+  case as the commands given in the guide.
+  </box>
+
+  After executing the command, you should see that all the entries have been deleted (see right side of the image above).
+  Wow! Just like that, you've successfully executed your very first command. Let's move on to something more challenging.
+
+  Your first patient, Bernice, enters the clinic. Before we can schedule any appointments, we need to first register her patient details.
+  This is achieved using the `addPatient` command. Let's learn how to use that.
+
+* { text="2" t-size="32px" }
+
+  On the Command Input Box, type the following command:
+
+  <box>
+  
+  `addPatient i/T0123456A n/Bernice Yu b/2001-12-25 p/98765432 e/bernice@example.com a/Blk 555 Changi Ave 5 #05-05 S(555555)`
+
+  </box>
+  
+ 
+
+
+  Now press `Enter` on your keyboard.
+
+  ![UiTutStep2](images/UiTutorial2.png)
+
+  You have now registered a patient of **NRIC**: T0123456A, **Name**: Bernice Yu, **Date of Birth (DOB)**: 2001-12-25, **Email**: bernice<span></span>@example.com
+  and **Address**: Blk 555 Changi Ave 5 #05-05 S(555555) as seen on the right.
+
+
+  <box type="info" seamless>
+
+  **Note:** <br/>
+  In CLInic, we use [**prefixes**](#using-this-guide) to denote the input parameters. 
+  The prefix `i/` is reserved for the patient's NRIC. Therefore, in this case, `i/ T0123456A` means that patient we wish to add has the NRIC `T0123456A`. 
+  The remaining prefixes `n/`, `b/`, `p/`, `e/` and `a/` take in the patient's name, birth date, phone number, email and address respectively. The details and constraints of the prefixes and parameters required for each command will be documented in the features section.
+  
+  </box>
+
+  Awesome, you're learning fast! Now that Bernice is registered in our system, we can finally create an appointment for her.
+  We will need the `addAppt` command to do this!
+
+* { text="3" t-size="32px" }
+
+  On the Command Input Box, type the following command
+
+  <box>
+
+  `addAppt i/ T0123456A d/ 2024-05-06 from/ 10:00 to/ 11:00 t/ Medical Check-up`
+
+  </box>
+
+  Now press `Enter` on your keyboard.
+
+  ![UiTutStep3](images/UiTutorial3.png)
+
+  You have now created an appointment for Bernice using her **NRIC**: T0123456A. The details of her appointment are **Date**: 2024-05-06,
+  **Start Time**: 10:00, **End Time**: 11:00 and **Appointment Type**: Medical Check-up as seen on the right.
+
+  <box type="info" seamless>
+
+  **Note:** <br/>
+  In CLInic, you will see that NRIC is used in most commands. We use NRIC numbers to identify each patient uniquely!
+  </box>
+
+  Well done! You have completed the tutorial! Your new patient, Bernice, now has an appointment scheduled for her.
+
+  Continue on to the [**Features**](#features) section below to learn more about the full list of commands available in CLInic!
+  If you are lost at anytime, typing the command **`help`** and pressing `Enter` will open the help window with a link that will lead you right back to this User Guide.
+
+---
+
+## Features
+
+CLInic is designed to keep track of your patient data and appointment schedules. We have 3 broad categories of features:
+
+1. [Patient Commands](#patientCommands)
+2. [Appointment Commands](#appointmentCommands)
+3. [General Commands](#generalCommands)
+
+#### Command Format
+
+<box type="info" seamless>
+
+**Notes:**
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
@@ -96,264 +267,930 @@ Restrictions:
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used zero or more times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `switchView` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  
-**Notes about the data:**<br>
 
-* Initiating CLInic without CLInic.json will result in the loading of dummy data into CLInic.
 </box>
 
-### Viewing help : `help`
+<box type="warning" seamless>
 
-Shows a message explaining how to access the help page.
+**Caution:** <br/>
+Commands are case-sensitive, including shorthand formats.<br>
+  e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` and `Ap` will not be recognised by CLInic.
+
+</box>
+
+--- {.dashed}
+
+<br/>
+
+### <a name="patientCommands"></a>1. Patient Commands
+
+CLInic stores your patients with the following information fields: NRIC (unique), Name, Date of Birth, Phone Number, Email, Address, Medical Allergies (if any).
+
+#### Patient Commands Prefixes and Parameters
+
+For your easy reference, this table below provides details of all the prefixes used in **Patient commands**. Each prefix corresponds to a parameter and comes with a set of 
+constraints documenting what works and what doesn't! For prefixes used in Appointment commands, see [here](#appointment-commands-prefixes-and-parameters).
+
+ Prefix | Parameter                                                            | Constraints                                                                                                                                                                                                                                                                                                                                          |
+|----------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **i/**         | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)                      | - NRICs must start and end with capital letters with 7 numbers in between them <br/>- Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> | 
+| **n/**         | Name of patient.                                                                | - Names are restricted to 55 alphanumeric characters. <br/> - Extra spacing is allowed within the name to allow for user convenience and flexibility.                                                                                                                                                                                                |
+| **b/**         | Date of birth of patient.                                                       | - Dates must be in YYYY-MM-DD format.<br/>- Only allows valid dates after 1900-01-01.                                                                                                                                                                                                                                                                |
+| **p/**         | Phone number / Emergency contact number.                                        | - Phone numbers must contain 8 numbers.<br/>- Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                                                        |
+| **e/**         | Email of patient.                                                               | - Emails follow the format of [local-part]@[domain]<br/>- Domain portion must contain at least 2 characters.                                                                                                                                                                                                                                         |
+| **a/**         | Address of patient.                                                             | - Addresses are restricted to 60 alphanumeric characters.                                                                                                                                                                                                                                                                                            |
+| **t/**         | Tag attached to specify patient's medical allergies. e.g. `Paracetamol, Insulin` | - Each medical allergy tag is restricted to 30 alphanumeric characters with no spaces in between <br/> - It is recommended to use this tag for medical allergies but there are otherwise no restrictions on other use cases                                                                                                                                                                                                                                        
+| **newn/**      | New name of patient if change required.                                         | - As per constraints in `n/`                                                                                                                                                                                                                                                                                                                         |
+| **newp/**      | New phone number of patient if change required.                                 | - As per constraints in `p/`                                                                                                                                                                                                                                                                                                                         |
+| **newe/**      | New email of patient if change required.                                        | - As per constraints in `e/`                                                                                                                                                                                                                                                                                                                         |
+| **newa/**      | New address of patient if change required.                                      | - As per constraints in `a/`                                                                                                                                                                                                                                                                                                                         
+| **newt/**      | New tag of patient if change required.                                          | - As per constraints in `t/`                                                                                                                                                                                                                                                                                                                         
+
+<box type="wrong" light>
+
+**Possible invalid input fields.**
+<box type="tip" seamless>
+
+Some of the inputs you have keyed in may be invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
+</box>
+</box>
+
+<br/>
+
+### <a name="addPatient"></a>1.1 Adding a patient: `addPatient` OR `ap`
+
+Use this command if you wish to add a new patient to CLInic. You would be required to specify important patient personal information and can include the patient's medical allergies, if any.
+
+**Format:**
+<box>
+
+Full: 
+>`addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​ `
+
+Shorthand: 
+> `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDiCAL_ALLERGY]…​`
+
+</box>
+
+[More information on prefixes & parameters](#patient-commands-prefixes-and-parameters)
+
+<box type="warning" seamless>
+
+**Caution:** <br/>
+A patient must have a unique NRIC in CLInic.
+
+</box>
+
+**Examples:**
+<box>
+
+Adds a patient whose NRIC is T0123456A, name is John Doe, is born on 2nd May 2001, has a phone number of 98765432, has an email of johnd<span></span>@example.com, resides at John street, block 123, #01-01, and has no allergies.
+
+>`addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+</box>
+<box>
+
+Adds a patient whose NRIC is S9876543A, name is Betsy Crowe, is born on 3nd Feb 1998, has a phone number of 91234567, has an email of betsycrowe<span></span>@example.com, resides at Crowe street, block 234, #12-12, and is allergic to Paracetamol and Insulin.
+
+>`ap i/S9876543A n/Betsy Crowe b/1998-02-03 t/Insulin e/betsycrowe@example.com a/Crowe street, block 234, #12-12 p/91234567 t/Paracetamol`
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Add patient expected outcome](./images/AddPatientSuccess.png)
+
+</box>
+
+<box type="wrong" light>
+
+**This patient already exists in CLInic.**
+
+<box type="tip" seamless>
+
+There already exists a patient with the NRIC you specified. To view the details of that patient, you can use the [findPatient](#findPatient) command.
+</box>
+</box>
+
+<br/>
+
+### 1.2 Deleting a Patient : `deletePatient` OR `dp`
+
+Use this command if you wish to delete a patient from CLInic.
+
+<box type="warning" seamless>
+
+**Caution:** <br/>
+Corresponding appointments for the specified patient will be deleted from CLInic too.
+
+</box>
+
+**Format:**
+<box>
+
+Full: 
+>`deletePatient i/NRIC`
+
+Shorthand: 
+>`dp i/NRIC`
+
+</box>
+
+[More information on prefixes & parameters](#patient-commands-prefixes-and-parameters)
+
+**Examples:**
+<box>
+
+Delete patient with NRIC number S9876543A.
+
+>`deletePatient i/S9876543A`
+</box>
+
+<box type="wrong" light>
+
+**The NRIC provided is not found in the system.**
+
+<box type="tip" seamless>
+
+CLInic does not have a patient with the provided NRIC, please double-check the NRIC provided.
+</box>
+</box>
+
+<br/>
+
+### 1.3 Editing a Patient : `editPatient` OR `ep`
+
+Use this command if you wish to edit an existing patient in CLInic.
+
+**Format:**
+<box>
+
+Full: 
+>`editPatient i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
+
+Shorthand: 
+>`ep i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`
+
+</box>
+
+[More information on prefixes & parameters](#patient-commands-prefixes-and-parameters)
+
+<box type="warning" seamless>
+
+**Caution:**
+* Existing values will be updated to the input values.
+
+* When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
+
+</box>
+
+<box type="info" seamless>
+
+**Note:** <br/>
+CLInic does not allow you to edit a patient's NRIC to maintain system data integrity.
+
+</box>
+
+**Examples:**
+<box>
+
+Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
+
+>`editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`
+</box>
+
+<box>
+
+Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
+
+>`editPatient i/S98765432A newn/Betsy Crower newt/`
+</box>
+
+<box type="wrong" light>
+
+**At least one field to edit must be provided.**
+
+<box type="tip" seamless>
+
+CLInic requires that at least one optional field is provided to execute the `editPatient` command.
+</box>
+</box>
+
+<box type="wrong" light>
+
+**The NRIC provided is not found in the system.**
+
+<box type="tip" seamless>
+
+CLInic does not have a patient with the provided NRIC, please double-check the NRIC provided or create a Patient using the [addPatient](#addPatient) command.
+</box>
+</box>
+
+<br/>
+
+### <a name="findPatient"></a>1.4 Finding Patients: `findPatient` OR `fp`
+
+Use this command if you wish to finds patients whose name OR NRIC fit the given keywords.
+
+**Format:**
+<box>
+
+Full: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`
+
+Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`
+</box>
+
+[More information on prefixes & parameters](#patient-commands-prefixes-and-parameters)
+
+<box type="info" seamless>
+
+**Note:**
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+
+* Partial words will be matched only if the start of the word is the same e.g. `T01` will match `T0123456A`.
+
+* To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`.
+
+* If currently on Day-View, this command will cause a <a href=#switchView>switchView</a> to automatically occur.
+</box>
+
+<box type="wrong" light>
+
+**Find by either NRIC or name, not both!**
+
+<box type="tip" seamless>
+
+CLInic currently only supports finding patients by a single field. 
+</box>
+</box>
+
+<br/>
+
+#### 1.4.1 Find by Name
+
+**Examples:**
+<box>
+
+Find all patients whose name begins with `john`
+
+>`findPatient n/John`
+</box>
+
+**Examples:**
+<box>
+
+Find all patients whose name begins with either `alex` or `david`, using shorthand command
+
+>`fp n/ alex david`
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Find patient by name expected outcome](./images/FindPatientNameSuccess.png)
+
+</box>
+
+<br/>
+
+#### 1.4.2 Find by NRIC
+**Examples:**
+<box>
+
+Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
+
+>`findPatient i/t01`
+</box>
+
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Find patient by NRIC expected outcome](./images/FindPatientNricSuccess.png)
+
+</box>
+
+<box type="wrong" light>
+
+**You have provided more than one word of NRIC keywords to match.**
+
+<box type="tip" seamless>
+
+CLInic does not provide support for finding patients with different starting NRICs. Please only provide one starting NRIC.
+
+e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
+</box>
+</box>
+
+--- {.dashed}
+
+<br/>
+
+### <a name="appointmentCommands"></a> 2. Appointment Commands
+
+CLInic stores your appointments with the following information fields: NRIC (unique), Date, Start Time, End Time, Appointment Type, Note (if any).
+
+#### Appointment Commands Prefixes and Parameters
+
+For your easy reference, the table below provides details of all the prefixes used in **Appointment commands**. Each prefix corresponds to a parameter and comes with a set of
+constraints documenting what works and what doesn't! For prefixes used in Patient commands, see [here](#patient-commands-prefixes-and-parameters).
+
+| Prefix           | Parameter                                                  | Constraints                                                                                                                                                                                                                                                                                                                                           
+|------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **i/**           | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`) | - NRICs must start and end with capital letters with 7 numbers in between them <br/> - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> | 
+| **d/**           | Date of appointment                                        | - Dates must be in YYYY-MM-DD format <br/> - Only allows valid dates after 1900-01-01                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                         |
+| **from/**        | Start time of appointment                                  | - Time in HH:mm format <br/> - Start time has to be earlier than end time <br/>                                                                                                                                                                                                                                                                       |
+| **to/**          | End time of appointment                                    | - Time in HH:mm format  <br/> - End time has to be later than start time <br/> - `to/` timing is taken to be on same day as `from/` <br/>                                                                                                                                                                                                              |
+| **t/**           | Appointment type                                           | - Appointment type cannot be empty and is restricted to 30 characters <br/> - It is recommended to use this for types of visits e.g. `Medical check-up` but there is no restriction on other use cases                                                                                                                                                                                                                                 
+| **note/**        | Additional notes for appointment                           | - Appointment note is restricted to 70 characters <br/> - It is recommended to use this for notes e.g. `Chinese speaking` but there is no restriction on other use cases                                                                                                                                                                                                                              
+| **newd/**        | New date of appointment if change required.                | - As per constraints in `d/`                                                                                                                                                                                                                                                                                                                           
+| **newfrom/**     | New start time of appointment if change required.          | - As per constraints in `from/`                                                                                                                                                                                                                                                                                                                         
+| **newto/**       | New end time of appointment if change required.            | - As per constraints in `to/`                                                                                                                                                                                                                                                                                                                           
+| **newt/**        | New type of appointment if change required.                | - As per constraints in `t/`                                                                                                                                                                                                                                                                                                                            
+| **newnote/**     | New note of appointment if change required.                | - As per constraints in `note/`                                                                                                                                                                                                                                                                                                                         
+
+<box type="wrong" light>
+
+**Possible invalid input fields.**
+
+<box type="tip" seamless>
+
+Some of the inputs you have keyed in may be invalid, check out the constraints for the input fields above to understand what values CLInic accepts.
+
+</box>
+</box>
+
+<br/>
+
+### 2.1 Adding an Appointment: `addAppt` OR `aa`
+
+Use this command if you wish to add an appointment to CLInic.
+
+**Format:**
+
+<box>
+
+Full: 
+
+> `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]` <br/>
+
+Shorthand: 
+
+> `aa i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
+
+</box>
+
+[More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+<box type="warning" seamless>
+
+**Caution:** <br/>
+You cannot schedule an appointment for a patient on a date before their date of birth.</box>
+
+
+**Examples:**
+<box>
+
+Add appointment for patient whose IC is T0123456A and is coming on 2024-05-20 from 11:00 to 11:30 for a Medical Check-up with a note Routine check-in.
+
+> `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+</box>
+
+<box>
+
+Add appointment, using shorthand command, with above example.
+
+> `aa i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Add appointment expected outcome](./images/AddApptSuccess.png)
+
+</box>
+
+<box type="wrong" light>
+
+**The NRIC provided is not found in the system.**
+
+<box type="tip" seamless>
+
+CLInic does not have a patient with the provided NRIC, please double-check the NRIC provided or create a Patient using the [addPatient](#addPatient) command.
+</box>
+</box>
+
+<box type="wrong" light>
+
+**End time of appointment cannot be earlier than start time.**
+
+<box type="tip" seamless>
+
+Appointments should not have an end time that is earlier than the start time, you should check the times keyed in for `from/` and `to/`.
+
+</box>
+</box>
+
+<box type="wrong" light>
+
+**New appointment overlaps with an existing appointment for the same patient.**
+
+<box type="tip" seamless>
+
+On Overall-View, the appointment list will be updated to show the list of all appointments for that patient on that date. 
+This is for your ease in finding an alternate time slot for the new appointment to be added. If currently on Day-View, see <a href=#switchView>here</a>.
+
+</box>
+</box>
+
+</box>
+
+<br/>
+
+### 2.2 Deleting an Appointment: `deleteAppt` OR `da`
+
+Use this command if you wish to delete an appointment from CLInic.
+
+**Format:**
+
+<box>
+
+Full: 
+
+> `deleteAppt i/NRIC d/DATE from/START_TIME` <br/>
+
+Shorthand: 
+
+> `da i/NRIC d/DATE from/START_TIME`
+
+</box>
+
+[More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+**Examples:**
+
+<box>
+
+Delete appointment for patient whose IC is T0123456A on 2024-05-20 starting from 11:00.
+
+> `deleteAppt i/T0123456A d/2024-05-20 from/11:00`
+
+</box>
+
+<box>
+
+Delete appointment, using shorthand command, with above example.
+
+> `da i/T0123456A d/2024-05-20 from/11:00`
+
+</box>
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+CLInic does not have an appointment with the provided NRIC, date and start time, you should double-check the details provided.
+
+
+</box>
+</box>
+
+<br/>
+
+### 2.3 Editing an Appointment : `editAppointment` OR `ea`
+
+Use this command if you wish to edit an existing appointment in CLInic.
+Existing values will be updated to the input values.
+
+**Format:**
+
+<box>
+
+Full: 
+
+> `editAppt i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` <br/>
+
+Shorthand: 
+
+> `ea i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]`
+
+</box>
+
+[More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+
+**Examples:**
+
+<box>
+
+Edit the date of the appointment with NRIC:T0123456A, Date: 2024-05-20, Start Time: 11:00, to be 2024-05-21 instead.
+
+> `editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`
+
+</box>
+
+<box>
+
+Edit appointment, using shorthand, with the above example.
+
+> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-02-21`
+
+</box>
+
+<box>
+
+Clears note for appointment.
+
+> `editAppt i/S8743880A d/2024-10-20 from/14:00 newnote/`
+
+</box>
+
+<box type="wrong" light>
+
+**At least one field to edit must be provided.**
+
+<box type="tip" seamless>
+
+CLInic requires that at least one optional field is provided to execute the `editAppt` command.
+</box>
+</box>
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+CLInic does not have an appointment with the provided NRIC, date and start time, you should double-check the details provided.
+
+
+</box>
+</box>
+
+<box type="wrong" light>
+
+**Edited appointment information overlaps with an existing appointment for the same patient**
+
+<box type="tip" seamless>
+
+On Overall-View, the appointment list will be updated to show the list of all appointments for that patient on that date.
+This is for your ease in finding an alternate time slot for the appointment to be edited into. If currently on Day-View, see <a href=#switchView>here</a>.
+
+
+</box>
+</box>
+
+<br/>
+
+### 2.4 Finding Appointments: `findAppt` OR `fa`
+
+Use this command if you wish to find appointments based on certain identifiers.
+You can use any combination of the three: NRIC, date or start time.
+
+**Format:**
+<box>
+
+Full: 
+
+> `findAppt [i/NRIC] [d/DATE] [from/START_TIME]`
+
+Shorthand: 
+
+> `fa [i/NRIC] [d/DATE] [from/START_TIME]`
+
+</box>
+
+[More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+<box type="info" seamless>
+
+**Note:** <br/>
+If currently on Day-View, this command will cause a <a href=#switchView>switchView</a> to automatically occur.
+
+</box>
+
+**Examples:**
+
+<box>
+
+Find all appointments for patient with NRIC T0123456A on 2024-05-20 starting from 11:00 and later.
+
+> `findAppt i/T0123456A d/2024-05-20 from/11:00`
+
+</box>
+
+<box>
+
+Find all appointments, using shorthand command, on 2024-05-20, starting from 11:00 and later.
+
+> `fa d/2024-05-20 from/11:00`
+
+</box>
+
+<br/>
+
+#### 2.4.1 Find by NRIC
+
+**Examples:**
+
+<box>
+
+Find all appointments for patient with exact NRIC T0123456A.
+
+> `findAppt i/T0123456A`
+
+</box>
+
+<box type="warning" seamless>
+
+**Caution:** 
+* If NRIC does not exist within CLInic, no appointments will be returned to you.
+
+* Please ensure existence of patient with NRIC within CLInic.
+
+</box>
+
+<br/>
+
+#### 2.4.2 Find by Date
+
+**Examples:**
+
+<box>
+
+Finds all appointments on the date 2024-05-20.
+
+> `findAppt d/2024-05-20`
+
+</box>
+
+<br/>
+
+#### 2.4.3 Find by Time
+
+**Examples:**
+
+<box>
+
+Finds all appointments starting from 11:00 and later on any date.
+
+> `findAppt from/11:00`
+
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Find appointment by time expected outcome](./images/FindApptByTimeSuccess.png)
+</box>
+
+
+<br/>
+
+### 2.5 Marking an Appointment: `mark`
+
+Use this command if you wish to mark an appointment as attended from CLInic.
+
+**Format:**
+<box>
+
+> `mark i/NRIC d/DATE from/START_TIME`
+
+</box>
+
+[More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+<box type="warning" seamless>
+
+**Caution:** <br/>
+You can mark a marked appointment. The appointment will remain marked and no errors will be raised.
+
+</box>
+
+<box type="info" seamless>
+
+**Note:** <br/>
+Marking an appointment will cause its colour to change to green.
+
+</box>
+
+**Examples:**
+
+<box>
+
+Mark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
+
+> `mark i/T0123456A d/2024-05-20 from/11:00`
+
+</box>
+
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
+
+![Mark appointment expected outcome](./images/MarkApptSuccess.png)
+</box>
+
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+CLInic does not have an appointment with the provided NRIC, date and start time, you should double-check the details provided.
+
+</box>
+</box>
+
+<br/>
+
+### 2.6 Unmarking an Appointment: `unmark`
+
+Use this command if you wish to unmark an appointment from CLInic.
+
+
+**Format:**
+<box>
+
+> `unmark i/NRIC d/DATE from/START_TIME`
+
+</box>
+
+[More information on prefixes & parameters](#appointment-commands-prefixes-and-parameters)
+
+<box type="warning" seamless>
+
+**Caution:** <br/>
+You can unmark an appointment that is not marked. Appointment will remain unmarked and there will be no errors raised.
+
+</box>
+
+<box type="info" seamless>
+
+**Note:** <br/>
+Unmarking an appointment will cause its colour to change to red (if past scheduled timing) or beige.
+
+</box>
+
+**Examples:**
+
+<box>
+
+Unmark appointment for the patient with NRIC T0123456A, on 2024-05-20 from 11:00.
+
+> `unmark i/T0123456A d/2024-05-20 from/11:00`
+
+</box>
+
+<box type="wrong" light>
+
+**The appointment provided is not found in the system**.
+
+<box type="tip" seamless>
+
+CLInic does not have an appointment with the provided NRIC, date and start time, you should double-check the details provided.
+
+
+</box>
+</box>
+
+--- {.dashed}
+
+<br/>
+
+### <a name="generalCommands"></a>3. General Commands
+
+General commands are simple commands with no prefixes.
+
+<box type="info" seamless>
+
+**Note:** <br/>
+Any extraneous parameters for these commands will be ignored.
+
+e.g. `list 123` will be interpreted as `list`
+</box>
+
+<br/>
+
+### <a name="list"></a>3.1 Listing All Patients and Appointments : `list` OR `ls`
+
+Use this command to show the full list of all patients and appointments in CLInic.
+
+
+<box type="info" seamless>
+
+**Note:** <br/>
+This command is useful for reinstating the full list of patients and appointments on Day-View after commands like `findPatient` or `findAppointment`.
+</box>
+
+**Format:**
+<box>
+
+Full: 
+> `list`
+
+Shorthand: 
+> `ls​`
+</box>
+
+<br/>
+
+### <a name="switchView"></a>3.2 Switch between Overall-View and Day-View : `switchView` OR `sv`
+
+You can use this command to switch views from Overall-View to Day-View and vice versa, without having to click on buttons on the interface.
+
+**Format:**
+<box>
+
+Full: 
+> `switchView`
+
+Shorthand: 
+> `sv`
+
+</box>
+
+<br/>
+
+### <a name="clear"></a>3.3 Clearing All Entries : `clear` 
+
+Use this command if you wish to clear all entries of patients and appointments from CLInic.
+
+**Format:**
+<box>
+
+> `clear`
+</box>
+
+<box type="warning" seamless>
+
+**Caution:**<br/>
+* This action is irreversible. Please proceed with caution. 
+
+* Once this command is executed, it would not be possible to restore the deleted data.
+
+</box>
+
+<br/>
+
+### <a name="exit"></a>3.4 Exiting the Program : `exit` 
+
+Use this command if you wish to close and exit CLInic.
+
+**Format:**
+<box>
+
+> `exit`
+
+</box>
+
+<br/>
+
+### <a name="help"></a>3.5 Viewing Help : `help`
+
+If you are facing any issues while using CLInic, you can use this help command which will provide you with a link to this User Guide.
+
+**Format:**
+<box>
+
+> `help`
+</box>
+
+<box type="success" light>
+
+**Expected Outcome**:
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
-
-
-### Adding a patient: `addPatient` OR `ap`
-
-Adds a patient to CLInic.
-
-Format: `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/>
-Shorthand: `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-* Names must consist of only english alphanumeric characters
-* NRIC should start and end with capital letters with 7 numbers in between them, there is otherwise
-  no additional checks for what makes a valid NRIC, eg. `S0123456A` will work
-* Phone must be a Singapore-based phone number with 8 digits and starts with 6, 8 or 9
-
-<box type="tip" seamless>
-
-**Tip:** A patient must have a unique NRIC in CLInic.
-
 </box>
 
-Examples:
-* `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addPatient i/S1234567A n/Betsy Crowe b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/criminal`
-* `ap i/S1234567A n/Betsy Crowe b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/criminal`
+<br/>
 
-### Deleting a patient : `deletePatient` OR `dp`
+### Saving the Data
 
-Deletes the specified patient (identified by NRIC) from CLInic.
-Corresponding appointments for the specified patient will be deleted too.
+CLInic data are saved in the hard disk automatically after any command that changes the data. You do not need to save manually.
 
-Format: `deletePatient i/NRIC` <br/>
-Shorthand: `dp i/NRIC`
+<br/>
 
-* Deletes the patient and corresponding appointments with specified `NRIC`.
-* The patient with specified NRIC **must exist within database**.
-
-Examples:
-* `deletePatient i/S1234567A` deletes the patient with NRIC S1234567A in CLInic.
-
-### Editing a patient : `editPatient` OR `ep`
-
-Edits an existing patient in CLInic.
-
-Format: `editPatient i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​` <br/>
-Shorthand: `ep i/NRIC [newn/NEW_NAME] [newb/NEW_DOB] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`
-
-* Edits the patient with the specified NRIC.
-* The patient with specified NRIC **must exist within database**.
-* Provide at least one optional field for editing.
-* Existing values will be updated to the input values.
-* When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
-
-Examples:
-*  `editPatient i/T0123456A newp/91234567 newe/johndoe@example.com` Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
-*  `editPatient i/S8765432Z newn/Betsy Crower newt/` Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
-*  `ep i/S8765432Z newn/Betsy Crower newt/`
-
-### Finding patients: `findPatient` OR `fp`
-
-Finds patients whose name OR NRIC fit the given keywords.
-
-Format: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD` <br/>
-Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`
-
-* Only the name OR NRIC is searched at once. e.g. `n/Bob i/T0123456A` is illegal
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Partial words will be matched only if the start of the word is the same e.g. `Han` will match `Hans`
-* To accommodate for future extensions, special characters can be searched. However, no search results may be found as special characters are currently not supported in `NAME` and `NRIC`
-
-Name Search
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Patients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-NRIC Search
-* Only patients matching the given keyword will be returned.
-  e.g. `n/T0` will return `T0123456A`, `T0234567B`
-  e.g. `n/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
-
-<box type="tip" seamless>
-
-**Tip:** If currently on Day View, this command will cause a `switchView` to automatically occur.
-
-</box>
-
-Examples:
-* `findPatient i/S9` returns patients with NRICs `S9876543A` and `S9765432A`
-* `findPatient n/John` returns patients with names `john` and `John Doe`
-* `findPatient n/alex david` returns patients with names `Alex Yeoh`, `David Li`<br>
-* `fp n/ alex david` returns patients with names `Alex Yeoh`, `David Li`<br>
-
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Adding an Appointment: `addAppt` OR `aa`
-
-Adds an appointment to the CLInic.
-
-Format: `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]` <br/>
-Shorthand: `aa i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
-
-* Adds an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
-* Patient with this NRIC **must exist within database**.
-* Details of `APPOINTMENT_TYPE` and `NOTE` will be captured for reference
-* You cannot schedule an appointment for a patient on a date before their date of birth
-* `note/` is an optional field
-
-<box type="tip" seamless>
-
-**Tip:** If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall View. If currently on Day View, see [here](#switch-between-overall-view-and-day-view--switchview-or-sv).
-
-</box>
-
-Examples:
-* `addAppt i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
-* `addAppt i/S1234567A d/2024-02-20 from/15:00 to/15:30 t/Blood Test note/Follow-up from last consultation`
-* `aa i/S1234567A d/2024-02-20 from/15:00 to/15:30 t/Blood Test note/Follow-up from last consultation`
-
-### Deleting an Appointment: `deleteAppt` OR `da`
-
-Deleting an appointment from CLInic.
-
-Format: `deleteAppt i/NRIC d/DATE from/START_TIME` <br/>
-Shorthand: `da i/NRIC d/DATE from/START_TIME`
-
-* Deletes an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME`.
-* Appointment with the stated details **must exist within database**.
-* `END_TIME` not needed as same patient can never have overlapping appointments, hence `START_TIME` is unique
-
-Examples:
-* `deleteAppt i/S8743880A d/2024-02-20 from/11:00`
-* `da i/S8743880A d/2024-02-20 from/11:00`
-
-### Editing an Appointment : `editAppointment` OR `ea`
-
-Edits an existing appointment in CLInic.
-
-Format: `editAppt i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` <br/>
-Shorthand: `ea i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]`
-
-* Edits the appointment with the specified NRIC, DATE and START_TIME.
-* Ensure the NRIC is valid and exists in the system.
-* Provide at least one optional field for editing.
-* Existing values will be updated to the input values.
-
-<box type="tip" seamless>
-
-**Tip:** If edited appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall View. If currently on Day View, see [here](#switch-between-overall-view-and-day-view--switchview-or-sv).
-
-</box>
-
-Examples:
-*  `editAppt i/T0123456A d/2024-02-20 from/11:00 newd/2024-02-21`
-  * Edits the date of the appointment with NRIC:`T0123456A`, DATE: `2024-02-20`, START_TIME: `11:00`, to be `2024-02-21` instead.
-*  `editAppt i/S8743880A d/2024-10-20 from/14:00 newnote/ `
-  * Clears note for appointment with NRIC:`S8743880A`, DATE: `2024-10-20`, START_TIME: `14:00`.
-*  `ea i/S8743880A d/2024-10-20 from/14:00 newnote/ `
-
-### Finding appointments: `findAppt` OR `fa`
-
-Finds appointments based on the given parameters.
-
-Format: `findAppt [i/NRIC] [d/DATE] [from/START_TIME]`
-Shorthand: `fa [i/NRIC] [d/DATE] [from/START_TIME]`
-
-* Filters an appointment with specific `NRIC`, `DATE` or `START_TIME` (any combination of the 3)
-* If invalid parameters, error detailing what went wrong will be displayed.
-* For argument concerning TIME, all appointments that start at the given time and later than that are returned.
-* Fetching for TIME without DATE will return all appointments whose start from that time or later than that on any date.
-
-<box type="tip" seamless>
-
-**Tip:** If currently on Day View, this command will cause a `switchView` to automatically occur. 
-
-</box>
-
-Examples:
-* `findAppt d/ 2024-02-20 from/ 11:00`
-* `fa d/ 2024-02-20 from/ 11:00`
-*  returns you all appointments on `2024-02-20` starting from `11:00` and later.
-
-### Marking an Appointment: `mark`
-
-Marks an appointment from the address book.
-
-Format: `mark i/NRIC d/DATE from/START_TIME`
-
-* Marks an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME`
-* Appointment with the stated details **must exist within database**.
-* `END_TIME` not needed as same patient can never have overlapping appointments, hence `START_TIME` is unique
-
-Examples:
-* `mark i/T0123456A d/2024-02-20 from/11:00`
-
-### Unmarking an Appointment: `unmark`
-
-Unmarks an appointment from the address book.
-
-Format: `unmark i/NRIC d/DATE from/START_TIME`
-
-* Unmarks an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME`
-* Appointment with the stated details **must exist within database**.
-* `END_TIME` not needed as same patient can never have overlapping appointments, hence `START_TIME` is unique
-
-Examples:
-* `unmark i/T0123456A d/2024-02-20 from/11:00`
-
-### Listing all patients and appointments : `list` OR `ls`
-
-Shows a list of all patients and appointments in CLInic.
-
-Format: `list` OR `ls`
-
-### Switch between Overall View and Day View : `switchView` OR `sv`
-
-Switches view from Overall View to Day View or vice versa.
-
-Format: `switchView` OR `sv`
-
-### Clearing all entries : `clear`
-
-Clears all entries of patients and appointments from CLInic.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-CLInic data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
+### Editing the Data File
 
 CLInic data are saved automatically as a JSON file `[JAR file location]/data/CLInic.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -368,8 +1205,109 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 
 ## FAQ
 
+##### Patients
+<box>
+
+**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?<br>
+>**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
+
+</box>
+<box>
+
+**Q**: Will `EMAIL` accept emails without an .xx domain? Will valid emails like user@local be accepted?<br>
+>**A**: Yes, CLInic would like to allow you to have flexibility in emails accepted, as to allow compatibility with legacy systems or to align with your specific network configuration and security protocols. However, special characters such as slashes `/` are often not allowed as part of email domains or names, hence we decided to restrict that.
+
+</box>
+<box>
+
+**Q**: Will foreign ID or phone numbers be accepted?<br>
+>**A**: Foreign ID and phone numbers are currently not supported by CLInic as we roll out the basic functionalities suited to a local context. However, we have plans to implement this as seen [here](#appendix-planned-enhancements).
+
+</box>
+<box>
+
+**Q**: Am I able to put NA for the `ADDRESS` field?<br>
+>**A**: CLInic does not allow the address field to be blank, as an address can be essential in medical emergencies. However, you can opt to fill it with a `-` if you deem fit.
+
+</box>
+<box>
+
+**Q**: Why am I allowed to add duplicate phone numbers for different patients?<br>
+>**A**: CLInic accounts for events where both a child and their parent are patients, or patients are related. In these events, these patients may decide to provide the same phone number as their contact details. 
+
+</box>
+<box>
+
+**Q**: Am I allowed to edit a patient's `NRIC`?<br>
+>**A**: No, CLInic does not support editing a patient's NRIC. We decided on this to protect against data manipulation and errors. Should a patient change their NRIC, you can use the <a href=#addPatient>addPatient command</a>.
+
+</box>
+<box>
+
+**Q**: Why is there a character limit to `NAME`?<br>
+>**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
+
+</box>
+
+##### Appointments
+<box>
+
+**Q**: I'm editing an appointment, and the new appointment information is flagged as overlapping. What can I do?<br>
+>**A**: When the new time slot you input overlaps with an existing appointment, CLInic will show you all the existing appointments for the same date you had hoped would be free. This way, you can simply choose a time that does not overlap with those existing appointments. 
+
+</box>
+<box>
+
+**Q**: Is marking future appointments allowed? Is adding past appointments allowed? <br>
+>**A**: Yes, CLInic supports you in the flexibility of marking and adding appointments. If a patient decides to turn up early, or walk-in on the day, you can easily mark a future appointment. If you forgot to add a past appointment, you can do so retroactively.
+
+</box>
+<box>
+
+**Q**: Does editing a marked appointment to the future change its status to unmarked?<br>
+>**A**: No, CLInic allows you to move appointments independently of if they were marked, such that you can have flexibility in scheduling of appointments.
+
+</box>
+
+##### General
+<box>
+
+**Q**: As a new user, should I change the order of prefixes?<br>
+>**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced work flows.
+
+</box>
+<box>
+
+**Q**: Why does `APPOINTMENT_TYPE` and `MEDICAL_ALLERGY` use the same prefix `t/`?<br>
+>**A**: `APPOINTMENT_TYPE` and `MEDICAL_ALLERGY` tags appointments and patients respectively. They also appear quite similar in the GUI. Hence, we decided to use the same prefix to make it easier for you to remember.
+
+</box>
+<box>
+
+**Q**: What does "Unknown Command" mean? What should I do if I encounter it?<br>
+>**A**: "Unknown Command" means that you have used a different syntax or unsupported command. Refer to [features](#features) for valid commands.
+
+</box>
+<box>
+
+**Q**: Can I use CLInic overseas?<br>
+>**A**: CLInic is intended to be used in Singapore and not on the go. Using it overseas will not update appointment times.
+
+</box>
+
+<box>
+
+**Q**: Why does CLInic use `NRIC` rather than an index for identifying patients and appointments?<br>
+>**A**: Using the unique `NRIC` prevents errors that could be costly, especially in the healthcare industry.
+
+</box>
+
+<box>
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
+>**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
+
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -380,71 +1318,42 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
-| Term                 | Explanation                                                                                                                                    |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CLI**              | Command Line Interface, a text-based interface for interacting with software by typing commands.                                               |
-| **GUI**              | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons. |
-| **JSON**             | JavaScript Object Notation, a lightweight data-interchange format.                                                                             |
-| **NRIC**             | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                         |
-| **TAG**              | A keyword or term assigned to a piece of information, making it easier to search for and organize.                                             |
-| **APPOINTMENT_TYPE** | The type of appointment, e.g., Medical Check-up, Blood Test, etc.                                                                              |
-| **NOTE**             | Additional information or comments about an appointment.                                                                                       |
-
---------------------------------------------------------------------------------------------------------------------
-
-## Prefix summary for patients
-| Prefix | Field                                                                             | Caveats                                                                                                                                                                                                                                                                                                                                                                       
-|-----------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **i/**          | Unique ID in Singapore's context - NRIC (e.g. `T0123456A`)                        | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> - For foreign visitors, placeholder NRIC eg. `K0000001A`, since foreigners should not be staying long-term. |
-| **n/**          | Name of patient.                                                                  | - Will restrict to alphanumeric characters to avoid parsing errors, since data is stored as JSON. <br/> - Extra spacing is allowed within the name to allow for user convenience and flexibility.                                                                                                                                                                             |                                                                 |
-| **b/**          | Date of birth of patient.                                                         | - Only allows valid dates after 1 Jan 1990.                                                                                                                                                                                                                                                                                                                                   |
-| **p/**          | Emergency contact number.                                                         | - Only Singapore phone numbers allowed. <br/> - Duplicate phone numbers allowed in case of children with parent's contact number.                                                                                                                                                                                                                                             |
-| **e/**          | Email of patient.                                                                 |                                                                                                                                                                                                                                                                                                                                                                               |
-| **a/**          | Address of patient.                                                               |                                                                                                                                                                                                                                                                                                                                                                               |
-| **t/**          | Tag attached to patient for extra information. e.g. `Fall risk, Hokkien speaking` |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newn/**       | New name of patient if change required.                                           |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newp/**       | New phone number of patient if change required.                                   |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newe/**       | New email of patient if change required.                                          |                                                                                                                                                                                                                                                                                                                                                                               |
-| **newa/**       | New address of patient if change required.                                        |                                                                                                                                                                                                                                                                                                               
-| **newt/**       | New tag of patient if change required.                                            |
-
-## Prefix summary for appointments
-| Prefix | Field                                                                                      | Caveats                                                                                                                                                                                                                                                           
-|----------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **i/**               | Unique ID in Singapore's context - NRIC <br/> (e.g. `T0123456A`) <br/> to identify patient | - Possible invalid NRICs not accounted for due to uncertainty in checksum of Singapore's system and FIN numbers. <br/> - Also allowing for NRICs beyond current date e.g. `T99...` to allow flexibility of app without having to constantly readjust fields <br/> - For foreign visitors, placeholder NRIC eg. `K0000001A`, since foreigners should not be staying long-term. |
-| **d/**               | Date of appointment in YYYY-MM-DD format e.g. `2024-02-20`                                 | - Valid dates after 1 Jan 1990                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                         |
-| **from/**            | Start time of appointment in HH:mm format e.g. `13:00`                                     | - Start time has to be earlier than end time                                                                                                                                                                                                                      |
-| **to/**              | End time of appointment in HH:mm format e.g. `14:30`                                       | - End time has to be later than start time <br/> - To timing is taken to be on same day as `from/`                                                                                                                                                                |
-| **t/**               | Appointment type e.g. `Medical check-up`                                                   |
-| **note/**            | Additional notes for appointment e.g. `X-ray`                                              |
-| **newd/**            | New date of appointment if change required.                                                |
-| **newfrom/**         | New start time of appointment if change required.                                          
-| **newto/**           | New end time of appointment if change required.                                            
-| **newt/**            | New type of appointment if change required.                                                |
-| **newnote/**         | New note of appointment if change required.                                                |
-
-### Additional Information
-- Our commands check for the validity of the input data and will prompt the user if the input is invalid.
-- Usage of prefixes (from this list above) in commands that do not require them will result in an error.
-- This includes unintentional use of known prefixes in other fields
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
-| Action            | Format, Examples                                                                                                                                                                                                 |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AddPatient**    | `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`          |
-| **DeletePatient** | `deletePatient i/NRIC`<br> e.g., `deletePatient i/T0123456A`                                                                                                                                                     |                                                                 |
-| **EditPatient**   | `editPatient i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE_NUMBER] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`<br> e.g.,`editPatient i/T0123456A newn/James Lee newe/jameslee@example.com`                    |
-| **FindPatient**   | `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`<br> e.g., `findPatient n/James Jake`                                                                                                        |
-| **AddAppt**       | `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addAppt i/T0123456A d/2024-02-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`                       |
-| **DeleteAppt**    | `deleteAppt i/NRIC d/DATE from/START_TIME` <br> e.g., `deleteAppt i/S8743880A d/2024-02-20 from/11:00`                                                                                                           |
-| **EditAppt**      | `editAppt i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` <br> e.g., `editAppt i/T0123456A d/2024-02-20 from/11:00 newd/2024-02-21` |
-| **FindAppt**      | `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findAppt i/T0123456A d/2024-02-20 from/11:00`                                                                                                         |
-| **Mark**          | `mark i/NRIC d/DATE from/START_TIME` <br> e.g., `mark i/T0123456A d/2024-02-20 from/11:00`                                                                                                                       |
-| **Unmark**        | `unmark i/NRIC d/DATE from/START_TIME` <br> e.g., `unmark i/T0123456A d/2024-02-20 from/11:00`                                                                                                                   |
-| **List**          | `list`                                                                                                                                                                                                           
-| **SwitchView**    | `switchView`                                                                                                                                                                                                     
-| **Clear**         | `clear`                                                                                                                                                                                                          |
-| **Exit**          | `exit`                                                                                                                                                                                                           |
-| **Help**          | `help`                                                                                                                                                                                                           |
+| Action            | Format                                                                                                                                                                                                                                                                                                                      |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **AddPatient**    | Full: `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​` <br> Shorthand: `ap i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​`                                                                                                                               |
+| **DeletePatient** | Full: `deletePatient i/NRIC`<br> Shorthand: `dp i/NRIC`                                                                                                                                                                                                                                                                     |                                                                 |
+| **EditPatient**   | Full: `editPatient i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE_NUMBER] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`<br> Shorthand: `ep i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE_NUMBER] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`                                                                             |
+| **FindPatient**   | Full: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`<br>  Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`                                                                                                                                                     |
+| **AddAppt**       | Full: `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> Shorthand: `ap i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`                                                                                                                                           |
+| **DeleteAppt**    | Full: `deleteAppt i/NRIC d/DATE from/START_TIME` <br> Shorthand: `da i/NRIC d/DATE from/START_TIME`                                                                                                                                                                                                                         |
+| **EditAppt**      | Full: `editAppt i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` <br> Shorthand: `ea i/NRIC d/DATE from/START_TIME [newd/NEW_DATE] [newfrom/NEW_START_TIME] [newto/NEW_END_TIME] [newt/NEW_APPOINTMENT_TYPE] [newnote/NEW_NOTE]` |
+| **FindAppt**      | Full: `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> Shorthand: `fa [i/NRIC] [d/DATE] [from/START_TIME]`                                                                                                                                                                                                               |
+| **Mark**          | `mark i/NRIC d/DATE from/START_TIME`                                                                                                                                                                                                                                                                                        |
+| **Unmark**        | `unmark i/NRIC d/DATE from/START_TIME`                                                                                                                                                                                                                                                                                      |
+| **List**          | `list`                                                                                                                                                                                                                                                                                                                      
+| **SwitchView**    | `switchView`                                                                                                                                                                                                                                                                                                                
+| **Clear**         | `clear`                                                                                                                                                                                                                                                                                                                     |
+| **Exit**          | `exit`                                                                                                                                                                                                                                                                                                                      |
+| **Help**          | `help`                                                                                                                                                                                                                                                                                                                      |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+
+Team size: 5
+
+##### Patients
+1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly. 
+2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
+3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations, 
+4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
+5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>.
+
+##### Appointments
+6. **Accommodate for overnight appointments and updated day-view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show appointments that start on the current date or spans the current date as well.
+7. **Editing marked appointment to future time unmarks it automatically**: Currently, an appointment remains marked even if it is edited to a future time. We plan to automatically unmark an appointment when it is moved to a future time, to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
+
+##### Trouble Shooting
+8. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
+9. **Include in-built help message to orientate user to the list of commands available without needing to navigate to external links**: Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. A simple list of commands could be provided in the command feedback within CLInic instead.

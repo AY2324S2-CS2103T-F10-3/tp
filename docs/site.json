@@ -1,7 +1,6 @@
 {
   "baseUrl": "",
   "titlePrefix": "CLInic",
-  "titleSuffix": "AddressBook Level-3",
   "faviconPath": "images/CliNicLogo.png",
   "style": {
     "codeTheme": "light"
