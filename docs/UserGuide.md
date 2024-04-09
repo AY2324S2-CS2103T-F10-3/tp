@@ -14,7 +14,7 @@ We understand that managing appointments in a clinic can be complex, but with CL
 Our user-friendly interface and intuitive commands make it easy for you to:
 * Manage patient's data
 * Register appointments for patients
-* Track the completion rate for appointments
+* Track the completion of appointments
 
 So, let's get started! Whether you're familiar with the Command Line Interface (CLI) or need a bit of guidance, we're here to guide you every step of the way. Follow this User Guide to uncover the potential of CLInic!
 
@@ -172,7 +172,8 @@ If this is your first time launching CLInic, you might see sample data being loa
   ![UiTutStep1](images/UiTutorial1.png)
   <box type="warning" seamless>
 
-  **Caution:** Commands in CLInic are case-sensitive! In order to ensure that your commands are recognised, ensure that they are of the same
+  **Caution:** <br/>
+  Commands in CLInic are case-sensitive! In order to ensure that your commands are recognised, ensure that they are of the same
   case as the commands given in the guide.
   </box>
 
@@ -202,9 +203,11 @@ If this is your first time launching CLInic, you might see sample data being loa
   You have now registered a patient of **NRIC**: T0123456A, **Name**: Bernice Yu, **Date of Birth (DOB)**: 2001-12-25, **Email**: bernice<span></span>@example.com
   and **Address**: Blk 555 Changi Ave 5 #05-05 S(555555) as seen on the right.
 
-    <box type="info" seamless>
 
-  **Note:** In CLInic, we use prefixes to denote the input parameters. The prefix `i/` is reserved for the patient's NRIC.
+  <box type="info" seamless>
+
+  **Note:** <br/>
+  In CLInic, we use prefixes to denote the input parameters. The prefix `i/` is reserved for the patient's NRIC.
   Therefore, in this case, `i/ T0123456A` means that patient we wish to add has the NRIC `T0123456A`. The remaining prefixes
   `n/`, `b/`, `p/`, `e/` and `a/` take in the patient's name, birth date, phone number, email and address respectively.
   The details and constraints of the parameters required for each command will be documented in the features section.
@@ -230,9 +233,10 @@ If this is your first time launching CLInic, you might see sample data being loa
   You have now created an appointment for Bernice using her **NRIC**: T0123456A. The details of her appointment are **Date**: 2024-05-06,
   **Start Time**: 10:00, **End Time**: 11:00 and **Appointment Type**: Medical Check-up as seen on the right.
 
-    <box type="info" seamless>
+  <box type="info" seamless>
 
-  **Note:** In CLInic, you will see that NRIC is used in most commands. We use NRIC numbers to identify each patient uniquely!
+  **Note:** <br/>
+  In CLInic, you will see that NRIC is used in most commands. We use NRIC numbers to identify each patient uniquely!
   </box>
 
   Well done! You have completed the tutorial! Your new patient, Bernice, now has an appointment scheduled for her.
@@ -268,7 +272,7 @@ CLInic is designed to keep track of your patient data and appointment schedules.
 
 <box type="info" seamless>
 
-**Notes:**<br>
+**Notes:**
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
@@ -288,7 +292,7 @@ CLInic is designed to keep track of your patient data and appointment schedules.
 
 <box type="warning" seamless>
 
-**Caution**:
+**Caution**: <br/>
 Commands are case-sensitive, including shorthand formats.<br>
   e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` and `Ap` will not be recognised by CLInic.
 
@@ -349,7 +353,8 @@ Shorthand:
 
 <box type="warning" seamless>
 
-**Caution**: A patient must have a unique NRIC in CLInic.
+**Caution**: <br/>
+A patient must have a unique NRIC in CLInic.
 
 </box>
 
@@ -393,7 +398,8 @@ Corresponding appointments for the specified patient will be deleted too.
 
 <box type="warning" seamless>
 
-**Caution**: Corresponding appointments for the specified patient will be deleted from CLInic too.
+**Caution**: <br/>
+Corresponding appointments for the specified patient will be deleted from CLInic too.
 
 </box>
 
@@ -449,7 +455,7 @@ Shorthand:
 
 <box type="warning" seamless>
 
-**Caution** 
+**Caution**
 * Existing values will be updated to the input values.
 
 * When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
@@ -658,7 +664,8 @@ Shorthand:
 
 <box type="info" seamless>
 
-**Note**: If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
+**Note**: <br/>
+If new appointment overlaps with an existing appointment for the same patient, all overlapping appointments will be shown on Overall-View. If currently on Day-View, see <a href=#switchView>here</a>.
 
 </box>
 
@@ -857,7 +864,8 @@ Shorthand:
 
 <box type="info" seamless>
 
-**Note**: If currently on Day-View, this command will cause a `switchView` to automatically occur.
+**Note**: <br/>
+If currently on Day-View, this command will cause a `switchView` to automatically occur.
 
 </box>
 
@@ -1034,7 +1042,8 @@ General commands are simple commands with no prefixes.
 
 <box type="info" seamless>
 
-**Note**: Any extraneous parameters for these commands will be ignored.
+**Note**: <br/>
+Any extraneous parameters for these commands will be ignored.
 
 e.g. `list 123` will be interpreted as `list`
 </box>
@@ -1047,7 +1056,8 @@ Use this command to show the full list of all patients and appointments in CLIni
 
 <box type="info" seamless>
 
-**Note**: This command is useful for viewing the full list after commands like `findPatient` or `findAppointment`!
+**Note**: <br/>
+This command is useful for viewing the full list after commands like `findPatient` or `findAppointment`!
 </box>
 
 <box>
@@ -1092,8 +1102,7 @@ Use this command if you wish to clear all entries of patients and appointments f
 
 <box type="warning" seamless>
 
-**Warning:**
-
+**Caution:**<br/>
 This action is irreversible. Please proceed with caution. 
 
 Once this command is executed, it would not be possible to restore the deleted data.
