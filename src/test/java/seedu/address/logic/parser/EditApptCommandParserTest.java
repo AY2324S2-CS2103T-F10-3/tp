@@ -132,7 +132,7 @@ public class EditApptCommandParserTest {
                 + INVALID_NEW_END_TIME_RANGE_DESC, TimePeriod.MESSAGE_CONSTRAINTS); //invalid new end time
         assertParseFailure(parser, validTargetAppt
                 + INVALID_NEW_START_TIME_RANGE_DESC
-                + INVALID_NEW_END_TIME_RANGE_DESC, TimePeriod.MESSAGE_CONSTRAINTS); //invalid new start and end time period
+                + INVALID_NEW_END_TIME_RANGE_DESC, TimePeriod.MESSAGE_CONSTRAINTS); //invalid new start, end time period
         assertParseFailure(parser, validTargetAppt
                 + INVALID_NEW_APPOINTMENT_TYPE_DESC , AppointmentType.MESSAGE_CONSTRAINTS); // invalid new apptType
 
