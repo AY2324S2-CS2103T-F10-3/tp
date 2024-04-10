@@ -7,7 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_APPOINTMENT_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_END_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_END_TIME_RANGE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_START_TIME_RANGE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NEW_DATE_DESC_APPOINTMENT_AMY;
@@ -47,6 +49,7 @@ import seedu.address.logic.commands.EditApptCommand;
 import seedu.address.logic.commands.EditApptCommand.EditApptDescriptor;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Time;
+import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.patient.Nric;
 import seedu.address.testutil.EditApptDescriptorBuilder;
 
@@ -119,9 +122,17 @@ public class EditApptCommandParserTest {
         assertParseFailure(parser, validTargetAppt
                 + INVALID_NEW_DATE_DESC , Date.MESSAGE_CONSTRAINTS); // invalid new date
         assertParseFailure(parser, validTargetAppt
-                + INVALID_NEW_START_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new startTime
+                + INVALID_NEW_START_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new startTime (itself)
         assertParseFailure(parser, validTargetAppt
-                + INVALID_NEW_END_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new endTime
+                + INVALID_NEW_END_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new endTime (itself)
+
+        //invalid new start time is checked in EditApptCommand instead
+
+        assertParseFailure(parser, validTargetAppt
+                + INVALID_NEW_END_TIME_RANGE_DESC, TimePeriod.MESSAGE_CONSTRAINTS); //invalid new end time
+        assertParseFailure(parser, validTargetAppt
+                + INVALID_NEW_START_TIME_RANGE_DESC
+                + INVALID_NEW_END_TIME_RANGE_DESC, TimePeriod.MESSAGE_CONSTRAINTS); //invalid new start and end time period
         assertParseFailure(parser, validTargetAppt
                 + INVALID_NEW_APPOINTMENT_TYPE_DESC , AppointmentType.MESSAGE_CONSTRAINTS); // invalid new apptType
 
