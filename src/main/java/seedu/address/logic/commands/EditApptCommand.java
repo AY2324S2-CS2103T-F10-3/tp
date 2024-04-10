@@ -119,7 +119,8 @@ public class EditApptCommand extends Command {
      * Creates and returns a {@code Appointment} with the details of {@code apptToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Appointment apptToEdit, EditApptDescriptor editApptDescriptor) {
+    private static Appointment createEditedAppointment(Appointment apptToEdit, EditApptDescriptor editApptDescriptor)
+            throws CommandException {
         assert apptToEdit != null;
 
         Date updatedDate = editApptDescriptor.getDate().orElse(apptToEdit.getDate());
@@ -129,7 +130,11 @@ public class EditApptCommand extends Command {
                 .orElse(apptToEdit.getAppointmentType());
         Note updatedNote = editApptDescriptor.getNote().orElse(apptToEdit.getNote());
 
+        if (!TimePeriod.isValidTimePeriod(updatedStartTime, updatedEndTime)) {
+            throw new CommandException(TimePeriod.MESSAGE_CONSTRAINTS);
+        }
         TimePeriod updatedTimePeriod = new TimePeriod(updatedStartTime, updatedEndTime);
+
 
         return new Appointment(apptToEdit.getNric(), updatedDate, updatedTimePeriod,
                 updatedAppointmentType, updatedNote, apptToEdit.getMark());
