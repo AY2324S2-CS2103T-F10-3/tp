@@ -74,6 +74,9 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
         if (argMultimap.getValue(PREFIX_NEW_END_TIME).isPresent()) {
             editApptDescriptor.setEndTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_NEW_END_TIME).get()));
         }
+
+        //Check if valid new time period (both new start and end time given) in EditAppt Command itself
+
         if (argMultimap.getValue(PREFIX_NEW_TAG).isPresent()) {
             editApptDescriptor.setAppointmentType(ParserUtil
                     .parseAppointmentType(argMultimap.getValue(PREFIX_NEW_TAG).get()));

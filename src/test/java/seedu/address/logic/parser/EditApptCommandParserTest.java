@@ -119,9 +119,11 @@ public class EditApptCommandParserTest {
         assertParseFailure(parser, validTargetAppt
                 + INVALID_NEW_DATE_DESC , Date.MESSAGE_CONSTRAINTS); // invalid new date
         assertParseFailure(parser, validTargetAppt
-                + INVALID_NEW_START_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new startTime
+                + INVALID_NEW_START_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new startTime (itself)
         assertParseFailure(parser, validTargetAppt
-                + INVALID_NEW_END_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new endTime
+                + INVALID_NEW_END_TIME_DESC , Time.MESSAGE_CONSTRAINTS); // invalid new endTime (itself)
+
+        //invalid new start time and invalid new end time is checked in EditApptCommand instead
         assertParseFailure(parser, validTargetAppt
                 + INVALID_NEW_APPOINTMENT_TYPE_DESC , AppointmentType.MESSAGE_CONSTRAINTS); // invalid new apptType
 

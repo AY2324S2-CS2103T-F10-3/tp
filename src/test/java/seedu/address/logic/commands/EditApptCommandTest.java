@@ -28,6 +28,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Time;
+import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.patient.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditApptDescriptorBuilder;
@@ -114,6 +115,17 @@ public class EditApptCommandTest {
         );
 
         assertCommandFailure(editApptCommand, model, Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_editedAppointmentInvalidTimePeriod_failure() {
+        //Check when new start time is after or in this case, equals the old end time
+        EditApptDescriptor descriptor = new EditApptDescriptorBuilder()
+                .withStartTime("17:00").build();
+        EditApptCommand editApptCommand = new EditApptCommand(ALICE_APPT.getNric(),
+                ALICE_APPT.getDate(), ALICE_APPT.getStartTime(), descriptor);
+
+        assertCommandFailure(editApptCommand, model, TimePeriod.MESSAGE_CONSTRAINTS);
     }
 
     @Test
