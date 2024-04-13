@@ -771,7 +771,7 @@ CLInic does not have an appointment with the provided NRIC, date and start time,
 
 <br/>
 
-### 2.3 Editing an Appointment : `editAppointment` OR `ea`
+### 2.3 Editing an Appointment : `editAppt` OR `ea`
 
 Use this command if you wish to edit an existing appointment in CLInic.
 Existing values will be updated to the input values.

@@ -1,0 +1,19 @@
+2024-04-13T20:04:31.091Z - error: No config file found in parent directories of C:\Users\Low Xue Ling\Desktop\cs2103t\userguide\tp
+2024-04-13T20:04:31.097Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Sun Apr 14 2024 04:04:31 GMT+0800 (Singapore Standard Time), pid=16624, uid=null, gid=null, cwd=C:\Users\Low Xue Ling\Desktop\cs2103t\userguide\tp, execPath=C:\Program Files\nodejs\node.exe, version=v18.16.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\index.js, serve], rss=102903808, heapTotal=70164480, heapUsed=38195888, external=1845449, arrayBuffers=49750, loadavg=[0, 0, 0], uptime=241831.015
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:399:5)
+    at validateString (node:internal/validators:163:11)
+    at Object.join (node:path:429:7)
+    at serve (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\src\cmd\serve.js:57:27)
+    at Command.<anonymous> (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\index.js:62:5)
+    at Command.listener [as _actionHandler] (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:488:17)
+    at C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1227:65
+    at Command._chainOrCall (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1144:12)
+    at Command._parseCommand (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1227:27)
+    at Command._dispatchSubcommand (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1050:25)
+    at Command._parseCommand (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1193:19)
+    at Command.parse (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:897:10)
+    at Object.<anonymous> (C:\Users\Low Xue Ling\AppData\Roaming\npm\node_modules\markbind-cli\index.js:87:9)
+    at Module._compile (node:internal/modules/cjs/loader:1254:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
