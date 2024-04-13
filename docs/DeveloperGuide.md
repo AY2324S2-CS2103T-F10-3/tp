@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -50,9 +50,9 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePatient S1234567A`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePatient i/T0123456A`.
 
-<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
+<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="674" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -65,9 +65,11 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<br/> 
+
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
@@ -84,15 +86,15 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletePatient S1234567A")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletePatient i/T0123456A")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete S1234567A` Command" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `deletePatient i/T0123456A` Command" />
 
 <box type="info" seamless>
 
@@ -115,16 +117,19 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeletePatientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+<br/>
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+### Model component
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<puml src="diagrams/ModelClassDiagram.puml" width="850" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Patient` and `Appointment` objects (which are contained in a `UniquePatientList` and `AppointmentList` objects respectively).
-* stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores CLInic data i.e., all `Patient`, `Appointment`, `AppointmentView` objects (which are contained in a `UniquePatientList`, `AppointmentList` and `AppointmentViewList` objects respectively). An `AppointmentView` object has both an `Appointment` and the `Name` of the `Patient` it is for, so that it contains the necessary information to be displayed on the UI.
+* stores the currently 'selected' `Patient` and `AppointmentView` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` and `ObservableList<AppointmentView>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores `AppointmentView` objects for today (i.e. date of appointment is today) as a separate _filtered_ list using similar logic as above, for the purpose of Day-View.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -132,19 +137,19 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<puml src="diagrams/BetterModelClassDiagram.puml" width="600" />
 
 </box>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="650" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* can save both CLInic data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -158,11 +163,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Patient Feature
+### Add Patient
 
 #### Implementation
 
-The implementation of `AddPatientCommand` is supported by the creation of a `Patient` stored internally in a `UniquePatientList` in `AddressBook`.
+The implementation of `AddPatientCommand` is supported by the `Patient` class stored internally in a `UniquePatientList` in `AddressBook`.
 
 Fields that a `Patient` has include:
 * `Nric`
@@ -173,16 +178,16 @@ Fields that a `Patient` has include:
 * `Address`
 * `Tag` [optional]
 
-To add a `Patient`, `UniquePersonList` implements the following operations:
-* `UniquePersonList#contains(Patient)` - Checks if there is another patient with the same NRIC already in the list.
-* `UniquePersonList#add(Patient)` - Add the Patient to the list.
+To add a `Patient`, `UniquePatientList` implements the following operations:
+* `UniquePatientList#hasPatientWithNric(Nric)` - Checks if there is another patient with the same NRIC already in the list.
+* `UniquePatientList#add(Patient)` - Add the Patient to the list.
 
-Those operations are exposed in the `Model` interface as `Model#hasPatient(Patient)` and `Model#addPatient(Patient)' respectively.
+Those operations are exposed in the `Model` interface as `Model#hasPatientWithNric(Nric)` and `Model#addPatient(Patient)` respectively.
 
 Given below is an example usage scenario and how the add patient mechanism behaves at each step.
 
-1. The user executes `addPatient n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
-2. The `AddPatientCommand` calls `Model#hasPatient(Patient)`, checking if there is already a patient with an NRIC of T0123456A. If that is the case, we throw a `CommandException` highlighting to the user that the patient they are trying to add already exists in the CLInic.
+1. The user executes `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
+2. The `AddPatientCommand` calls `Model#hasPatientWithNric(Nric)` using `Patient#getNric()` to get the NRIC of the patient to be added. This checks if there is already a patient with an NRIC of T0123456A. If that is the case, we throw a `CommandException` highlighting to the user that the patient they are trying to add already exists in the CLInic.
 3. Suppose the patient's NRIC is not already in CLInic, the `AddPatientCommand` calls `Model#AddPatient(Patient)`, to add the patient to the `AddressBook`.
 
 The following diagram shows how an AddPatientCommand goes through the `Logic` component:
@@ -193,13 +198,16 @@ The following activity diagram summarizes what happens when a user executes an `
 
 <puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" />
 
-#### Implementation
+
 
 ### Add Appointment for a Patient
 
 #### Implementation
 
-The implementation of `AddApptCommand` is supported by creation of the `Appointment` class and its related classes.
+The implementation of `AddApptCommand` is supported by the `Appointment` class and its related classes.
+The management of all appointments is achieved through the `AppointmentList` class stored in the `AddressBook`,
+similar to the `UniquePatientList`.
+
 Details captured in an `Appointment` class include:
 * NRIC
 * Date
@@ -207,22 +215,24 @@ Details captured in an `Appointment` class include:
 * Appointment Type
 * [Optional] Note
 
-The management of all appointments is achieved through the `AppointmentList` class stored in the `AddressBook`,
-similar to the `UniquePatientList`. `AppointmentList` supports adding, editing and deleting of appointments to the list.
-The operation `AppointmentList#add(Appointment)` checks if the incoming appointment already exists in the list, preventing
-duplicates from occurring. Since an `Appointment` can only exist in the `AppointmentList` if a `Patient` with the
-corresponding NRIC exists in the `AddressBook`, this will be checked in the execution of the `AddApptCommand`.
 
-Given below is an example usage scenario and how the add appointment mechanism works.
+To add an `Appointment`, `AppointmentList`, `UniquePatientList` and `AddressBook` implements the following operations:
+* `UniquePatientList#hasPatientWithNric(Nric)` - Checks if there exists a patient with the NRIC in the list.
+* `AppointmentList#hasAppointment(Appointment)` - Checks if there exists an appointment with the same NRIC, Date and Start Time.
+* `AddressBook#isValidApptForPatient(Appointment)` - Checks if appointment date is not before Date of Birth of patient.
+* `AppointmentList#samePatientHasOverlappingAppointment(Appointment)` - Checks if same patient has another appointment with overlapping Time Period.
+* `AppointmentList#addAppointment(Appointment)` - Add the Appointment to the list.
 
-1. The user executes `addAppt i/ S9922758A d/ 2024-03-27 from/ 00:00 to/ 00:30 t/ Medical Check-up note/`,
-attempting to create an appointment for a patient with NRIC: S9922758A on 27 Mar 2024 from 12am to 1230am.
-2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` to check if the given NRIC belongs to an individual
-    in the system. If yes, continue. Else throw a `CommandException`.
-3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists
-    in the system. If no, continue. Else throw a `CommandException`.
-4. `AddApptCommand` calls `Model#addAppointment(Appointment)` to add the appointment to the `AddressBook`.
-5. We are done.
+Those operations are exposed in the `Model` interface as `Model#hasPatientWithNric(Nric)`,  `Model#hasAppointment(Appointment)`, `Model#isValidApptForPatient(Appointment)`, `Model#samePatientHasOverlappingAppointment(Appointment)` and `Model#addAppointment(Appointment)` respectively.
+
+Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
+
+1. The user executes `addAppt i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up`.
+2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` using `Appointment#getNric()` to get the NRIC of the patient that the appointment is for. This checks if T0123456A (NRIC) belongs to an existing patient in the system. If yes, continue. Else, throw a `CommandException` to highlight to the user that the given NRIC does not exist.
+3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists in the system. If no, continue. Else, throw a `CommandException` to highlight to the user that the appointment to be created already exists.
+4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the Date of appointment is before the corresponding patient's Date of Birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
+5. `AddApptCommand` calls `Model#samePatientHasOverlappingAppointment(Appointment)` to check if there exists another appointment for the same patient over an overlapping Time Period. If no, continue. Else throw a `CommandException` to highlight to the user that an existing appointment overlaps with the appointment to be created.
+6. `AddApptCommand` calls `Model#addAppointment(Appointment)` to add the appointment to the `AddressBook`.
 
 The following sequence diagram shows how an addAppt operation goes through the `Logic` component:
 
@@ -244,7 +254,9 @@ The following activity diagram summarises what happens when a user executes addA
 * **Alternative 2:** Store `Patient` in `Appointment`
     * Pros: Time efficient as we have access to all details of the `Patient` from `Appointment`
     * Cons: Space inefficient, we double store `Patient`. We need to ensure `Patient` in `UniquePatientList` and `Patient` in
-        each `Appointment` is always consistent which can be tricky.
+        each `Appointment` are always consistent which can be tricky.
+
+<br/>
 
 ### Edit Appointment for a Patient
 
@@ -287,6 +299,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Time efficient as we can make use of the shorter prefixes because there's no need to differentiate between target appointment and new appointment details, Easier to correct mistakes in updating wrong appointment
     * Cons: Prone to errors as just a wrong number could cause the user to update the wrong appointment, Huge list could make it difficult to find a specific index
 
+<br/>
 
 ### Mark/Unmark Appointment for a Patient
 
@@ -315,97 +328,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <puml src="diagrams/MarkApptActivityDiagram.puml" alt="MarkApptActivityDiagram" width="250" />
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `deletePatient S1234567A` command to delete the patient with corresponding NRIC S1234567A in the address book. The `deletePatient` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deletePatient S1234567A` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `addPatient n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `deletePatient`, just save the patient being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+<br/>
 
 ### Find Appointment feature
 
@@ -445,12 +368,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 - **Invalid Input Handling**: Implement robust error handling mechanisms to handle cases where users provide invalid or incomplete search criteria.
 - **No Matching Results**: Handle scenarios where no appointments match the specified criteria gracefully, providing informative feedback to the user.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -479,6 +396,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: manage patient appointments faster than a typical mouse/GUI driven app
 
+<br/>
 
 ### User stories
 
@@ -496,18 +414,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user    | easily filter the patients by their medical records                                | see which is in need of more assistance or follow up care                        |
 | `* *`    | user    | search for patients by their name                                                  | look up their appointment information quickly                                    |
 | `* *`    | user    | update the details of the appointment                                              | reschedule appointments as needed                                                |
-| `* *`    | user    | view the list of patients for the given hour                                       | see the immediate schedule                                                       |
+| `* *`    | user    | view the list of patients for the given date and/or time                           | see the schedule for a given time frame                                          |
 | `* *`    | user    | tag appointments based on appointment type                                         | I can categorize which appointments require test or room bookings                |
-| `* *`    | user    | tag appointments based on insurance type                                           | prepare necessary insurance documents before patient’s appointments              |
 | `* *`    | user    | input commands without having inputs to be in a specific order                     | key in commands fast in busy periods                                             |
+| `**`     | user    | prevent appointments from overlapping                                              | ensure the patients have enough time to be seen for their different appointments |
+| `**`     | user    | quickly navigate the CLI with intuitive commands                                   | increase my efficiency                                                           |
+| `* `     | user    | tag appointments based on insurance type                                           | prepare necessary insurance documents before patient’s appointments              |
 | `*`      | user    | sort the time to a patient's appointment                                           | remind patients of their appointment                                             |
 | `*`      | user    | see how long it has been since a patient's last appointment                        | remind patients to come for another checkup                                      |
-| `*`      | user    | see what appointments are overlapping                                              | ensure the patients have enough time to be seen for their different appointments |
 | `*`      | user    | set notifications for upcoming appointments                                        | staff and patients can be well informed early in advance                         |
 | `*`      | user    | track if the patients have been sent reminders on their appointments               | patients do not get spammed with reminders                                       |
 | `*`      | user    | be notified of upcoming appointments on entry into the system                      | will not miss approaching deadlines                                              |
 | `*`      | user    | easily contact the patients via SMS or email through the program                   | update patients about their details and upcoming appointments                    |
-| `*`      | user    | quickly navigate the CLI with intuitive commands                                   | increase my efficiency                                                           |
 | `*`      | user    | check if patients are related to one another                                       | have alternate contacts                                                          |
 | `*`      | user    | update or create new records in bulk                                               | process a family more efficiently                                                |
 | `*`      | user    | set recurring tasks                                                                | I do not have to keep scheduling recurring appointments                          |
@@ -515,6 +433,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user    | select what information is available when I view the list of patients              | cater the view to my needs                                                       |
 | `*`      | user    | add notes to a patient                                                             | include other additional information                                             |
 | `*`      | user    | easily generate reports of the patient details and export it to the doctor/patient | have easy access                                                                 |
+
+<br/>
 
 ### Use cases
 
@@ -659,18 +579,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<br/>
+
 ### Non-Functional Requirements
-1. Patients should not have overlapping appointments
-2. Appointments cannot be backdated or scheduled for past dates
+1. Patients should not have overlapping appointments.
+2. Appointments can be backdated should the need arise.
 3. Should be compatible with any _mainstream OS_ with Java `11` or above installed.
-4. Should load patient records and appointment details within three seconds
+4. Should load patient records and appointment details within ten seconds.
 5. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-7. The project is expected to adhere to a schedule that delivers a feature set for each milestone
-8. The product is not required to have mouse-click navigation
-9. The product is not required to integrate with other systems
-10. The product should avoid terminology or graphics that are insensitive to patients
-11. The product should be for a single user (not a multi-user product)
+7. The project is expected to adhere to a schedule that delivers a feature set for each milestone.
+8. The product is not required to have mouse-click navigation.
+9. The product is not required to integrate with other systems.
+10. The product should avoid terminology or graphics that are insensitive to patients.
+11. The product should be for a single user (not a multi-user product).
+
+<br/>
 
 ### Glossary
 
@@ -679,7 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Appointment**: A designated time slot for a patient to visit the clinic
 * **Appointment Type**: Categorises the purpose of visit eg. Vaccination, Medical Check-up, etc
 * **Insurance Type**: Categorises insurance schemes applicable to the patient eg. Medisave, ElderShield, etc.
-* **Medical Records**: Refer to details of patients' medical allergies only (as at v1.2)
+* **Medical Records**: Refer to the patient's details.
 * **Recurring Appointments**: Refer to appointments that occur regularly eg. weekly or monthly
 
 --------------------------------------------------------------------------------------------------------------------
