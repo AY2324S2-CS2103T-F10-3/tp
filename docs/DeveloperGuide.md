@@ -17,7 +17,7 @@ _{ list here sources of all reused/adapted ideas, code, documentation, and third
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -67,7 +67,7 @@ The sections below give more details of each component.
 
 <br/> 
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +84,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Patient` object residing in the `Model`.
 
-### Logic component
+### Logic Component
 
 **API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -119,7 +119,7 @@ How the parsing works:
 
 <br/>
 
-### Model component
+### Model Component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="850" />
@@ -142,7 +142,7 @@ The `Model` component,
 </box>
 
 
-### Storage component
+### Storage Component
 
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-F10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -153,7 +153,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common Classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -184,7 +184,7 @@ To add a `Patient`, `UniquePatientList` implements the following operations:
 
 Those operations are exposed in the `Model` interface as `Model#hasPatientWithNric(Nric)` and `Model#addPatient(Patient)` respectively.
 
-Given below is an example usage scenario and how the add patient mechanism behaves at each step.
+#### Example Usage Scenario
 
 1. The user executes `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
 2. The `AddPatientCommand` calls `Model#hasPatientWithNric(Nric)` using `Patient#getNric()` to get the NRIC of the patient to be added. This checks if there is already a patient with an NRIC of T0123456A. If that is the case, we throw a `CommandException` highlighting to the user that the patient they are trying to add already exists in the CLInic.
@@ -216,22 +216,22 @@ Details captured in an `Appointment` class include:
 * [Optional] Note
 
 
-To add an `Appointment`, `AppointmentList`, `UniquePatientList` and `AddressBook` implements the following operations:
+To add an `AppointmentList`, `UniquePatientList` and `AddressBook` implements the following operations:
 * `UniquePatientList#hasPatientWithNric(Nric)` - Checks if there exists a patient with the NRIC in the list.
-* `AppointmentList#hasAppointment(Appointment)` - Checks if there exists an appointment with the same NRIC, Date and Start Time.
-* `AddressBook#isValidApptForPatient(Appointment)` - Checks if appointment date is not before Date of Birth of patient.
-* `AppointmentList#samePatientHasOverlappingAppointment(Appointment)` - Checks if same patient has another appointment with overlapping Time Period.
-* `AppointmentList#addAppointment(Appointment)` - Add the Appointment to the list.
+* `AppointmentList#hasAppointment(Appointment)` - Checks if there exists an appointment with the same NRIC, date and start time.
+* `AddressBook#isValidApptForPatient(Appointment)` - Checks if appointment date is not before date of birth of patient.
+* `AppointmentList#samePatientHasOverlappingAppointment(Appointment)` - Checks if same patient has another appointment with overlapping time period.
+* `AppointmentList#addAppointment(Appointment)` - Add the appointment to the list.
 
 Those operations are exposed in the `Model` interface as `Model#hasPatientWithNric(Nric)`,  `Model#hasAppointment(Appointment)`, `Model#isValidApptForPatient(Appointment)`, `Model#samePatientHasOverlappingAppointment(Appointment)` and `Model#addAppointment(Appointment)` respectively.
 
-Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
+#### Example Usage Scenario
 
 1. The user executes `addAppt i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up`.
 2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` using `Appointment#getNric()` to get the NRIC of the patient that the appointment is for. This checks if T0123456A (NRIC) belongs to an existing patient in the system. If yes, continue. Else, throw a `CommandException` to highlight to the user that the given NRIC does not exist.
 3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists in the system. If no, continue. Else, throw a `CommandException` to highlight to the user that the appointment to be created already exists.
-4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the Date of appointment is before the corresponding patient's Date of Birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
-5. `AddApptCommand` calls `Model#samePatientHasOverlappingAppointment(Appointment)` to check if there exists another appointment for the same patient over an overlapping Time Period. If no, continue. Else throw a `CommandException` to highlight to the user that an existing appointment overlaps with the appointment to be created.
+4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the date of appointment is before the corresponding patient's date of birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
+5. `AddApptCommand` calls `Model#samePatientHasOverlappingAppointment(Appointment)` to check if there exists another appointment for the same patient over an overlapping time period. If no, continue. Else throw a `CommandException` to highlight to the user that an existing appointment overlaps with the appointment to be created.
 6. `AddApptCommand` calls `Model#addAppointment(Appointment)` to add the appointment to the `AddressBook`.
 
 The following sequence diagram shows how an addAppt operation goes through the `Logic` component:
@@ -285,7 +285,7 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" width="250" />
+<puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" width="450" />
 
 #### Design considerations:
 
@@ -309,13 +309,13 @@ The Mark Appointment feature will involve parsing user input and marking the app
 
 The implementation will include the following key components:
 
-1. **Parsing User Input**: The application will parse user input to extract values to find the target appointment (NRIC, DATE, START_TIME).
+1. **Parsing User Input**: The application will parse user input to extract values to find the target appointment (`NRIC`, `DATE`, `START_TIME`).
 2. **Executing Mark Queries** The application will search through the list of appointments and identify the target appointment to be marked/unmarked. It will then set the mark boolean condition based on the mark/unmark command.
 3. **Appointment Status Updated Results** The appointment will be updated accordingly to show whether it has been marked/unmarked successfully based on color code.
 
 #### Example Usage Scenario
 1. Context: User wants to mark a specfic appointment as completed.
-2. User Input: The user enters the command 'mark i/T0123456A d/2024-02-20 from/11:00'
+2. User Input: The user enters the command `mark i/T0123456A d/2024-02-20 from/11:00`
 
 <puml src="diagrams/MarkApptSequenceDiagram.puml" alt="MarkApptSeqDiag" />
 
@@ -326,11 +326,11 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/MarkApptActivityDiagram.puml" alt="MarkApptActivityDiagram" width="250" />
+<puml src="diagrams/MarkApptActivityDiagram.puml" alt="MarkApptActivityDiagram" width="450" />
 
 <br/>
 
-### Find Appointment feature
+### Find Appointment
 
 #### Implementation
 
@@ -356,7 +356,7 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="250" />
+<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="450" />
 
 #### Design Considerations
 
@@ -370,7 +370,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -382,7 +382,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product Scope
 
 **Target user profile**:
 
@@ -398,7 +398,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <br/>
 
-### User stories
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -436,7 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-### Use cases
+### Use Cases
 
 (For all use cases below, the **System** is the `CLInic` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -444,9 +444,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add new patient information
-2.  CLInic validates the information
-3.  CLInic adds the patient's information to the database
+1.  User requests to add new patient information.
+2.  CLInic validates the information.
+3.  CLInic adds the patient's information to the database.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The required information is missing.
+
+    * 1a1. CLInic prompts user to input required information. 
+  
+        Use case resumes at step 1.
+
+* 2a. The given patient information is invalid or patient with NRIC already exists.
+
+    * 2a1. CLInic informs user of the error. 
+  
+        Use case resumes at step 1.
+
+**Use case (UC2) : Delete patient information from the database**
+
+**MSS**
+
+1.  User requests to delete a patient with a specified NRIC.
+2.  CLInic validates the NRIC.
+3.  CLInic deletes the patient and the corresponding appointments.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The required NRIC is missing.
+    * 1a1. CLInic prompts user to input the NRIC of patient to delete.
+  
+        Use case resumes at step 1.
+
+* 2a. The given NRIC is invalid or does not exist.
+    * 2a1. CLInic informs user of the error.
+  
+        Use case resumes at step 1.
+
+**Use case (UC3) : Schedule an appointment for a patient**
+
+**MSS**
+
+1.  User requests to schedule an appointment for a patient with a specified NRIC.
+2.  CLInic validates the appointment details and the NRIC provided.
+3.  CLInic adds the appointment to the database.
 
     Use case ends.
 
@@ -456,97 +502,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. CLInic prompts user to input required information.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
-* 2a. The given information is invalid.
+* 2a. The given appointment information is invalid or patient with NRIC does not exist.
 
-    * 2a1. CLInic shows an error message.
+    * 2a1. CLInic informs user of the error.
 
       Use case resumes at step 1.
 
-**Use case (UC2) : Delete patient information from the database**
+* 2b. The given appointment information overlaps with another appointment for the same patient.
 
-**MSS**
+    * 2b1. CLInic informs user of the error and shows user other possible time slots.
 
-1.  User requests to list patients
-2.  CLInic shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  CLInic deletes the patient
+      Use case resumes at step 1.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. CLInic shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case (UC3) : Schedule an appointment for the patient**
-
-**MSS**
-
-1.  User requests to list patients
-2.  CLInic shows a list of patients
-3.  User requests to schedule an appointment for a specific patient in the list
-4.  CLInic prompts User to input appointment details
-5.  User inputs appointment details
-6.  CLInic schedules appointment for the patient
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 5a. The given appointment details are invalid.
-
-    * 5a1. CLInic shows an error message.
-
-      Use case resumes at step 4.
 
 **Use case (UC4) : Cancel an appointment**
 
 **MSS**
 
-1.  User requests to list patients
-2.  CLInic shows a list of patients
-3.  User requests to cancel an appointment for a specific patient in the list
-4.  CLInic prompts User to input appointment details
-5.  User inputs appointment details
-6.  CLInic cancels appointment for the patient
+1.  User requests to cancel a particular appointment for a patient with a specified NRIC.
+2.  CLInic validates the appointment details and the NRIC provided.
+3.  CLInic deletes the appointment from the database.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The required information is missing.
 
-  Use case ends.
+    * 1a1. CLInic prompts user to input required information.
 
-* 5a. The given appointment details are invalid.
+      Use case resumes at step 1.
 
-    * 5a1. CLInic shows an error message.
+* 2a. Patient with NRIC or appointment details given does not exist in the system
 
-      Use case resumes at step 4.
+    * 2a1. CLInic informs user of the error.
 
-* 6a. There is no appointment scheduled for that slot.
+      Use case resumes at step 1.
 
-  Use case ends.
 
 **Use case (UC5) : View all upcoming appointments displayed in a concise and accessible format**
 
 **MSS**
 
 1.  User requests to view all upcoming appointments
-2.  CLInic shows a list of upcoming appointments
+2.  CLInic shows a list of all appointments on that day
 
     Use case ends.
 
@@ -556,28 +557,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC6) : Mark patient appointment as seen for that day**
+**Use case (UC6) : Mark / unmark patient appointment as seen / not seen**
 
 **MSS**
 
-1.  User requests to <ins> view all upcoming appointments (UC5) </ins>
-2.  CLInic shows a list of upcoming appointments
-3.  User requests to mark a specific appointment in the list
-4.  CLInic marks the appointment
+1.  User requests to mark / unmark a particular appointment for a patient with a specified NRIC.
+2.  CLInic validates the appointment details and the NRIC provided.
+3.  CLInic marks / unmarks the appointment.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The required information is missing.
 
-  Use case ends.
+    * 1a1. CLInic prompts user to input required information.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 1.
 
-    * 3a1. CLInic shows an error message.
+* 2a. Patient with NRIC or appointment details given does not exist in the system
 
-      Use case resumes at step 2.
+    * 2a1. CLInic informs user of the error.
+
+      Use case resumes at step 1.
 
 <br/>
 
@@ -608,7 +610,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -619,7 +621,7 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
@@ -636,8 +638,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
 
+### Deleting a Patient
 
 1. Deleting a patient while all persons are being shown
 
@@ -652,7 +654,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Saving Data
 
 1. Dealing with missing/corrupted data files
 
