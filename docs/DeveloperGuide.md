@@ -196,7 +196,7 @@ The following diagram shows how an AddPatientCommand goes through the `Logic` co
 
 The following activity diagram summarizes what happens when a user executes an `AddPatientCommand`:
 
-<puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" />
+<puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" width="350"/>
 
 
 
@@ -326,7 +326,7 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/MarkApptActivityDiagram.puml" alt="MarkApptActivityDiagram" width="450" />
+<puml src="diagrams/MarkApptActivityDiagram.puml" alt="MarkApptActivityDiagram" width="350" />
 
 <br/>
 
@@ -356,7 +356,7 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="450" />
+<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="400" />
 
 #### Design Considerations
 
@@ -660,12 +660,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a Patient
 
-1. Deleting a patient while all persons are being shown
+1. Deleting a patient
 
    1. Test case: `deletePatient S1234567A`<br>
       Expected: Patient with corresponding NRIC S1234567A is removed. Details of the deleted patient is shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `deletePatient S1234567`<br>
+   1. Test case: `deletePatient i/T0123456`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
@@ -769,3 +769,24 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+
+Team size: 5
+
+##### Patients
+1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly.
+2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
+3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations,
+4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
+5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>.
+
+##### Appointments
+6. **Accommodate for overnight appointments and updated day-view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show appointments that start on the current date or spans the current date as well.
+7. **Editing marked appointment to future time unmarks it automatically**: Currently, an appointment remains marked even if it is edited to a future time. We plan to automatically unmark an appointment when it is moved to a future time, to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
+
+##### Trouble Shooting
+8. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
+9. **Include in-built help message to orientate user to the list of commands available without needing to navigate to external links**: Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. A simple list of commands could be provided in the command feedback within CLInic instead.
