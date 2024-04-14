@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam classFontSize 16
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
@@ -15,6 +16,8 @@ Class PatientListPanel
 Class PatientCard
 Class StatusBarFooter
 Class CommandBox
+Class ToggleGroup
+Class DayViewListPanel
 }
 
 package Model <<Rectangle>> {
@@ -33,14 +36,18 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PatientListPanel
+MainWindow *-down-> "1" DayViewListPanel
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" ToggleGroup
 MainWindow --> "0..1" HelpWindow
 
 PatientListPanel -down-> "*" PatientCard
 PatientListPanel -down-> "*" AppointmentCard
+DayViewListPanel -down-> "*" AppointmentCard
 
 MainWindow -left-|> UiPart
 
+ToggleGroup ---|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PatientListPanel --|> UiPart
@@ -53,11 +60,8 @@ PatientCard ..> Model
 AppointmentCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
-
-PatientListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
-
 MainWindow -[hidden]-|> UiPart
 @enduml
