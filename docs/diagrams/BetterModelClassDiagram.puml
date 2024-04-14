@@ -11,6 +11,12 @@ AddressBook *-down-> "1" AppointmentViewList
 UniqueTagList -[hidden]down- UniquePatientList
 UniqueTagList -[hidden]down- UniquePatientList
 
+'Add invisible box otherwise buggy arrow on Markbind
+Class I #FFFFFF
+UniqueTagList *-[hidden]left-> I
+I *-[hidden]left-> AddressBook
+
+
 UniqueTagList -right-> "*" Tag
 UniquePatientList -right-> Patient
 AppointmentList -down-> Appointment
