@@ -13,7 +13,17 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* [JavaFX](https://openjfx.io) for the API to render the GUI.
+* [Jackson](https://github.com/FasterXML/jackson) for the API to parse JSON files.
+* [JUnit5](https://junit.org/junit5/) for testing framework.
+
+Additionally, we acknowledge that CLInic is based on the [AddressBook-Level 3](https://se-education.org/addressbook-level3/) 
+(AB-3) project created by the [SE-EDU initiative](https://se-education.org). 
+All features developed in CLInic are built upon those existing in AB-3.
+
+In developing our User-Guide and Developer-Guide, our project drew inspiration off the structure of past projects: [Connectify](https://github.com/AY2324S1-CS2103T-T15-4/tp),
+[[Ba]king [Br]ead](https://github.com/AY2324S1-CS2103T-F10-3/tp) and [WedLog](https://github.com/AY2324S1-CS2103T-F11-2/tp/).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
