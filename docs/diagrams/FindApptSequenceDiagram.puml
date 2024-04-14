@@ -34,7 +34,7 @@ activate FindApptCommandParser
 create AppointmentContainsKeywordPredicate
 FindApptCommandParser -> AppointmentContainsKeywordPredicate: AppointmentContainsKeywordPredicate(nricFilter, dateFilter, timeFilter)
 activate AppointmentContainsKeywordPredicate
-AppointmentContainsKeywordPredicate -> FindApptCommandParser : pred
+AppointmentContainsKeywordPredicate --> FindApptCommandParser : pred
 deactivate AppointmentContainsKeywordPredicate
 
 create FindApptCommand
