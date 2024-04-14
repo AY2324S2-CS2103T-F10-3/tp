@@ -802,6 +802,7 @@ testers are expected to do more *exploratory* testing.
 2. Adding a duplicate patient into the list
   
    1. Prerequisites: Completing the first test case for Adding a Patient
+
    2. Test case: `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br>
    Expected: The error message *This patient already exists in CLInic* should be displayed in the status message.
 
@@ -871,6 +872,7 @@ testers are expected to do more *exploratory* testing.
 2. Add appointment that overlaps with existing appointment for the same patient. 
 
    1. Prerequisites: Completing the first test case for Adding an Appointment
+   
    2. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
    Expected: The error message *New appointment overlaps with an existing appointment for the same patient* should be displayed in the status message.
 
@@ -905,6 +907,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Edit appointment that overlaps with existing appointment for the same patient. 
    1. Prerequisites: Completing the first test case for Adding an Appointment
+
    2. Test case: `editAppt i/T0123456A d/2024-05-19 from/11:00 newd/2024-05-20` <br>
    Expected: The error message *Edited appointment information overlaps with an existing appointment for the same patient* should be displayed in the status message.
 
@@ -957,11 +960,19 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving Data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete CLInic.json within the data folder where your jar file is located. `data/CLInic.json`
 
-1. _{ more test cases …​ }_
+   2. Launch CLInic. <br> 
+      Expected: CLInic should display a list with sample data. <br>
+
+2. Dealing with corrupted data files
+
+   1. Fields in CLInic.json are modified to become invalid. E.g change date field to null. 
+
+   2. Launch CLInic. <br> 
+      Expected: CLInic displays an empty list with warnings sent in the console. <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
