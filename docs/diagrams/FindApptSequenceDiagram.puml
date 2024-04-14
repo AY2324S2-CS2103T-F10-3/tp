@@ -15,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("findAppt i/T0123456A d/2024-02-20 from/11:00")
+[-> LogicManager : execute("fa i/T0123456A...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("findAppt i/T0123456A d/2024-02-20 from/11:00")
+LogicManager -> AddressBookParser : parseCommand("fa i/T0123456A...")
 activate AddressBookParser
 
 create FindApptCommandParser
@@ -28,7 +28,7 @@ activate FindApptCommandParser
 FindApptCommandParser --> AddressBookParser
 deactivate FindApptCommandParser
 
-AddressBookParser -> FindApptCommandParser : parse("i/T0123456A d/2024-02-20 from/11:00"")
+AddressBookParser -> FindApptCommandParser : parse("i/T0123456A...")
 activate FindApptCommandParser
 
 create AppointmentContainsKeywordPredicate

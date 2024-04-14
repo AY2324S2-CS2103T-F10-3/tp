@@ -199,6 +199,7 @@ The following activity diagram summarizes what happens when a user executes an `
 <puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" width="350"/>
 
 
+<br/>
 
 ### Add Appointment Feature
 
@@ -301,6 +302,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <br/>
 
+### Find Appointment Feature
+
+#### Implementation
+
+The Find Appointment feature will involve parsing user input, executing search queries based on specified criteria, and presenting the results to the user.
+
+The implementation will include the following key components:
+
+1. **Parsing User Input**: The application will parse user input to extract search criteria such as NRIC, date, or time (any combination of the three).
+2. **Executing Search Queries**: The application will search through the list of appointments stored in the database and identify appointments that match the specified criteria.
+3. **Presenting Search Results**: The matched appointments will be presented to the user in a clear and organized manner, displaying relevant details such as appointment time, date, and associated patient information.
+
+#### Example Usage Scenario
+
+1. **Context**: User wants to find an appointment with a specific NRIC, date, and start time.
+2. **User Input**: The user enters the command `fa i/T0123456A d/2024-03-23 from/11:00` (shorthand for findAppt).
+
+<puml src="diagrams/FindApptSequenceDiagram.puml" alt="FindApptSeqDiag" />
+
+3. **Parsing**: The application parses the user input and extracts the NRIC (`T0123456A`), date (`2024-03-23`), and start time (`11:00`) criteria for the search.
+4. **Search Execution**: The application searches through the list of appointments and identifies appointments that match the specified NRIC, date, and start time criteria.
+5. **Presentation**: The matched appointments are presented to the user, displaying relevant details such as appointment time, date, and associated patient information.
+6. **User Interaction**: The user can view the search results and perform additional actions such as viewing detailed information about specific appointments or modifying appointments as needed.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="350" />
+
+#### Design Considerations
+
+##### User Experience
+- **Feedback Mechanism**: Provide feedback to the user during the search process to indicate progress and inform them of any issues encountered.
+- **Support for Multiple Criteria**: Allow users to specify multiple search criteria (e.g., any combination of NRIC, date, start time) to enable more precise searches.
+
+##### Error Handling
+- **Invalid Input Handling**: Implement robust error handling mechanisms to handle cases where users provide invalid or incomplete search criteria.
+- **No Matching Results**: Handle scenarios where no appointments match the specified criteria gracefully, providing informative feedback to the user.
+
+<br/>
+
 ### Mark/Unmark Appointment Feature
 
 #### Implementation
@@ -329,44 +370,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 <puml src="diagrams/MarkApptActivityDiagram.puml" alt="MarkApptActivityDiagram" width="350" />
 
 <br/>
-
-### Find Appointment Feature
-
-#### Implementation
-
-The Find Appointment feature will involve parsing user input, executing search queries based on specified criteria, and presenting the results to the user.
-
-The implementation will include the following key components:
-
-1. **Parsing User Input**: The application will parse user input to extract search criteria such as NRIC, date, or time (any combination of the three).
-2. **Executing Search Queries**: The application will search through the list of appointments stored in the database and identify appointments that match the specified criteria.
-3. **Presenting Search Results**: The matched appointments will be presented to the user in a clear and organized manner, displaying relevant details such as appointment time, date, and associated patient information.
-
-#### Example Usage Scenario
-
-1. **Context**: User wants to find an appointment with a specific NRIC, date, and start time.
-2. **User Input**: The user enters the command `findAppt i/S1234567A d/2024-03-23 from/11:00`.
-
-<puml src="diagrams/FindApptSequenceDiagram.puml" alt="FindApptSeqDiag" />
-
-3. **Parsing**: The application parses the user input and extracts the NRIC (`S1234567A`), date (`2024-03-23`), and start time (`11:00`) criteria for the search.
-4. **Search Execution**: The application searches through the list of appointments and identifies appointments that match the specified NRIC, date, and start time criteria.
-5. **Presentation**: The matched appointments are presented to the user, displaying relevant details such as appointment time, date, and associated patient information.
-6. **User Interaction**: The user can view the search results and perform additional actions such as viewing detailed information about specific appointments or modifying appointments as needed.
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="400" />
-
-#### Design Considerations
-
-##### User Experience
-- **Feedback Mechanism**: Provide feedback to the user during the search process to indicate progress and inform them of any issues encountered.
-- **Support for Multiple Criteria**: Allow users to specify multiple search criteria (e.g., any combination of NRIC, date, start time) to enable more precise searches.
-
-##### Error Handling
-- **Invalid Input Handling**: Implement robust error handling mechanisms to handle cases where users provide invalid or incomplete search criteria.
-- **No Matching Results**: Handle scenarios where no appointments match the specified criteria gracefully, providing informative feedback to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
