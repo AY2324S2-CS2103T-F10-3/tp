@@ -32,7 +32,7 @@ AddressBookParser -> FindApptCommandParser : parse("i/T0123456A...")
 activate FindApptCommandParser
 
 create AppointmentContainsKeywordPredicate
-FindApptCommandParser -> AppointmentContainsKeywordPredicate: AppointmentContainsKeywordPredicate(nricFilter, dateFilter, timeFilter)
+FindApptCommandParser -> AppointmentContainsKeywordPredicate
 activate AppointmentContainsKeywordPredicate
 AppointmentContainsKeywordPredicate --> FindApptCommandParser : pred
 deactivate AppointmentContainsKeywordPredicate
