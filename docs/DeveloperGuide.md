@@ -816,7 +816,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding a duplicate patient
   
-   1. Prerequisites: Completing the first test case for Adding a Patient
+   1. Prerequisites: Completing the first test case for Adding a Patient.
 
    2. Test case: `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br>
    Expected: The error message *This patient already exists in CLInic* should be displayed in the status message.
@@ -826,8 +826,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a patient
 
-   1. Test case: `deletePatient i/S1234567A`<br>
-      Expected: Patient with corresponding NRIC S1234567A is removed. Details of the deleted patient is shown in the status message.
+   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
+
+   1. Test case: `deletePatient i/T0123456A`<br>
+      Expected: Patient with corresponding NRIC T0123456A is removed. Details of the deleted patient is shown in the status message.
    
    1. Test case: `deletePatient i/T0123456`<br>
       Expected: No patient is deleted. Error details shown in the status message.
@@ -839,6 +841,8 @@ testers are expected to do more *exploratory* testing.
 ### Editing a Patient
 
 1. Editing a patient while all patients are being shown
+
+   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
 
    1. Test case: `editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`<br>
       Expected: Patient with corresponding NRIC T0123456A is successfully edited. Details of the edited patient is shown in the status message.
@@ -856,6 +860,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a patient while all patients are being shown
 
+   1. Prerequisites: Have a patient with the specified details `i/T0123456A n/John Doe` in CLInic. 
+   
    1. Test case: `findPatient n/John`<br>
       Expected: Patients with name starting with 'John' are successfully listed.
 
@@ -871,6 +877,8 @@ testers are expected to do more *exploratory* testing.
 ### Adding an Appointment
 1. Adding an appointment 
 
+   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
+
    1. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
      Expected: New appointment for patient with NRIC T0123456A is added. Details of the added appointment is shown in the status message.
 
@@ -885,13 +893,15 @@ testers are expected to do more *exploratory* testing.
 
 2. Add appointment that overlaps with existing appointment for the same patient. 
 
-   1. Prerequisites: Completing the first test case for Adding an Appointment
+   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
    
    2. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
    Expected: The error message *New appointment overlaps with an existing appointment for the same patient* should be displayed in the status message.
 
 ### Deleting an Appointment
 1. Deleting an appointment 
+
+   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
 
    1. Test case: `deleteAppt i/T0123456A d/2024-05-20 from/11:00` <br>
      Expected: Appointment with appointment details specified is removed. Details of the deleted appointment is shown in the status message.
@@ -905,8 +915,10 @@ testers are expected to do more *exploratory* testing.
 ### Editing an Appointment
 
 1. Editing an appointment 
+  
+   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
 
-   1. Test case: ` editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`<br>
+   1. Test case: `editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`<br>
       Expected: Appointment with specified appointment details is successfully edited. Details of the edited appointment is shown in the status message.
 
    1. Test case: `editAppt i/T0123456A`<br>
@@ -930,6 +942,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding an appointment while all appointments are being shown
 
+   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
+
    1. Test case: `findAppt i/T0123456A`<br>
       Expected:  Appointments for patient with NRIC 'T0123456A' are successfully listed.
 
@@ -943,6 +957,9 @@ testers are expected to do more *exploratory* testing.
       Expected: Error details shown in the status message.
 
 2. Finding an appointment while on Day-View
+
+   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
+
    1. Test case: `findAppt i/T0123456A`<br>
       Expected:  A switchView will occur to switch to Overall-View. <br>
       Appointments for patient with NRIC 'T0123456A' are successfully listed.
@@ -950,6 +967,8 @@ testers are expected to do more *exploratory* testing.
 ### Marking an Appointment
 
 1. Marking an appointment 
+   
+   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
 
    1. Test case: `mark i/T0123456A d/2024-05-20 from/11:00`<br>
       Expected:  Appointment with appointment details specified is marked. Details of the marked appointment is shown in the status message.
@@ -963,7 +982,9 @@ testers are expected to do more *exploratory* testing.
 ### Unmarking an Appointment
 
 1. Unmarking an appointment 
-
+   
+   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
+   
    1. Test case: `unmark i/T0123456A d/2024-05-20 from/11:00`<br>
       Expected:  Appointment with appointment details specified is unmarked. Details of the unmarked appointment is shown in the status message.
 
