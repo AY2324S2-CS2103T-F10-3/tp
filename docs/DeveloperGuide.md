@@ -445,109 +445,243 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add new patient information.
-2.  CLInic validates the information.
-3.  CLInic adds the patient's information to the database.
+2.  CLInic adds the patient's information to the database.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The required information is missing.
-
-    * 1a1. CLInic prompts user to input required information. 
+* 1a. User gives incomplete or invalid patient details.
+    * 1a1. CLInic informs user of the error.
   
-        Use case resumes at step 1.
+    Use case resumes at step 1.
 
-* 2a. The given patient information is invalid or patient with NRIC already exists.
-
-    * 2a1. CLInic informs user of the error. 
+* 1b. User attempts to add a patient that already exists in CLInic.
+    *  1b1. CLInic informs user that patient with given NRIC already exists.
   
-        Use case resumes at step 1.
+    Use case ends.
 
 **Use case (UC2) : Delete patient information from the database**
 
 **MSS**
 
-1.  User requests to delete a patient with a specified NRIC.
-2.  CLInic validates the NRIC.
-3.  CLInic deletes the patient and the corresponding appointments.
+1.  User requests to delete patient information with a specified NRIC from the database.
+2.  CLInic deletes the patient and the corresponding appointments.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The required NRIC is missing.
-    * 1a1. CLInic prompts user to input the NRIC of patient to delete.
+* 1a. User did not provide the NRIC or gives an invalid NRIC.
+    * 1a1. CLInic informs user of the error.
   
         Use case resumes at step 1.
 
-* 2a. The given NRIC is invalid or does not exist.
-    * 2a1. CLInic informs user of the error.
+* 1b. User provides an NRIC that does not belong to any patient in the database.
+    * 1b1. CLInic informs user that no such patient exists.
   
         Use case resumes at step 1.
 
-**Use case (UC3) : Schedule an appointment for a patient**
+**Use case (UC3) : Edit patient information in the database**
 
 **MSS**
 
-1.  User requests to schedule an appointment for a patient with a specified NRIC.
-2.  CLInic validates the appointment details and the NRIC provided.
-3.  CLInic adds the appointment to the database.
+1.  User requests to edit patient information with a specified NRIC.
+2.  CLInic edits patient information to the updated details.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The required information is missing.
+* 1a. User does not provide any field to update.
+    * 1a1. CLInic informs user to provide at least one field.
 
-    * 1a1. CLInic prompts user to input required information.
+        Use case resumes at step 1.
 
-      Use case resumes at step 1.
+* 1b. User gives invalid patient details.
+    * 1b1. CLInic informs user of the error.
 
-* 2a. The given appointment information is invalid or patient with NRIC does not exist.
+        Use case resumes at step 1.
 
-    * 2a1. CLInic informs user of the error.
+* 1c. User provides an NRIC that does not belong to any patient in the database.
+    * 1c1. CLInic informs user that no such patient exists.
 
-      Use case resumes at step 1.
+        Use case ends.
 
-* 2b. The given appointment information overlaps with another appointment for the same patient.
-
-    * 2b1. CLInic informs user of the error and shows user other possible time slots.
-
-      Use case resumes at step 1.
-
-
-**Use case (UC4) : Cancel an appointment**
+**Use case (UC4) : Find patient information in the database**
 
 **MSS**
 
-1.  User requests to cancel a particular appointment for a patient with a specified NRIC.
-2.  CLInic validates the appointment details and the NRIC provided.
-3.  CLInic deletes the appointment from the database.
+1.  User requests to find patient information by NRIC or by name.
+2.  CLInic displays all patients satisfying the search criteria.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The required information is missing.
-
-    * 1a1. CLInic prompts user to input required information.
-
-      Use case resumes at step 1.
-
-* 2a. Patient with NRIC or appointment details given does not exist in the system
-
-    * 2a1. CLInic informs user of the error.
+* 1a. User does not provide any search criteria.
+    * 1a1. CLInic informs user to search by either NRIC or name.
 
       Use case resumes at step 1.
 
+* 1b. User provides both NRIC and name for search.
+    * 1b1. CLInic informs user to provide only one.
 
-**Use case (UC5) : View all upcoming appointments displayed in a concise and accessible format**
+      Use case resumes at step 1.
+
+* 2a. User is currently on Day-View.
+    * 2a1. CLInic changes the view to Overall-View where the results will be shown.
+
+      Use case ends.
+
+* 2b. There are no search results. 
+
+    Use case ends.
+
+
+**Use case (UC5) : Schedule an appointment for a patient**
 
 **MSS**
 
-1.  User requests to view all upcoming appointments
-2.  CLInic shows a list of all appointments on that day
+1.  User requests to add an appointment for a patient with a specified NRIC.
+2.  CLInic adds the appointment to the database.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User gives incomplete or invalid appointment details.
+    * 1a1. CLInic informs user of the error.
+
+      Use case resumes at step 1.
+
+* 1b. User provides an NRIC that does not belong to any patient in the database.
+    * 1b1. CLInic informs user that no such patient exists and appointment cannot be created.
+
+      Use case ends.
+
+* 1c. User attempts to add an appointment that already exists in CLInic.
+    * 1c1. CLInic informs user that appointment with given details already exists.
+
+      Use case ends.
+
+* 1d. User attempts to create an appointment that overlaps with another appointment for the same patient.
+    * 1d1. CLInic informs user of the error and shows user other possible time slots.
+
+      Use case resumes at step 1.
+
+
+**Use case (UC6) : Cancel an appointment**
+
+**MSS**
+
+1.  User requests to cancel an appointment for a patient with a specified NRIC.
+2.  CLInic deletes the appointment from the database.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User gives incomplete or invalid appointment details.
+    * 1a1. CLInic informs user of the error.
+
+      Use case resumes at step 1.
+
+* 1b. User gives an NRIC or appointment information that do not exist in the system.
+    * 1b1. CLInic informs user that no such patient or appointment exists.
+
+      Use case resumes at step 1.
+
+**Use case (UC7) : Edit an appointment**
+
+**MSS**
+
+1.  User requests to edit appointment information for a patient with a specified NRIC.
+2.  CLInic edit appointment information to the updated details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User does not provide any field to update.
+    * 1a1. CLInic informs user to provide at least one field.
+
+      Use case resumes at step 1.
+
+* 1b. User gives incomplete or invalid appointment details.
+    * 1b1. CLInic informs user of the error.
+
+      Use case resumes at step 1.
+
+* 1c. User gives an NRIC or appointment information that do not exist in the system.
+    * 1c1. CLInic informs user that no such patient or appointment exists.
+
+      Use case ends.
+
+* 1d. User attempts to edit an appointment into a time that overlaps with another appointment for the same patient.
+    * 1d1. CLInic informs user of the error and shows user other possible time slots.
+
+      Use case resumes at step 1.
+
+
+**Use case (UC8) : Find appointment information in the database**
+
+**MSS**
+
+1.  User requests to find appointment information by NRIC, date and/or start time.
+2.  CLInic displays all appointments satisfying the search criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User does not provide any search criteria.
+    * 1a1. CLInic informs user to search by at least one field.
+
+      Use case resumes at step 1.
+
+* 1b. User gives invalid NRIC, date or start time fields.
+    * 1b1. CLInic informs user of the error.
+
+      Use case resumes at step 1.
+
+* 2a. User is currently on Day-View.
+    * 2a1. CLInic changes the view to Overall-View where the results will be shown.
+  
+      Use case ends.
+
+* 2b. There are no search results.
+
+  Use case ends.
+
+
+**Use case (UC9) : Mark / unmark an appointment**
+
+**MSS**
+
+1.  User requests to mark / unmark an appointment for a patient with a specified NRIC.
+2.  CLInic marks / unmarks the appointment as complete / incomplete.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User gives incomplete or invalid appointment details.
+    * 1a1. CLInic informs user of the error.
+
+      Use case resumes at step 1.
+
+* 1b. User gives an NRIC or appointment information that do not exist in the system.
+    * 1b1. CLInic informs user that no such patient or appointment exists.
+
+      Use case resumes at step 1.
+
+**Use case (UC10) : View all patients and appointments displayed in a concise format**
+
+**MSS**
+
+1.  User requests to view all patients and appointments.
+2.  CLInic shows a list of all appointments on that day.
 
     Use case ends.
 
@@ -557,29 +691,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC6) : Mark / unmark patient appointment as seen / not seen**
+**Use case (UC11) : Switch between Overall-View and Day-View**
 
 **MSS**
 
-1.  User requests to mark / unmark a particular appointment for a patient with a specified NRIC.
-2.  CLInic validates the appointment details and the NRIC provided.
-3.  CLInic marks / unmarks the appointment.
+1.  User requests to switch the view from Overall-View to Day-View or vice versa.
+2.  CLInic changes the view.
 
     Use case ends.
 
-**Extensions**
+**Use case (UC12) : Clear all data in CLInic**
 
-* 1a. The required information is missing.
+**MSS**
 
-    * 1a1. CLInic prompts user to input required information.
+1.  User requests to clear all patient and appointment information in the database.
+2.  CLInic deletes all patients and appointment information.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-* 2a. Patient with NRIC or appointment details given does not exist in the system
+**Use case (UC13) : Exiting CLInic**
 
-    * 2a1. CLInic informs user of the error.
+**MSS**
 
-      Use case resumes at step 1.
+1.  User requests to exit the application.
+2.  CLInic stops running and closes.
+
+    Use case ends.
+
+**Use case (UC14) : Getting help in CLInic**
+
+**MSS**
+
+1.  User requests for help.
+2.  CLInic provides a link to the User-Guide for the user's reference.
+
+    Use case ends.
+
 
 <br/>
 
