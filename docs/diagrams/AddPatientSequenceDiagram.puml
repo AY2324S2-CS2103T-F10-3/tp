@@ -50,7 +50,7 @@ LogicManager -> AddPatientCommand : execute(m)
 activate AddPatientCommand
 
 
-AddPatientCommand -> Model : addPatient(Patient)
+AddPatientCommand -> Model : addPatient(patient)
 activate Model
 Model --> AddPatientCommand
 deactivate Model

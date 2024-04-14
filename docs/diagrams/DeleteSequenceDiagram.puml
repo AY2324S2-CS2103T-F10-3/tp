@@ -49,11 +49,11 @@ deactivate AddressBookParser
 LogicManager -> DeletePatientCommand : execute(m)
 activate DeletePatientCommand
 
-DeletePatientCommand -> Model : deleteAppointmentsWithNric(Nric:T0123456A)
+DeletePatientCommand -> Model : deleteAppointment(nric, date, startTIme)
 activate Model
 Model --> DeletePatientCommand
 
-DeletePatientCommand -> Model : deletePatientWithNric(Nric:T0123456A)
+DeletePatientCommand -> Model : deletePatient(nric)
 Model --> DeletePatientCommand
 deactivate Model
 

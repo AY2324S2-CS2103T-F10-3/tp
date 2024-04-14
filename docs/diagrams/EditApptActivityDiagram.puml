@@ -6,11 +6,15 @@ start
 :User executes EditApptCommand;
 
 if () then ([Patient with NRIC found])
-    if () then ([Appoinment with NRIC, Date, StartTime found])
+    if () then ([Appointment with NRIC, Date, StartTime found])
         if () then ([Valid new values for appointment])
             if () then ([New appointment does not overlap with existing])
-                :Update Appointment in
-                AppointmentList in AddressBook;
+                if () then ([Appointment date not before DOB])
+                    :Update Appointment in
+                    AppointmentList in AddressBook;
+                else ([Appointment date before DOB])
+                    :CommandException;
+                endif
             else ([New appointment overlaps with existing])
                 :CommandException;
             endif
