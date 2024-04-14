@@ -39,8 +39,8 @@ Familiarise yourselves with these terminologies! These definitions will be used 
 | **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.                  |
 | **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                              |
 | **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                          |
-| **Command**    | An instruction given to CLInic to complete a certain task                                                                                                       |
-| **Parameters** | An input value or field for a command                                                                                                                           |
+| **Command**    | An instruction given to CLInic to complete a certain task.                                                                                                      |
+| **Parameters** | An input value or field for a command.                                                                                                                          |
 | **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name, so `n/John` tells the command that name to be input is "John" |
 | **Shorthand**  | Command keyword which is short form for the full command equivalent but still works. <br/> e.g. ep is shorthand for editPatient command                         |
 
