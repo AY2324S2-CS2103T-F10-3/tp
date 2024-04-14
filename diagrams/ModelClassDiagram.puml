@@ -21,8 +21,8 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
 Class Nric
+
 Class AppointmentList
 Class Appointment
 Class Date
@@ -31,8 +31,12 @@ Class Time
 Class AppointmentType
 Class Note
 
+Class AppointmentViewList
+Class AppointmentView
+
 Class I #FFFFFF
 Class J #FFFFFF
+Class K #FFFFFF
 
 }
 
@@ -58,16 +62,6 @@ Patient *--> Email
 Patient *--> Address
 Patient *--> "*" Tag
 
-Patient -[hidden]up--> I
-UniquePatientList -[hidden]right-> I
-
-Name -[hidden]right-> Nric
-Nric -[hidden]right-> DateOfBirth
-DateOfBirth -[hidden]right-> Address
-Address -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
 AddressBook *--> "1" AppointmentList
 AppointmentList --> "~* all" Appointment
 Appointment *--> Nric
@@ -77,6 +71,9 @@ TimePeriod *--> "2" Time
 Appointment *--> AppointmentType
 Appointment *--> Note
 
+AppointmentViewList -[hidden]Right-> UniquePatientList
+AppointmentList -[hidden]right-> AppointmentViewList
+
 Appointment -[hidden]up--> J
 AppointmentList -[hidden]right-> J
 
@@ -85,7 +82,27 @@ Date -[hidden]right-> TimePeriod
 TimePeriod -[hidden]right-> AppointmentType
 AppointmentType -[hidden]right-> Note
 
+AddressBook *--> "1" AppointmentViewList
+AppointmentViewList --> "~* all" AppointmentView
+AppointmentView *--> Appointment
+AppointmentView *--> Name
 
 ModelManager --> "~* filtered" Patient
 ModelManager --> "~* filtered" Appointment
+ModelManager --> "~* filtered" AppointmentView
+
+AddressBook -[hidden]right-> ModelManager
+
+Patient -[hidden]up-> I
+AppointmentView -[hidden]right-> J
+AppointmentViewList -[hidden]right-> K
+K -[hidden]up-> AddressBook
+J -[hidden]up-> AddressBook
+
+Nric -[hidden]right-> DateOfBirth
+DateOfBirth -[hidden]right-> Phone
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Address
+Address -[hidden]right-> Tag
+
 @enduml

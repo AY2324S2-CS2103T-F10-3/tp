@@ -5,16 +5,16 @@ skinparam ArrowFontSize 12
 start
 
 :User executes command;
-if () then ([invalid arguments])
+if () then ([Invalid arguments])
   :Alert user of error;
-    else ([valid arguments])
-      while () is ([more appointments to filter])
+    else ([Valid arguments])
+      while () is ([More appointments to filter])
         :Process next appointment;
-        if () then ([pass check])
+        if () then ([Pass check])
           :Add appointment to list;
-        else ([no])
+        else ([No])
         endif
-        endwhile ([all checked])
+        endwhile ([All checked])
       :Return filtered list of appointments;
       :Display list;
       :User gets feedback;
