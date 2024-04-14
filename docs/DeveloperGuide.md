@@ -1062,8 +1062,8 @@ the same details as the current appointment.
 **Planned Enhancement:** We plan to include an in-built help message to orientate the user to the list of commands available without needing to navigate to external links. A simple list of commands could be provided in the command feedback within CLInic instead.
 
 #### 10. Improving the Dummy Data 
-**Current Issues:** Currently, the dummy data that is loaded when a user first uses CLInic shows tags that are not examples of medical allergies. <br/>
-**Planned Enhancement:** We plan to include a wider variety of dummy data, especially including the specific use cases of tags to tag medical allergies as that is one of the main scenarios we intended for it to be used for.
+**Current Issues:** Currently, the dummy data that is loaded when a user first uses CLInic only contains patients. Furthermore, patients are tagged with relationship-related tags such as "family" and "friends" which do not fit the intended use case of tags (medical allergies). <br/>
+**Planned Enhancement:** We plan to include a wider variety of dummy data, including some sample appointments. This should also include having patients tagged with medical allergies as that is one of the main scenarios we intended for tags to be used for.
 
 
 --------------------------------------------------------------------------------------------------------------------
