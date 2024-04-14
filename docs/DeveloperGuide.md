@@ -923,17 +923,46 @@ testers are expected to do more *exploratory* testing.
 
 Team size: 5
 
-##### Patients
-1. **Accept Foreign ID and phone numbers**: CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, and restricts a patient's phone number to be 8 digits. We plan to make the validation less restrictive to accommodate for foreign ID or phone numbers and validate them accordingly.
-2. **Increase character limit for addresses**: CLInic currently restricts addresses to be less than 60 characters. We hope to broaden the restrictions on addresses to accommodate longer addresses in the future.
-3. **Allow non-capital letters for ID**: To support faster typing, CLInic will allow for non-capital letters inputted for ID in future iterations,
-4. **Names with special symbols and characters**: The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". We plan to account for this by reducing restrictions and increasing validation of special characters in future iterations of CLInic.
-5. **Validate NRIC and DOB synchronisation**: CLInic currently does not make sure that the start of the NRIC is in line with the DOB given. In the future, we plan to validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>.
+### Patient Management
 
-##### Appointments
-6. **Accommodate for overnight appointments and updated day-view**: The CLInic is currently catered towards day clinics that work regular hours. We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show appointments that start on the current date or spans the current date as well.
-7. **Editing marked appointment to future time unmarks it automatically**: Currently, an appointment remains marked even if it is edited to a future time. We plan to automatically unmark an appointment when it is moved to a future time, to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
+#### 1. Compatibility with Foreign Patients
+**Current Issues:** CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, restricts a patient's phone number to be a Singaporean phone number with 8 digits and is not compatible with long foreign names exceeding 55 characters. <br/>
+**Planned Enhancement:** We plan to accommodate passport numbers, foreign phone numbers and longer patient names in the system. However, to do this, we need more research into how we can give less restriction but yet validate the fields accordingly to prevent erroneous data entries.
 
-##### Trouble Shooting
-8. **Make error messages more specific for editing a patient or appointment with the same details**: Currently, CLInic does not flag edits that give the exact same details as before. We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
-9. **Include in-built help message to orientate user to the list of commands available without needing to navigate to external links**: Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. A simple list of commands could be provided in the command feedback within CLInic instead.
+#### 2. Less Restriction on Character Limits for Various Fields
+**Current Issues:** CLInic currently restricts addresses, tags, notes, etc to have less than some number of characters. E.g. Address should have less than 60 characters. We have received tester feedback that these constraints could be very limiting, especially for long addresses. <br/>
+**Planned Enhancement:** We plan to broaden restrictions on character limits, especially on address, to accommodate longer inputs. However, we will need to ensure that these entries can be viewed on the user interface with no issues. 
+
+#### 3. Case Sensitivity for Commands and IDs
+**Current Issues:** CLInic is currently case-sensitive for command and NRIC input. <br/>
+**Planned Enhancement:** To support faster typing, we plan to allow for ID input to be not case-sensitive in future iterations. Also, for commands to be case-insensitive, e.g. `deletepatient` should work as well. 
+
+#### 4. Compatibility with Names with Special Symbols and Characters
+**Current Issues:** The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". Although the workaround such as "SO" and "DO" exists, we hope to accommodate such names in the future. <br/>
+**Planned Enhancement:**  We plan to account for this by removing strict restrictions of no special characters, but rather allow exceptional symbols that may be used in names.
+
+#### 5. More Comprehensive NRIC Validation
+**Current Issues:** CLInic does not support NRIC validation in line with Singapore's NRIC checksum algorithms. This means that there are no checks for invalid starting alphabets, or checks to ensure that the start of the NRIC is in line with the DOB given. <br/>
+**Planned Enhancement:** As we work towards building stronger NRIC validation, we plan to first validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>. Afterwards, we will need to conduct more research into the algorithms available to check if an NRIC is valid or not.
+
+### Appointment Management
+
+#### 6. Overnight Clinic Compatibility
+**Current Issues:** CLInic is currently catered towards day clinics that work regular hours. Therefore, adding overnight appointments is not possible. Furthermore, the "today" in Day-View is taken to be the date at which the application was launched, CLInic will not auto-sync at 12am going into a new day. <br/>
+**Planned Enhancement:** We plan to make the feature for adding and editing appointments to allow for a start date, start time, end date and end time. Along with this, day-view will be updated to show live appointments that start on the current date or spans the current date as well.
+
+#### 7. Improving Logic for Editing of Marked Appointments
+**Current Issues:** Currently, an appointment remains marked even if it is edited to a future time. <br/>
+**Planned Enhancement:** We plan to automatically unmark an appointment when it is moved to a future time and inform the user accordingly. This is to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
+
+### General Trouble Shooting
+
+#### 8. Improving Specificity of Error Messages
+**Current Issues:** Currently, CLInic does not flag edits that give the exact same details as before or flag marks that attempt to mark an already marked appointment. <br/>
+**Planned Enhancement:** We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
+
+#### 9. Improving the Accessibility and Navigation to Help
+**Current Issues:** Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. <br/>
+**Planned Enhancement:** We plan to include an in-built help message to orientate user to the list of commands available without needing to navigate to external links. A simple list of commands could be provided in the command feedback within CLInic instead.
+
+<br/>
