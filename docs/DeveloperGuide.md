@@ -163,7 +163,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Patient
+### Add Patient Feature
 
 #### Implementation
 
@@ -200,7 +200,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 
 
-### Add Appointment for a Patient
+### Add Appointment Feature
 
 #### Implementation
 
@@ -258,12 +258,12 @@ The following activity diagram summarises what happens when a user executes addA
 
 <br/>
 
-### Edit Appointment for a Patient
+### Edit Appointment Feature
 
 #### Implementation
 
 The Edit Appointment feature will involve parsing user input and updating the existing appointment with new values.
-An appointment's DATE, START_TIME, END_TIME, APPOINTMENT_TYPE and NOTE can be edited. NRIC cannot be edited.
+An appointment's `DATE`, `START_TIME`, `END_TIME`, `APPOINTMENT_TYPE` and `NOTE` can be edited. `NRIC` cannot be edited.
 
 The implementation will include the following key components:
 
@@ -301,7 +301,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <br/>
 
-### Mark/Unmark Appointment for a Patient
+### Mark/Unmark Appointment Feature
 
 #### Implementation
 
@@ -330,7 +330,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <br/>
 
-### Find Appointment
+### Find Appointment Feature
 
 #### Implementation
 
@@ -945,6 +945,8 @@ Team size: 5
 **Current Issues:** CLInic does not support NRIC validation in line with Singapore's NRIC checksum algorithms. This means that there are no checks for invalid starting alphabets, or checks to ensure that the start of the NRIC is in line with the DOB given. <br/>
 **Planned Enhancement:** As we work towards building stronger NRIC validation, we plan to first validate this for patients born after 01/01/1968, which was when this synchronisation was implemented as seen <a href="https://www.spic.com.sg/national-identification-numbers-and-the-nric/" target="_blank" >here</a>. Afterwards, we will need to conduct more research into the algorithms available to check if an NRIC is valid or not.
 
+<br/> 
+
 ### Appointment Management
 
 #### 6. Overnight Clinic Compatibility
@@ -955,6 +957,8 @@ Team size: 5
 **Current Issues:** Currently, an appointment remains marked even if it is edited to a future time. <br/>
 **Planned Enhancement:** We plan to automatically unmark an appointment when it is moved to a future time and inform the user accordingly. This is to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
 
+<br/> 
+
 ### General Trouble Shooting
 
 #### 8. Improving Specificity of Error Messages
@@ -964,5 +968,42 @@ Team size: 5
 #### 9. Improving the Accessibility and Navigation to Help
 **Current Issues:** Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. <br/>
 **Planned Enhancement:** We plan to include an in-built help message to orientate user to the list of commands available without needing to navigate to external links. A simple list of commands could be provided in the command feedback within CLInic instead.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
+### Summary
+
+AB3 only deals with one entity type, `Person`, or `Patient` as refactored in CLInic.
+In building onto AB3 to develop CLInic, we needed to implement a new module, `Appointment` which has a many-to-one relationship with a `Patient`.
+This brought about new logic, commands and other improvements that were developed.
+
+Overall, the main effort in the development process went towards:
+1. **Building the `model.appointment` package**
+    * Creating accompanying classes for each of the fields and corresponding validation
+    * Ensuring compatibility of `Appointment` with other classes, such as `AddressBook`, so that they be managed and stored
+    * Implementation of `Appointment` classes were designed to be similar to `Patient` classes to allow for easy maintenance
+
+1. **Adapting the existing `Person` module into `Patient`**
+    * Refactoring `Person` to `Patient` to standardise terminologies
+    * Updating the `model.patient` package with `NRIC` compatibility
+
+1. **Adding new features to suit the new adapted use case**
+    * Introduction of new commands such as `addAppt`, `findAppt`, `markAppt`, etc to allow efficient management of patients and their appointments
+    * Modifying existing commands such as `add` and `edit` to `addPatient`, `editPatient` respectively and ensuring `NRIC` compatibility
+
+1. **Adding JUnit tests for new and existing features and packages**
+    * JUnit tests comprehensively test that features and packages work as intended
+
+1. **User interface improvements to support efficient management of patient and appointments**
+    * Implemented new panel to display appointments alongside patients in Overall-View
+    * Introduced new view, Day-View, to show all appointments for the day, allowing users to see upcoming appointments
+    * Colour-coded appointments to allow visual differentiation of appointments that are completed, missed or neither
+    * Updates to overall colour scheme to suit clinic usage
+
+1. **Documentation improvements**
+    * Updates to User-Guide include a revamp in structure and improvements in comprehensiveness of documentation across all sections
+    * Updates to Developer-Guide include changes from AB3 and documentation of how some of the new commands were implemented
 
 <br/>
