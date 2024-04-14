@@ -8,11 +8,11 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([Patient not found)
+if () then ([Patient with NRIC not found])
     :Add Patient to UniquePatientList
     in AddressBook;
 
-else ([Patient found]))
+else ([Patient with NRIC found])
     : CommandException;
 endif
 stop
