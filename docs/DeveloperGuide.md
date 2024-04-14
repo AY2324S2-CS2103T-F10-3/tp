@@ -306,9 +306,9 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Data integrity since unique prefix for new values.
     * Cons: May be less efficient as it requires the user to input a longer prefix.
 
-* **Alternative 2:** Edit appointments by a unique index`.
-    * Pros: Time efficient as we can make use of the shorter prefixes because there's no need to differentiate between target appointment and new appointment details, Easier to correct mistakes in updating wrong appointment.
-    * Cons: Prone to errors as just a wrong number could cause the user to update the wrong appointment, Huge list could make it difficult to find a specific index.
+* **Alternative 2:** Edit appointments by a unique index.
+    * Pros: Time efficient as we can make use of the shorter prefixes because there's no need to differentiate between target appointment and new appointment details. Easier to correct mistakes in updating wrong appointment.
+    * Cons: Prone to errors as just a wrong number could cause the user to update the wrong appointment. Huge list could make it difficult to find a specific index.
 
 <br/>
 
@@ -997,11 +997,13 @@ Team size: 5
 
 #### 1. Compatibility with Foreign Patients
 **Current Issues:** CLInic currently restricts a patient's ID to be a Singaporean NRIC or FIN number, restricts a patient's phone number to be a Singaporean phone number with 8 digits and is not compatible with long foreign names exceeding 55 characters. <br/>
-**Planned Enhancement:** We plan to accommodate passport numbers, foreign phone numbers and longer patient names in the system. However, to do this, we need more research into how we can give less restriction but yet validate the fields accordingly to prevent erroneous data entries.
+**Planned Enhancement:** We plan to accommodate passport numbers, foreign phone numbers and longer patient names in the system. However, to do this, we need more research into how we can give less restriction but yet validate the fields accordingly to prevent erroneous data entries. 
+For example, we could consider including the nationality of the patient and validating based on that, or perhaps giving a warning to the user to take note of these details.
 
 #### 2. Less Restriction on Character Limits for Various Fields
 **Current Issues:** CLInic currently restricts addresses, tags, notes, etc to have less than some number of characters. E.g. Address should have less than 60 characters. We have received tester feedback that these constraints could be very limiting, especially for long addresses. <br/>
-**Planned Enhancement:** We plan to broaden restrictions on character limits, especially on address, to accommodate longer inputs. However, we will need to ensure that these entries can be viewed on the user interface with no issues. 
+**Planned Enhancement:** We plan to broaden restrictions on character limits, especially on address, to accommodate longer inputs. However, we will need to ensure that these entries can be viewed on the user interface with no issues. To do so, we could consider using 
+wrapping or other UI capabilities.
 
 #### 3. Case Sensitivity for Commands and IDs
 **Current Issues:** CLInic is currently case-sensitive for command and NRIC input. <br/>
@@ -1033,11 +1035,12 @@ Team size: 5
 
 #### 8. Improving Specificity of Error Messages
 **Current Issues:** Currently, CLInic does not flag edits that give the exact same details as before or flag marks that attempt to mark an already marked appointment. <br/>
-**Planned Enhancement:** We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't.
+**Planned Enhancement:** We plan to handle this as an error in the future, such that you will not mistakenly believe an edit had been made even if it hadn't. We could consider a warning given to the user to inform them that they have inputted 
+the same details as the current appointment.
 
 #### 9. Improving the Accessibility and Navigation to Help
 **Current Issues:** Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. <br/>
-**Planned Enhancement:** We plan to include an in-built help message to orientate user to the list of commands available without needing to navigate to external links. A simple list of commands could be provided in the command feedback within CLInic instead.
+**Planned Enhancement:** We plan to include an in-built help message to orientate the user to the list of commands available without needing to navigate to external links. A simple list of commands could be provided in the command feedback within CLInic instead.
 
 --------------------------------------------------------------------------------------------------------------------
 
