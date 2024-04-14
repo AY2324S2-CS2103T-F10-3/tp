@@ -797,19 +797,19 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 ### Adding a Patient
-1. Adding a patient while all persons are being shown
+1. Adding a patient
 
    1. Test case: `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br>
-     Expected: New patient with NRIC T0123456A is added. Details of the added patient is shown in the status message. Timestamp in the status bar is updated.
+     Expected: New patient with NRIC T0123456A is added. Details of the added patient is shown in the status message.
 
    2. Command with invalid value: `addPatient i/x ...`, `ap i/T0123456A n/John Doe b/x ...` (where x is an invalid value for the parameter) <br>
-     Expected: No patient is added. Error details shown in the status message. Status bar remains the same.
+     Expected: No patient is added. Error details shown in the status message.
 
    2. Other incorrect delete commands to try: `add`, `addP`, `...`  <br>
       Expected: Similar to previous.
 
 
-2. Adding a duplicate patient into the list
+2. Adding a duplicate patient
   
    1. Prerequisites: Completing the first test case for Adding a Patient
 
@@ -822,10 +822,10 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a patient
 
    1. Test case: `deletePatient i/S1234567A`<br>
-      Expected: Patient with corresponding NRIC S1234567A is removed. Details of the deleted patient is shown in the status message. Timestamp in the status bar is updated.
-
+      Expected: Patient with corresponding NRIC S1234567A is removed. Details of the deleted patient is shown in the status message.
+   
    1. Test case: `deletePatient i/T0123456`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
       Expected: Similar to previous.
@@ -836,14 +836,13 @@ testers are expected to do more *exploratory* testing.
 1. Editing a patient while all patients are being shown
 
    1. Test case: `editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`<br>
-      Expected: Patient with corresponding NRIC T0123456A is successfully edited. Details of the edited patient is shown in the status message. Timestamp in the status bar is updated.
+      Expected: Patient with corresponding NRIC T0123456A is successfully edited. Details of the edited patient is shown in the status message.
 
    1. Test case: `editPatient i/T0123456A`<br>
-      Expected: No person is edited. The error message *At least one field to edit must be provided.* should be displayed in the status message.
-      Status bar remains the same.
+      Expected: No patient is edited. The error message *At least one field to edit must be provided.* should be displayed in the status message.
 
    1. Test case: `editPatient i/x ...` (where x is an invalid NRIC) <br>
-      Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is edited. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `edit`, `editP`, `...` <br>
       Expected: Similar to previous.
@@ -853,28 +852,28 @@ testers are expected to do more *exploratory* testing.
 1. Finding a patient while all patients are being shown
 
    1. Test case: `findPatient n/John`<br>
-      Expected: Patient with name predicate 'John' is successfully listed.
+      Expected: Patients with name starting with 'John' are successfully listed.
 
    1. Test case: `findPatient i/T01`<br>
-      Expected: Patient with NRIC predicate 'T01' is successfully listed.
+      Expected: Patients with NRIC starting with 'T01' is successfully listed.
 
    1. Test case: `findPatient n/John i/T01`  <br>
       Expected: The error message *Find by either NRIC or name, not both!* should be displayed in the status message.
 
    1. Other incorrect delete commands to try: `fin`, `find`, `...` <br>
-      Expected: Error details shown in the status message. Status bar remains the same.
+      Expected: Error details shown in the status message.
 
 ### Adding an Appointment
-1. Adding an appointment while all appointments are being shown
+1. Adding an appointment 
 
    1. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
-     Expected: New appointment with NRIC T0123456A is added. Details of the added appointment is shown in the status message. Timestamp in the status bar is updated.
+     Expected: New appointment for patient with NRIC T0123456A is added. Details of the added appointment is shown in the status message.
 
    1. Test case : `addAppt i/T0123456A d/2024-05-20 from/12:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>4
       Expected: The error message *End time of appointment cannot be earlier than start time.* should be displayed in the status message.
 
-   2. Command with invalid value: `addAppt i/x ...`, `ap i/T0123456A n/John Doe b/x ...` (where x is an invalid value for the parameter) <br>
-     Expected: No appointment is added. Error details shown in the status message. Status bar remains the same.
+   2. Command with invalid value: `addAppt i/x ...`, `addAppt i/T0123456A d/x ...` (where x is an invalid value for the parameter) <br>
+     Expected: No appointment is added. Error details shown in the status message.
 
    2. Other incorrect delete commands to try: `add`, `addA`, `...`  <br>
       Expected: Similar to previous.
@@ -887,30 +886,29 @@ testers are expected to do more *exploratory* testing.
    Expected: The error message *New appointment overlaps with an existing appointment for the same patient* should be displayed in the status message.
 
 ### Deleting an Appointment
-1. Deleting an appointment while all appointments are being shown
+1. Deleting an appointment 
 
    1. Test case: `deleteAppt i/T0123456A d/2024-05-20 from/11:00` <br>
-     Expected: Appointment with appointment details specified is removed. Details of the deleted appointment is shown in the status message. Timestamp in the status bar is updated.
+     Expected: Appointment with appointment details specified is removed. Details of the deleted appointment is shown in the status message.
 
    1. Test case : `deleteAppt i/x d/x from/x` (where x is an invalid value for the parameter) <br>
-      Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No appointment is deleted. Error details shown in the status message.
 
    2. Other incorrect delete commands to try: `delete`, `deleteA`, `...`  <br>
       Expected: Similar to previous.
 
 ### Editing an Appointment
 
-1. Editing an appointment while all appointments are being shown
+1. Editing an appointment 
 
    1. Test case: ` editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`<br>
-      Expected: Appointment with specified appointment details is successfully edited. Details of the edited appointment is shown in the status message. Timestamp in the status bar is updated.
+      Expected: Appointment with specified appointment details is successfully edited. Details of the edited appointment is shown in the status message.
 
    1. Test case: `editAppt i/T0123456A`<br>
       Expected: No appointment is edited. The error message *At least one field to edit must be provided.* should be displayed in the status message.
-      Status bar remains the same.
 
    1. Test case: `editAppt i/x d/x from/x ...` (where x is an invalid value for the parameter) <br>
-      Expected: No appointment is edited. Error details shown in the status message. Status bar remains the same.
+      Expected: No appointment is edited. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `edit`, `editA`, `...` <br>
       Expected: Similar to previous.
@@ -926,44 +924,44 @@ testers are expected to do more *exploratory* testing.
 1. Finding an appointment while all appointments are being shown
 
    1. Test case: `findAppt i/T0123456A`<br>
-      Expected:  Appointments with NRIC 'T0123456A' is successfully listed.
+      Expected:  Appointments for patient with NRIC 'T0123456A' are successfully listed.
 
    1. Test case: `findAppt d/2024-05-20`<br>
-      Expected: Appointments on the date '2024-05-20' is successfully listed.
+      Expected: Appointments on the date '2024-05-20' are successfully listed.
 
    1. Test case: `findAppt from/11:00`  <br>
-      Expected: Appointments starting from 11:00 and later on any date is successfully listed.
+      Expected: Appointments starting from 11:00 on any date are successfully listed.
 
    1. Other incorrect delete commands to try: `fin`, `find`, `...` <br>
-      Expected: Error details shown in the status message. Status bar remains the same.
+      Expected: Error details shown in the status message.
 
 2. Finding an appointment while on Day-View
    1. Test case: `findAppt i/T0123456A`<br>
       Expected:  A switchView will occur to switch to Overall-View. <br>
-      Appointments with NRIC 'T0123456A' is successfully listed.
+      Appointments for patient with NRIC 'T0123456A' are successfully listed.
 
 ### Marking an Appointment
 
-1. Marking an appointment while all appointments are being shown
+1. Marking an appointment 
 
    1. Test case: `mark i/T0123456A d/2024-05-20 from/11:00`<br>
-      Expected:  Appointment with appointment details specified is marked. Details of the marked appointment is shown in the status message. Timestamp in the status bar is updated.
+      Expected:  Appointment with appointment details specified is marked. Details of the marked appointment is shown in the status message.
 
    1. Test case : `mark i/x d/x from/x` (where x is an invalid value for the parameter) <br>
-      Expected: No appointment is marked. Error details shown in the status message. Status bar remains the same.
+      Expected: No appointment is marked. Error details shown in the status message.
 
    2. Other incorrect mark commands to try: `m`, `markAppointment`, `...`  <br>
       Expected: Similar to previous.
 
 ### Unmarking an Appointment
 
-1. Unmarking an appointment while all appointments are being shown
+1. Unmarking an appointment 
 
    1. Test case: `unmark i/T0123456A d/2024-05-20 from/11:00`<br>
-      Expected:  Appointment with appointment details specified is unmarked. Details of the unmarked appointment is shown in the status message. Timestamp in the status bar is updated.
+      Expected:  Appointment with appointment details specified is unmarked. Details of the unmarked appointment is shown in the status message.
 
    1. Test case : `unmark i/x d/x from/x` (where x is an invalid value for the parameter) <br>
-      Expected: No appointment is unmarked. Error details shown in the status message. Status bar remains the same.
+      Expected: No appointment is unmarked. Error details shown in the status message.
 
    2. Other incorrect mark commands to try: `um`, `unmarkAppointment`, `...`  <br>
       Expected: Similar to previous.
