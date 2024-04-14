@@ -826,7 +826,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a patient
 
-   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
+   1. Prerequisites: Have a patient with NRIC T0123456A in CLInic. 
 
    1. Test case: `deletePatient i/T0123456A`<br>
       Expected: Patient with corresponding NRIC T0123456A is removed. Details of the deleted patient is shown in the status message.
@@ -842,7 +842,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a patient while all patients are being shown
 
-   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
+   1. Prerequisites: Have a patient with NRIC T0123456A in CLInic. 
 
    1. Test case: `editPatient i/T0123456A newp/91234567 newe/johndoe@example.com`<br>
       Expected: Patient with corresponding NRIC T0123456A is successfully edited. Details of the edited patient is shown in the status message.
@@ -859,8 +859,6 @@ testers are expected to do more *exploratory* testing.
 ### Finding a Patient
 
 1. Finding a patient while all patients are being shown
-
-   1. Prerequisites: Have a patient with the specified details `i/T0123456A n/John Doe` in CLInic. 
    
    1. Test case: `findPatient n/John`<br>
       Expected: Patients with name starting with 'John' are successfully listed.
@@ -877,7 +875,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding an Appointment
 1. Adding an appointment 
 
-   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
+   1. Prerequisites: Have a patient with NRIC T0123456A in CLInic. 
 
    1. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
      Expected: New appointment for patient with NRIC T0123456A is added. Details of the added appointment is shown in the status message.
@@ -893,7 +891,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Add appointment that overlaps with existing appointment for the same patient. 
 
-   1. Prerequisites: Have a patient with NRIC `i/T0123456A` in CLInic. 
+   1. Prerequisites: Have a patient with NRIC T0123456A in CLInic. 
    
    2. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
    Expected: The error message *New appointment overlaps with an existing appointment for the same patient* should be displayed in the status message.
@@ -901,7 +899,7 @@ testers are expected to do more *exploratory* testing.
 ### Deleting an Appointment
 1. Deleting an appointment 
 
-   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
+   1. Prerequisites: Have an appointment for a patient with NRIC T0123456A on 2024-05-20 from 11:00 in CLInic.
 
    1. Test case: `deleteAppt i/T0123456A d/2024-05-20 from/11:00` <br>
      Expected: Appointment with appointment details specified is removed. Details of the deleted appointment is shown in the status message.
@@ -916,7 +914,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing an appointment 
   
-   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
+   1. Prerequisites: Have an appointment for a patient with NRIC T0123456A on 2024-05-20 from 11:00 in CLInic.
 
    1. Test case: `editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`<br>
       Expected: Appointment with specified appointment details is successfully edited. Details of the edited appointment is shown in the status message.
@@ -931,9 +929,9 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 2. Edit appointment that overlaps with existing appointment for the same patient. 
-   1. Prerequisites: Add two appointments <br>
-   `addAppt i/T0123456A d/2024-05-19 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
-   `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
+   1. Prerequisites: Add two appointments with the following commands:<br>
+      - `addAppt i/T0123456A d/2024-05-19 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
+      - `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 
    2. Test case: `editAppt i/T0123456A d/2024-05-19 from/11:00 newd/2024-05-20` <br>
    Expected: The error message *Edited appointment information overlaps with an existing appointment for the same patient* should be displayed in the status message.
@@ -941,8 +939,6 @@ testers are expected to do more *exploratory* testing.
 ### Finding an Appointment
 
 1. Finding an appointment while all appointments are being shown
-
-   1. Prerequisites: Have an appointment with the specified details `i/T0123456A d/2024-05-20 from/11:00` in CLInic.
 
    1. Test case: `findAppt i/T0123456A`<br>
       Expected:  Appointments for patient with NRIC 'T0123456A' are successfully listed.
