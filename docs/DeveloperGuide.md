@@ -238,7 +238,7 @@ Those operations are exposed in the `Model` interface as `Model#hasPatientWithNr
 
 #### Example Usage Scenario
 
-1. The user executes the command with a shorthand `aa i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up` (shorthand for addAppt).
+1. The user executes the command `aa i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up` (shorthand for addAppt).
 2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` using `Appointment#getNric()` to get the NRIC of the patient that the appointment is for. This checks if T0123456A (NRIC) belongs to an existing patient in the system. If yes, continue. Else, throw a `CommandException` to highlight to the user that the given NRIC does not exist.
 3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists in the system. If no, continue. Else, throw a `CommandException` to highlight to the user that the appointment to be created already exists.
 4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the date of appointment is before the corresponding patient's date of birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
@@ -365,7 +365,7 @@ The implementation will include the following key components:
 3. **Appointment Status Updated Results** The appointment will be updated accordingly to show whether it has been marked/unmarked successfully based on color code.
 
 #### Example Usage Scenario
-1. Context: User wants to mark a specfic appointment as completed.
+1. Context: User wants to mark a specific appointment as completed.
 2. User Input: The user enters the command `mark i/T0123456A d/2024-02-20 from/11:00`.
 
 <puml src="diagrams/MarkApptSequenceDiagram.puml" alt="MarkApptSeqDiag" />
@@ -810,7 +810,7 @@ testers are expected to do more *exploratory* testing.
    2. Command with invalid value: `addPatient i/x ...`, `ap i/T0123456A n/John Doe b/x ...` (where x is an invalid value for the parameter) <br>
      Expected: No patient is added. Error details shown in the status message.
 
-   2. Other incorrect delete commands to try: `add`, `addP`, `...`  <br>
+   2. Other incorrect commands to try: `add`, `addP`, `...`  <br>
       Expected: Similar to previous.
 
 
@@ -832,7 +832,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `deletePatient i/T0123456`<br>
       Expected: No patient is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
+   1. Other incorrect commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
       Expected: Similar to previous.
 
 
@@ -849,7 +849,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `editPatient i/x ...` (where x is an invalid NRIC) <br>
       Expected: No patient is edited. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `edit`, `editP`, `...` <br>
+   1. Other incorrect commands to try: `edit`, `editP`, `...` <br>
       Expected: Similar to previous.
 
 ### Finding a Patient
@@ -865,7 +865,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findPatient n/John i/T01`  <br>
       Expected: The error message *Find by either NRIC or name, not both!* should be displayed in the status message.
 
-   1. Other incorrect delete commands to try: `fin`, `find`, `...` <br>
+   1. Other incorrect commands to try: `fin`, `find`, `...` <br>
       Expected: Error details shown in the status message.
 
 ### Adding an Appointment
@@ -880,7 +880,7 @@ testers are expected to do more *exploratory* testing.
    2. Command with invalid value: `addAppt i/x ...`, `addAppt i/T0123456A d/x ...` (where x is an invalid value for the parameter) <br>
      Expected: No appointment is added. Error details shown in the status message.
 
-   2. Other incorrect delete commands to try: `add`, `addA`, `...`  <br>
+   2. Other incorrect commands to try: `add`, `addA`, `...`  <br>
       Expected: Similar to previous.
 
 2. Add appointment that overlaps with existing appointment for the same patient. 
@@ -899,7 +899,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case : `deleteAppt i/x d/x from/x` (where x is an invalid value for the parameter) <br>
       Expected: No appointment is deleted. Error details shown in the status message.
 
-   2. Other incorrect delete commands to try: `delete`, `deleteA`, `...`  <br>
+   2. Other incorrect commands to try: `delete`, `deleteA`, `...`  <br>
       Expected: Similar to previous.
 
 ### Editing an Appointment
@@ -915,7 +915,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `editAppt i/x d/x from/x ...` (where x is an invalid value for the parameter) <br>
       Expected: No appointment is edited. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `edit`, `editA`, `...` <br>
+   1. Other incorrect commands to try: `edit`, `editA`, `...` <br>
       Expected: Similar to previous.
 
 2. Edit appointment that overlaps with existing appointment for the same patient. 
@@ -955,7 +955,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case : `mark i/x d/x from/x` (where x is an invalid value for the parameter) <br>
       Expected: No appointment is marked. Error details shown in the status message.
 
-   2. Other incorrect mark commands to try: `m`, `markAppointment`, `...`  <br>
+   2. Other incorrect commands to try: `m`, `markAppointment`, `...`  <br>
       Expected: Similar to previous.
 
 ### Unmarking an Appointment
@@ -968,7 +968,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case : `unmark i/x d/x from/x` (where x is an invalid value for the parameter) <br>
       Expected: No appointment is unmarked. Error details shown in the status message.
 
-   2. Other incorrect mark commands to try: `um`, `unmarkAppointment`, `...`  <br>
+   2. Other incorrect commands to try: `um`, `unmarkAppointment`, `...`  <br>
       Expected: Similar to previous.
 
 ### Saving Data
@@ -1031,7 +1031,7 @@ wrapping or other UI capabilities.
 
 <br/> 
 
-### General Trouble Shooting
+### General Trouble-shooting
 
 #### 8. Improving Specificity of Error Messages
 **Current Issues:** Currently, CLInic does not flag edits that give the exact same details as before or flag marks that attempt to mark an already marked appointment. <br/>
