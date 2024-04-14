@@ -286,7 +286,7 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" width="450" />
+<puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" />
 
 #### Design considerations:
 

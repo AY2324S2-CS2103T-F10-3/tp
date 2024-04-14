@@ -5,14 +5,22 @@ skinparam ArrowFontSize 12
 start
 :User executes EditApptCommand;
 
-if () then ([Appt with NRIC, Date, StartTime found])
-    if () then ([Valid new values for appt])
-        :Update Appointment in
-        AppointmentList in AddressBook;
-    else ([Invalid new values for appt])
-        :CommandException;
+if () then ([Patient with NRIC found])
+    if () then ([Appoinment with NRIC, Date, StartTime found])
+        if () then ([Valid new values for appointment])
+            if () then ([New appointment does not overlap with existing])
+                :Update Appointment in
+                AppointmentList in AddressBook;
+            else ([New appointment overlaps with existing])
+                :CommandException;
+            endif
+        else ([Invalid new values for appointment])
+            :CommandException;
+        endif
+    else ([Appointment not found])
+        : CommandException;
     endif
-else ([Appt not found]))
+else ([NRIC not found])
     : CommandException;
 endif
 stop
