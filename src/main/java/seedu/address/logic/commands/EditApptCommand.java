@@ -64,6 +64,8 @@ public class EditApptCommand extends Command {
                     + "Please refer to the Overall-View for the list of appointments "
                     + "for that patient on the same date.";
 
+    public static final String MESSAGE_EDIT_APPOINTMENT_BEFORE_DOB_FAILURE =
+            "The appointment date for the edited appointment is before the date of birth of the given patient.";
     private final Nric targetNric;
     private final Date targetDate;
     private final Time targetStartTime;
@@ -108,6 +110,11 @@ public class EditApptCommand extends Command {
         // Must check for overlapping appointments of new appt besides current appt
         if (model.hasOverlappingAppointmentExcluding(apptToEdit, editedAppt)) {
             throw new CommandException(MESSAGE_EDIT_OVERLAPPING_APPOINTMENT_FAILURE);
+        }
+
+        // Must check if appointment date is before DOB
+        if (!model.isValidApptForPatient(editedAppt)) {
+            throw new CommandException(MESSAGE_EDIT_APPOINTMENT_BEFORE_DOB_FAILURE);
         }
 
         model.setAppointment(apptToEdit, editedAppt);

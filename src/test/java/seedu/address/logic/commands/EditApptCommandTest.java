@@ -151,6 +151,16 @@ public class EditApptCommandTest {
     }
 
     @Test
+    public void execute_editedAppointmentDateBeforeDob_throwsCommandException() {
+        EditApptDescriptor descriptor = new EditApptDescriptorBuilder()
+                .withDate("1900-01-02").build();
+        EditApptCommand editApptCommand = new EditApptCommand(ALICE_APPT.getNric(),
+                ALICE_APPT.getDate(), ALICE_APPT.getStartTime(), descriptor);
+
+        assertCommandFailure(editApptCommand, model, EditApptCommand.MESSAGE_EDIT_APPOINTMENT_BEFORE_DOB_FAILURE);
+    }
+
+    @Test
     public void equals() {
         final EditApptDescriptor descriptor = new EditApptDescriptorBuilder()
                 .withDate(VALID_APPOINTMENT_DATE_BOB).build();
