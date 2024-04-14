@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
+skinparam defaultFontSize 24
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -14,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("deletePatient T1234567A")
+[-> LogicManager : execute("dp i/T0123456A")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deletePatient S1234567A")
+LogicManager -> AddressBookParser : parseCommand("dp i/T0123456A")
 activate AddressBookParser
 
 create DeletePatientCommandParser
@@ -27,7 +28,7 @@ activate DeletePatientCommandParser
 DeletePatientCommandParser --> AddressBookParser
 deactivate DeletePatientCommandParser
 
-AddressBookParser -> DeletePatientCommandParser : parse("T1234567A")
+AddressBookParser -> DeletePatientCommandParser : parse("i/T0123456A")
 activate DeletePatientCommandParser
 
 create DeletePatientCommand
@@ -49,11 +50,11 @@ deactivate AddressBookParser
 LogicManager -> DeletePatientCommand : execute(m)
 activate DeletePatientCommand
 
-DeletePatientCommand -> Model : deleteAppointmentsWithNric(Nric: S1234567A)
+DeletePatientCommand -> Model : deleteAppointment(nric, date, startTIme)
 activate Model
+Model --> DeletePatientCommand
 
-DeletePatientCommand -> Model : deletePatientWithNric(Nric: S1234567A)
-
+DeletePatientCommand -> Model : deletePatient(nric)
 Model --> DeletePatientCommand
 deactivate Model
 
