@@ -9,6 +9,8 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -75,7 +77,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-<br/> 
+<div style="page-break-after: always;"></div>
 
 ### UI Component
 
@@ -100,7 +102,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="450"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletePatient i/T0123456A")` as the shorthand command `execute("dp i/T0123456A")` API call as an example.
 
@@ -121,7 +123,7 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<puml src="diagrams/ParserClasses.puml" width="600"/>
+<puml src="diagrams/ParserClasses.puml" width="550"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -142,6 +144,8 @@ The `Model` component,
 * stores `AppointmentView` objects for today (i.e. date of appointment is today) as a separate _filtered_ list using similar logic as above, for the purpose of Day-View.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 <box type="info" seamless>
 
@@ -204,6 +208,8 @@ The following diagram shows how an AddPatientCommand goes through the `Logic` co
 
 <puml src="diagrams/AddPatientSequenceDiagram.puml" alt="AddPatientSequenceDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes an `AddPatientCommand`:
 
 <puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" width="400"/>
@@ -244,6 +250,8 @@ Those operations are exposed in the `Model` interface as `Model#hasPatientWithNr
 4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the date of appointment is before the corresponding patient's date of birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
 5. `AddApptCommand` calls `Model#samePatientHasOverlappingAppointment(Appointment)` to check if there exists another appointment for the same patient over an overlapping time period. If no, continue. Else throw a `CommandException` to highlight to the user that an existing appointment overlaps with the appointment to be created.
 6. `AddApptCommand` calls `Model#addAppointment(Appointment)` to add the appointment to the `AddressBook`.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how an addAppt operation goes through the `Logic` component:
 
@@ -294,7 +302,7 @@ The implementation will include the following key components:
 5. **Update Execution**: The application sets the target appointment with a new appointment created that has the new values inputted, in this case date (`2024-02-21`).
 6. **Presentation**: The updated appointment is presented to the user as a message, and the upcoming appointments list is updated as well.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes an editAppt command:
 
 <puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" width="950" />
 
@@ -336,7 +344,9 @@ The implementation will include the following key components:
 5. **Presentation**: The matched appointments are presented to the user, displaying relevant details such as appointment time, date, and associated patient information.
 6. **User Interaction**: The user can view the search results and perform additional actions such as viewing detailed information about specific appointments or modifying appointments as needed.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a findAppt command:
 
 <puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="350" />
 
@@ -390,6 +400,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -447,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user    | add notes to a patient                                                             | include other additional information                                             |
 | `*`      | user    | easily generate reports of the patient details and export it to the doctor/patient | have easy access                                                                 |
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### Use Cases
 
@@ -687,6 +699,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
+
 **Use case (UC10) : View all patients and appointments displayed in a concise format**
 
 **MSS**
@@ -739,7 +753,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 1. Patients should not have overlapping appointments.
@@ -772,6 +786,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Extension**: Alternative Scenario.
 * **System**: Software system under consideration. Refers to CLInic unless otherwise stated.
 * **Actor**: User interacting with the system. Refers to a user using CLInic unless otherwise stated.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -837,10 +853,11 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 
 ### Editing a Patient
 
-1. Editing a patient while all patients are being shown
+1. Editing a patient
 
    1. Prerequisites: Have a patient with NRIC T0123456A in CLInic. 
 
@@ -858,7 +875,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding a Patient
 
-1. Finding a patient while all patients are being shown
+1. Finding a patient
    
    1. Test case: `findPatient n/John`<br>
       Expected: Patients with name starting with 'John' are successfully listed.
@@ -895,6 +912,8 @@ testers are expected to do more *exploratory* testing.
    
    2. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
    Expected: The error message *New appointment overlaps with an existing appointment for the same patient* should be displayed in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an Appointment
 1. Deleting an appointment 
@@ -1006,6 +1025,8 @@ testers are expected to do more *exploratory* testing.
    2. Launch CLInic. <br> 
       Expected: CLInic displays an empty list with warnings sent in the console. <br>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Planned Enhancements
@@ -1048,7 +1069,7 @@ wrapping or other UI capabilities.
 **Current Issues:** Currently, an appointment remains marked even if it is edited to a future time. <br/>
 **Planned Enhancement:** We plan to automatically unmark an appointment when it is moved to a future time and inform the user accordingly. This is to accommodate for the intuitive understanding that future appointments should be likely unmarked by default.
 
-<br/> 
+<div style="page-break-after: always;"></div>
 
 ### General Trouble-shooting
 
@@ -1065,6 +1086,7 @@ the same details as the current appointment.
 **Current Issues:** Currently, the dummy data that is loaded when a user first uses CLInic only contains patients. Furthermore, patients are tagged with relationship-related tags such as "family" and "friends" which do not fit the intended use case of tags (medical allergies). <br/>
 **Planned Enhancement:** We plan to include a wider variety of dummy data, including some sample appointments. This should also include having patients tagged with medical allergies as that is one of the main scenarios we intended for tags to be used for.
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 

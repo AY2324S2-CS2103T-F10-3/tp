@@ -73,6 +73,8 @@ Also, if you see these information boxes scattered throughout the User Guide, th
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Quick Start
 
 ### Installing CLInic
@@ -106,9 +108,8 @@ Let's install CLInic together! Here are the step-by-step instructions on getting
 
 Simple, wasn't it? Let's now orientate you to the GUI and how CLInic works.
 
---- {.dashed}
-
 <br/>
+<div style="page-break-after: always;"></div>
 
 ### Orientation to CLInic
 
@@ -125,6 +126,8 @@ There are two different views in CLInic. **Command Input** and **Feedback** in b
 **Day-View** is the alternate view, allowing you to see all appointments scheduled today. This view is useful for you to manage upcoming appointments in the day.
 
 ![UiDayView](images/UiDayView.png)
+
+<div style="page-break-after: always;"></div>
 
 For your easy reference, the table below outlines the purpose of each section.
 
@@ -146,9 +149,8 @@ Appointments are colour-coded in CLInic, allowing you to easily identify the sta
 
 Great! You are now oriented to the layout of CLInic.
 
---- {.dashed}
-
 <br/>
+<div style="page-break-after: always;"></div>
 
 ### Tutorial: Adding an Appointment for a New Patient
 
@@ -184,6 +186,8 @@ If this is your first time launching CLInic, you might see sample data being loa
   Your first patient, Bernice, enters the clinic. Before we can schedule any appointments, we need to first register her patient details.
   This is achieved using the `addPatient` command. Let's learn how to use that.
 
+<div style="page-break-after: always;"></div>
+
 * { text="2" t-size="32px" }
 
   On the Command Input Box, type the following command:
@@ -217,6 +221,8 @@ The remaining prefixes `n/`, `b/`, `p/`, `e/` and `a/` take in the patient's nam
 Awesome, you're learning fast! Now that Bernice is registered in our system, we can finally create an appointment for her.
 We will need the `addAppt` command to do this!
 
+<div style="page-break-after: always;"></div>
+
 * { text="3" t-size="32px" }
 
   On the Command Input Box, type the following command
@@ -245,7 +251,7 @@ We will need the `addAppt` command to do this!
   Continue on to the [**Features**](#features) section below to learn more about the full list of commands available in CLInic!
   If you are lost at anytime, typing the command **`help`** and pressing `Enter` will open the help window with a link that will lead you right back to this User Guide.
 
----
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -285,9 +291,7 @@ e.g Invalid commands like `AddPatient`, `addpatient`, `Addpatient`, `AP`, `aP` a
 
 </box>
 
---- {.dashed}
-
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### <a name="patientCommands"></a>1. Patient Commands
 
@@ -323,6 +327,8 @@ Some of the inputs you have keyed in may be invalid, check out the constraints f
 </box>
 
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="addPatient"></a>1.1 Adding a patient: `addPatient` OR `ap`
 
@@ -362,6 +368,8 @@ Adds a patient whose NRIC is S9876543A, name is Betsy Crowe, is born on 3nd Feb 
 >`ap i/S9876543A n/Betsy Crowe b/1998-02-03 t/Insulin e/betsycrowe@example.com a/Crowe street, block 234, #12-12 p/91234567 t/Paracetamol`
 </box>
 
+<div style="page-break-after: always;"></div>
+
 <box type="success" light>
 
 **Expected Outcome**:
@@ -380,7 +388,7 @@ There already exists a patient with the NRIC you specified. To view the details 
 </box>
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 1.2 Deleting a Patient : `deletePatient` OR `dp`
 
@@ -424,7 +432,7 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 </box>
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 1.3 Editing a Patient : `editPatient` OR `ep`
 
@@ -532,7 +540,7 @@ CLInic currently only supports finding patients by a single field.
 </box>
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 #### 1.4.1 Find by Name
 
@@ -560,7 +568,7 @@ Find all patients whose name begins with either `alex` or `david`, using shortha
 
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 #### 1.4.2 Find by NRIC
 **Examples:**
@@ -592,9 +600,7 @@ e.g. `findPatient i/T01 T012` will NOT return `T0123456A` as the given keyword i
 </box>
 </box>
 
---- {.dashed}
-
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### <a name="appointmentCommands"></a> 2. Appointment Commands
 
@@ -630,7 +636,7 @@ Some of the inputs you have keyed in may be invalid, check out the constraints f
 </box>
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 2.1 Adding an Appointment: `addAppt` OR `aa`
 
@@ -673,6 +679,8 @@ Add appointment, using shorthand command, with above example.
 > `aa i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 <box type="success" light>
 
@@ -717,7 +725,7 @@ This is for your ease in finding an alternate time slot for the new appointment 
 
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Deleting an Appointment: `deleteAppt` OR `da`
 
@@ -769,7 +777,7 @@ CLInic does not have an appointment with the provided NRIC, date and start time,
 </box>
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Editing an Appointment : `editAppt` OR `ea`
 
@@ -854,8 +862,6 @@ This is for your ease in finding an alternate time slot for the appointment to b
 </box>
 </box>
 
-<br/>
-
 ### 2.4 Finding Appointments: `findAppt` OR `fa`
 
 Use this command if you wish to find appointments based on certain identifiers.
@@ -901,8 +907,6 @@ Find all appointments, using shorthand command, on 2024-05-20, starting from 11:
 
 </box>
 
-<br/>
-
 #### 2.4.1 Find by NRIC
 
 **Examples:**
@@ -924,7 +928,7 @@ Find all appointments for patient with exact NRIC T0123456A.
 
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 #### 2.4.2 Find by Date
 
@@ -937,8 +941,6 @@ Finds all appointments on the date 2024-05-20.
 > `findAppt d/2024-05-20`
 
 </box>
-
-<br/>
 
 #### 2.4.3 Find by Time
 
@@ -960,7 +962,7 @@ Finds all appointments starting from 11:00 and later on any date.
 </box>
 
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Marking an Appointment: `mark`
 
@@ -1020,7 +1022,7 @@ CLInic does not have an appointment with the provided NRIC, date and start time,
 </box>
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### 2.6 Unmarking an Appointment: `unmark`
 
@@ -1072,9 +1074,7 @@ CLInic does not have an appointment with the provided NRIC, date and start time,
 </box>
 </box>
 
---- {.dashed}
-
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### <a name="generalCommands"></a>3. General Commands
 
@@ -1087,8 +1087,6 @@ Any extraneous parameters for these commands will be ignored.
 
 e.g. `list 123` will be interpreted as `list`
 </box>
-
-<br/>
 
 ### <a name="list"></a>3.1 Listing All Patients and Appointments : `list` OR `ls`
 
@@ -1111,8 +1109,6 @@ Shorthand:
 > `ls​`
 </box>
 
-<br/>
-
 ### <a name="switchView"></a>3.2 Switch between Overall-View and Day-View : `switchView` OR `sv`
 
 You can use this command to switch views from Overall-View to Day-View and vice versa, without having to click on buttons on the interface.
@@ -1128,7 +1124,7 @@ Shorthand:
 
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### <a name="clear"></a>3.3 Clearing All Entries : `clear`
 
@@ -1148,8 +1144,6 @@ Use this command if you wish to clear all entries of patients and appointments f
 * Once this command is executed, it would not be possible to restore the deleted data.
 
 </box>
-
-<br/>
 
 ### <a name="exit"></a>3.4 Exiting the Program : `exit`
 
@@ -1182,7 +1176,7 @@ If you are facing any issues while using CLInic, you can use this help command w
 
 </box>
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### Saving the Data
 
@@ -1201,7 +1195,7 @@ If your changes to the data file makes its format invalid, CLInic will discard a
 Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -1248,6 +1242,8 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 >**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify a patient's name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 ##### Appointments
 <box>
