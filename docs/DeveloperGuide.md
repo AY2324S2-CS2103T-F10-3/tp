@@ -60,9 +60,9 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePatient i/T0123456A`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePatient i/T0123456A` using the shorthand `dp i/T0123456A`.
 
-<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="674" />
+<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="804" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -196,7 +196,7 @@ Those operations are exposed in the `Model` interface as `Model#hasPatientWithNr
 
 #### Example Usage Scenario
 
-1. The user executes `addPatient i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
+1. The user executes the command with a shorthand `ap i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
 2. The `AddPatientCommand` calls `Model#hasPatientWithNric(Nric)` using `Patient#getNric()` to get the NRIC of the patient to be added. This checks if there is already a patient with an NRIC of T0123456A. If that is the case, we throw a `CommandException` highlighting to the user that the patient they are trying to add already exists in the CLInic.
 3. Suppose the patient's NRIC is not already in CLInic, the `AddPatientCommand` calls `Model#AddPatient(Patient)`, to add the patient to the `AddressBook`.
 
@@ -206,7 +206,7 @@ The following diagram shows how an AddPatientCommand goes through the `Logic` co
 
 The following activity diagram summarizes what happens when a user executes an `AddPatientCommand`:
 
-<puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" width="350"/>
+<puml src="diagrams/AddPatientActivityDiagram.puml" alt="AddPatientActivityDiagram" width="400"/>
 
 
 <br/>
@@ -238,7 +238,7 @@ Those operations are exposed in the `Model` interface as `Model#hasPatientWithNr
 
 #### Example Usage Scenario
 
-1. The user executes `addAppt i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up`.
+1. The user executes the command with a shorthand `aa i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up`.
 2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` using `Appointment#getNric()` to get the NRIC of the patient that the appointment is for. This checks if T0123456A (NRIC) belongs to an existing patient in the system. If yes, continue. Else, throw a `CommandException` to highlight to the user that the given NRIC does not exist.
 3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists in the system. If no, continue. Else, throw a `CommandException` to highlight to the user that the appointment to be created already exists.
 4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the date of appointment is before the corresponding patient's date of birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
@@ -251,7 +251,7 @@ The following sequence diagram shows how an addAppt operation goes through the `
 
 The following activity diagram summarises what happens when a user executes addApptCommand.
 
-<puml src="diagrams/AddApptActivityDiagram.puml" alt="AddApptActivityDiagram" />
+<puml src="diagrams/AddApptActivityDiagram.puml" alt="AddApptActivityDiagram" width="950"/>
 
 
 #### Design considerations:
@@ -285,7 +285,7 @@ The implementation will include the following key components:
 #### Example Usage Scenario
 
 1. **Context**: User wants to edit the date of an appointment with a specific NRIC, date, start time.
-2. **User Input**: The user enters the command `editAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 newd/ 2024-02-21`.
+2. **User Input**: The user enters the shorthand command `ea i/ T0123456A d/ 2024-02-20 from/ 11:00 newd/ 2024-02-21`.
 
 <puml src="diagrams/EditApptSequenceDiagram.puml" alt="EditApptSeqDiag" />
 
@@ -296,7 +296,7 @@ The implementation will include the following key components:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" />
+<puml src="diagrams/EditApptActivityDiagram.puml" alt="EditApptActivityDiagram" width="950" />
 
 #### Design considerations:
 
@@ -821,7 +821,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a patient
 
-   1. Test case: `deletePatient S1234567A`<br>
+   1. Test case: `deletePatient i/S1234567A`<br>
       Expected: Patient with corresponding NRIC S1234567A is removed. Details of the deleted patient is shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `deletePatient i/T0123456`<br>
