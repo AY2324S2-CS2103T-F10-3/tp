@@ -471,7 +471,7 @@ Edits the phone number and email address of the patient with NRIC:`T0123456A` to
 
 Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
->`editPatient i/S98765432A newn/Betsy Crower newt/`
+>`editPatient i/S9876543A newn/Betsy Crower newt/`
 </box>
 
 <box type="wrong" light>
@@ -498,7 +498,7 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 
 ### <a name="findPatient"></a>1.4 Finding Patients: `findPatient` OR `fp`
 
-Use this command if you wish to finds patients whose name OR NRIC fit the given keywords.
+Use this command if you wish to find patients whose name OR NRIC fit the given keywords.
 
 **Format:**
 <box>
@@ -588,7 +588,7 @@ Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
 
 CLInic does not provide support for finding patients with different starting NRICs. Please only provide one starting NRIC.
 
-e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
+e.g. `findPatient i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 </box>
 </box>
 
@@ -807,7 +807,7 @@ Edit the date of the appointment with NRIC:T0123456A, Date: 2024-05-20, Start Ti
 
 Edit appointment, using shorthand, with the above example.
 
-> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-02-21`
+> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`
 
 </box>
 
