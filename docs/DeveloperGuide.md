@@ -786,8 +786,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Adding a Patient
 1. Adding a patient while all persons are being shown
 
@@ -821,7 +819,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Editing a Patient
 
@@ -857,7 +854,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error details shown in the status message. Status bar remains the same.
 
 ### Adding an Appointment
-1. Adding an appointment while all persons and appointments are being shown
+1. Adding an appointment while all appointments are being shown
 
    1. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
      Expected: New appointment with NRIC T0123456A is added. Details of the added appointment is shown in the status message. Timestamp in the status bar is updated.
@@ -894,7 +891,7 @@ testers are expected to do more *exploratory* testing.
 1. Editing an appointment while all appointments are being shown
 
    1. Test case: ` editAppt i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`<br>
-      Expected: Patient with specified appointment details is successfully edited. Details of the edited appointment is shown in the status message. Timestamp in the status bar is updated.
+      Expected: Appointment with specified appointment details is successfully edited. Details of the edited appointment is shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `editAppt i/T0123456A`<br>
       Expected: No appointment is edited. The error message *At least one field to edit must be provided.* should be displayed in the status message.
@@ -911,6 +908,52 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `editAppt i/T0123456A d/2024-05-19 from/11:00 newd/2024-05-20` <br>
    Expected: The error message *Edited appointment information overlaps with an existing appointment for the same patient* should be displayed in the status message.
 
+### Finding an Appointment
+
+1. Finding an appointment while all appointments are being shown
+
+   1. Test case: `findAppt i/T0123456A`<br>
+      Expected:  Appointments with NRIC 'T0123456A' is successfully listed.
+
+   1. Test case: `findAppt d/2024-05-20`<br>
+      Expected: Appointments on the date '2024-05-20' is successfully listed.
+
+   1. Test case: `findAppt from/11:00`  <br>
+      Expected: Appointments starting from 11:00 and later on any date is successfully listed.
+
+   1. Other incorrect delete commands to try: `fin`, `find`, `...` <br>
+      Expected: Error details shown in the status message. Status bar remains the same.
+
+2. Finding an appointment while on Day-View
+   1. Test case: `findAppt i/T0123456A`<br>
+      Expected:  A switchView will occur to switch to Overall-View. <br>
+      Appointments with NRIC 'T0123456A' is successfully listed.
+
+### Marking an Appointment
+
+1. Marking an appointment while all appointments are being shown
+
+   1. Test case: `mark i/T0123456A d/2024-05-20 from/11:00`<br>
+      Expected:  Appointment with appointment details specified is marked. Details of the marked appointment is shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case : `mark i/x d/x from/x` (where x is an invalid value for the parameter) <br>
+      Expected: No appointment is marked. Error details shown in the status message. Status bar remains the same.
+
+   2. Other incorrect mark commands to try: `m`, `markAppointment`, `...`  <br>
+      Expected: Similar to previous.
+
+### Unmarking an Appointment
+
+1. Unmarking an appointment while all appointments are being shown
+
+   1. Test case: `unmark i/T0123456A d/2024-05-20 from/11:00`<br>
+      Expected:  Appointment with appointment details specified is unmarked. Details of the unmarked appointment is shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case : `unmark i/x d/x from/x` (where x is an invalid value for the parameter) <br>
+      Expected: No appointment is unmarked. Error details shown in the status message. Status bar remains the same.
+
+   2. Other incorrect mark commands to try: `um`, `unmarkAppointment`, `...`  <br>
+      Expected: Similar to previous.
 
 ### Saving Data
 
