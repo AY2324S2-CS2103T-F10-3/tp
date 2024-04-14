@@ -102,9 +102,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletePatient i/T0123456A")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletePatient i/T0123456A")` as the shorthand command `execute("dp i/T0123456A")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `deletePatient i/T0123456A` Command" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `dp i/T0123456A` Command" />
 
 <box type="info" seamless>
 
