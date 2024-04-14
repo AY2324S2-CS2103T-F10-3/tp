@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "User Guide"
-    pageNav: 4
+  title: "User Guide"
+  pageNav: 4
 ---
 
 # CLInic User Guide
@@ -31,7 +31,7 @@ This User Guide contains all the essential information you need to use CLInic. F
 [**installation**](#installing-clinic)  process, the [**design**](#orientation-to-clinic) of our interface and a simple
 [**tutorial**](#tutorial-adding-an-appointment-for-a-new-patient) to get you familiarised with the basic commands.
 
-Familarise yourselves with these terminologies! These definitions will be used throughout the User Guide:
+Familiarise yourselves with these terminologies! These definitions will be used throughout the User Guide:
 
 | Term           | Explanation                                                                                                                                                     |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1273,7 +1273,7 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 <box>
 
 **Q**: As a new user, should I change the order of prefixes?<br>
->**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced work flows.
+>**A**: CLInic recommends that you follow the example order of prefixes to get the hang of it first, before moving on to more flexible and advanced workflows.
 
 </box>
 <box>

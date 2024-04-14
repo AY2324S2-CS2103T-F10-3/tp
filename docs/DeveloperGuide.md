@@ -874,7 +874,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
      Expected: New appointment for patient with NRIC T0123456A is added. Details of the added appointment is shown in the status message.
 
-   1. Test case : `addAppt i/T0123456A d/2024-05-20 from/12:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>4
+   1. Test case : `addAppt i/T0123456A d/2024-05-20 from/12:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
       Expected: The error message *End time of appointment cannot be earlier than start time.* should be displayed in the status message.
 
    2. Command with invalid value: `addAppt i/x ...`, `addAppt i/T0123456A d/x ...` (where x is an invalid value for the parameter) <br>
@@ -919,7 +919,9 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 2. Edit appointment that overlaps with existing appointment for the same patient. 
-   1. Prerequisites: Completing the first test case for Adding an Appointment
+   1. Prerequisites: Add two appointments <br>
+   `addAppt i/T0123456A d/2024-05-19 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in` <br>
+   `addAppt i/T0123456A d/2024-05-20 from/11:00 to/11:30 t/Medical Check-up note/Routine check-in`
 
    2. Test case: `editAppt i/T0123456A d/2024-05-19 from/11:00 newd/2024-05-20` <br>
    Expected: The error message *Edited appointment information overlaps with an existing appointment for the same patient* should be displayed in the status message.
@@ -935,7 +937,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Appointments on the date '2024-05-20' are successfully listed.
 
    1. Test case: `findAppt from/11:00`  <br>
-      Expected: Appointments starting from 11:00 on any date are successfully listed.
+      Expected: Appointments starting on or after 11:00 on any date are successfully listed.
 
    1. Other incorrect delete commands to try: `fin`, `find`, `...` <br>
       Expected: Error details shown in the status message.
@@ -1007,7 +1009,7 @@ wrapping or other UI capabilities.
 
 #### 3. Case Sensitivity for Commands and IDs
 **Current Issues:** CLInic is currently case-sensitive for command and NRIC input. <br/>
-**Planned Enhancement:** To support faster typing, we plan to allow for ID input to be not case-sensitive in future iterations. Also, for commands to be case-insensitive, e.g. `deletepatient` should work as well. 
+**Planned Enhancement:** To support faster typing, we plan to allow for ID input to be not case-sensitive in future iterations. Also, for commands to be case-insensitive, e.g. `deletePatient` should work as well. 
 
 #### 4. Compatibility with Names with Special Symbols and Characters
 **Current Issues:** The current restrictions for names do not allow for special characters, such as in "S/O" or "D/O". Although the workaround such as "SO" and "DO" exists, we hope to accommodate such names in the future. <br/>
