@@ -50,9 +50,9 @@ LogicManager -> EditApptCommand : execute(m)
 activate EditApptCommand
 
 EditApptCommand -> Model : getMatchingAppointment(targetNric, targetDate, targetStartTime)
+activate Model
 Model --> EditApptCommand
 EditApptCommand -> Model : setAppointment(Appointment, editedAppointment)
-activate Model
 Model --> EditApptCommand
 deactivate Model
 
