@@ -451,8 +451,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use Cases
 
-(For all use cases below, the **System** is the `CLInic` and the **Actor** is the `user`, unless specified otherwise)
-
 **Use case (UC1) : Add new patient information to the database**
 
 **MSS**
@@ -708,7 +706,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to switch the view from Overall-View to Day-View or vice versa.
+1.  User requests to change the view from Overall-View to Day-View or vice versa.
 2.  CLInic changes the view.
 
     Use case ends.
@@ -760,13 +758,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Appointment**: A designated time slot for a patient to visit the clinic
-* **Appointment Type**: Categorises the purpose of visit eg. Vaccination, Medical Check-up, etc
+* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **Appointment**: A designated time slot for a patient to visit the clinic.
+* **Appointment Type**: Categorises the purpose of visit eg. Vaccination, Medical Check-up, etc.
 * **Insurance Type**: Categorises insurance schemes applicable to the patient eg. Medisave, ElderShield, etc.
 * **Medical Records**: Refer to the patient's details.
-* **Recurring Appointments**: Refer to appointments that occur regularly eg. weekly or monthly
+* **Recurring Appointments**: Refer to appointments that occur regularly eg. weekly or monthly.
+* **Day-View**: View that shows user today's appointments.
+* **Overall-View**: View that shows users all patients and appointments. Entries showed in this view can be changed with `findAppt`, `findPatient` or `list` commands.
+* **UI**: User Interface.
+* **API**: Application Programming Interface.
+* **MSS**: Main Success Scenario.
+* **Extension**: Alternative Scenario.
+* **System**: Software system under consideration. Refers to CLInic unless otherwise stated.
+* **Actor**: User interacting with the system. Refers to a user using CLInic unless otherwise stated.
 
 --------------------------------------------------------------------------------------------------------------------
 
