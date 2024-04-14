@@ -15,7 +15,7 @@
 
 * [JavaFX](https://openjfx.io) for the API to render the GUI.
 * [Jackson](https://github.com/FasterXML/jackson) for the API to parse JSON files.
-* [JUnit5](https://junit.org/junit5/) for testing framework.
+* [JUnit5](https://junit.org/junit5/) for the testing framework.
 
 Additionally, we acknowledge that CLInic is based on the [AddressBook-Level 3](https://se-education.org/addressbook-level3/) 
 (AB-3) project created by the [SE-EDU initiative](https://se-education.org). 
@@ -85,7 +85,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103T-F10-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-F10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103T-F10-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-F10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -161,7 +161,7 @@ The `Model` component,
 The `Storage` component,
 * can save both CLInic data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common Classes
 
@@ -259,11 +259,11 @@ The following activity diagram summarises what happens when a user executes addA
 **Aspect: How to match an `Appointment` to a `Patient`:**
 
 * **Alternative 1 (current choice):** Store only the NRIC of the `Patient` in `Appointment`.
-    * Pros: Data integrity since NRIC is the "primary key" of `Patient` and will not change, Space efficient
-    * Cons: May have performance issues as we need to search the whole list to get other details of the `Person`
+    * Pros: Data integrity since NRIC is the "primary key" of `Patient` and will not change, space efficient.
+    * Cons: May have performance issues as we need to search the whole list to get other details of the `Person`.
 
 * **Alternative 2:** Store `Patient` in `Appointment`
-    * Pros: Time efficient as we have access to all details of the `Patient` from `Appointment`
+    * Pros: Time efficient as we have access to all details of the `Patient` from `Appointment`.
     * Cons: Space inefficient, we double store `Patient`. We need to ensure `Patient` in `UniquePatientList` and `Patient` in
         each `Appointment` are always consistent which can be tricky.
 
@@ -303,12 +303,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How to differentiate prefixes for target appointment and prefixes for new values:**
 
 * **Alternative 1 (current choice):** Use the `new` prefix in addition to the original prefixes.
-    * Pros: Data integrity since unique prefix for new values
-    * Cons: May be less efficient as it requires the user to input a longer prefix
+    * Pros: Data integrity since unique prefix for new values.
+    * Cons: May be less efficient as it requires the user to input a longer prefix.
 
-* **Alternative 2:** Edit appointments by a unique index`
-    * Pros: Time efficient as we can make use of the shorter prefixes because there's no need to differentiate between target appointment and new appointment details, Easier to correct mistakes in updating wrong appointment
-    * Cons: Prone to errors as just a wrong number could cause the user to update the wrong appointment, Huge list could make it difficult to find a specific index
+* **Alternative 2:** Edit appointments by a unique index`.
+    * Pros: Time efficient as we can make use of the shorter prefixes because there's no need to differentiate between target appointment and new appointment details, Easier to correct mistakes in updating wrong appointment.
+    * Cons: Prone to errors as just a wrong number could cause the user to update the wrong appointment, Huge list could make it difficult to find a specific index.
 
 <br/>
 
@@ -366,7 +366,7 @@ The implementation will include the following key components:
 
 #### Example Usage Scenario
 1. Context: User wants to mark a specfic appointment as completed.
-2. User Input: The user enters the command `mark i/T0123456A d/2024-02-20 from/11:00`
+2. User Input: The user enters the command `mark i/T0123456A d/2024-02-20 from/11:00`.
 
 <puml src="diagrams/MarkApptSequenceDiagram.puml" alt="MarkApptSeqDiag" />
 
@@ -399,15 +399,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* has a need to manage a significant number of patient information
-* has a need to schedule patients for appointments
-* prefers to manage patient information and appointments in one application
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has a need to manage a significant number of patient information.
+* has a need to schedule patients for appointments.
+* prefers to manage patient information and appointments in one application.
+* prefer desktop apps over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps.
 
-**Value proposition**: manage patient appointments faster than a typical mouse/GUI driven app
+**Value proposition**: manage patient appointments faster than a typical mouse/GUI driven app.
 
 <br/>
 
@@ -1048,29 +1048,29 @@ This brought about new logic, commands and other improvements that were develope
 
 Overall, the main effort in the development process went towards:
 1. **Building the `model.appointment` package**
-    * Creating accompanying classes for each of the fields and corresponding validation
-    * Ensuring compatibility of `Appointment` with other classes, such as `AddressBook`, so that they be managed and stored
-    * Implementation of `Appointment` classes were designed to be similar to `Patient` classes to allow for easy maintenance
+    * Creating accompanying classes for each of the fields and corresponding validation.
+    * Ensuring compatibility of `Appointment` with other classes, such as `AddressBook`, so that they be managed and stored.
+    * Implementation of `Appointment` classes were designed to be similar to `Patient` classes to allow for easy maintenance.
 
 1. **Adapting the existing `Person` module into `Patient`**
-    * Refactoring `Person` to `Patient` to standardise terminologies
-    * Updating the `model.patient` package with `NRIC` compatibility
+    * Refactoring `Person` to `Patient` to standardise terminologies.
+    * Updating the `model.patient` package with `NRIC` compatibility.
 
 1. **Adding new features to suit the new adapted use case**
-    * Introduction of new commands such as `addAppt`, `findAppt`, `markAppt`, etc to allow efficient management of patients and their appointments
-    * Modifying existing commands such as `add` and `edit` to `addPatient`, `editPatient` respectively and ensuring `NRIC` compatibility
+    * Introduction of new commands such as `addAppt`, `findAppt`, `markAppt`, etc to allow efficient management of patients and their appointments.
+    * Modifying existing commands such as `add` and `edit` to `addPatient`, `editPatient` respectively and ensuring `NRIC` compatibility.
 
 1. **Adding JUnit tests for new and existing features and packages**
-    * JUnit tests comprehensively test that features and packages work as intended
+    * JUnit tests comprehensively test that features and packages work as intended.
 
 1. **User interface improvements to support efficient management of patient and appointments**
-    * Implemented new panel to display appointments alongside patients in Overall-View
-    * Introduced new view, Day-View, to show all appointments for the day, allowing users to see upcoming appointments
-    * Colour-coded appointments to allow visual differentiation of appointments that are completed, missed or neither
-    * Updates to overall colour scheme to suit clinic usage
+    * Implemented new panel to display appointments alongside patients in Overall-View.
+    * Introduced new view, Day-View, to show all appointments for the day, allowing users to see upcoming appointments.
+    * Colour-coded appointments to allow visual differentiation of appointments that are completed, missed or neither.
+    * Updates to overall colour scheme to suit clinic usage.
 
 1. **Documentation improvements**
-    * Updates to User-Guide include a revamp in structure and improvements in comprehensiveness of documentation across all sections
-    * Updates to Developer-Guide include changes from AB3 and documentation of how some of the new commands were implemented
+    * Updates to User-Guide include a revamp in structure and improvements in comprehensiveness of documentation across all sections.
+    * Updates to Developer-Guide include changes from AB3 and documentation of how some of the new commands were implemented.
 
 <br/>
