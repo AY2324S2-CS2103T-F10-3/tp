@@ -39,8 +39,8 @@ Familiarise yourselves with these terminologies! These definitions will be used 
 | **GUI**        | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons.                  |
 | **JSON**       | JavaScript Object Notation, a lightweight data-interchange format.                                                                                              |
 | **NRIC**       | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                                          |
-| **Command**    | An instruction given to CLInic to complete a certain task                                                                                                       |
-| **Parameters** | An input value or field for a command                                                                                                                           |
+| **Command**    | An instruction given to CLInic to complete a certain task.                                                                                                      |
+| **Parameters** | An input value or field for a command.                                                                                                                          |
 | **Prefix**     | Keywords to tell the command what the input value is. <br/>e.g. the prefix `n/` is used for name, so `n/John` tells the command that name to be input is "John" |
 | **Shorthand**  | Command keyword which is short form for the full command equivalent but still works. <br/> e.g. ep is shorthand for editPatient command                         |
 
@@ -471,7 +471,7 @@ Edits the phone number and email address of the patient with NRIC:`T0123456A` to
 
 Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
->`editPatient i/S98765432A newn/Betsy Crower newt/`
+>`editPatient i/S9876543A newn/Betsy Crower newt/`
 </box>
 
 <box type="wrong" light>
@@ -498,7 +498,7 @@ CLInic does not have a patient with the provided NRIC, please double-check the N
 
 ### <a name="findPatient"></a>1.4 Finding Patients: `findPatient` OR `fp`
 
-Use this command if you wish to finds patients whose name OR NRIC fit the given keywords.
+Use this command if you wish to find patients whose name OR NRIC fit the given keywords.
 
 **Format:**
 <box>
@@ -588,7 +588,7 @@ Find all patients with NRIC born in the year 2001, with NRIC starting with `t01`
 
 CLInic does not provide support for finding patients with different starting NRICs. Please only provide one starting NRIC.
 
-e.g. `i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
+e.g. `findPatient i/T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 </box>
 </box>
 
@@ -807,7 +807,7 @@ Edit the date of the appointment with NRIC:T0123456A, Date: 2024-05-20, Start Ti
 
 Edit appointment, using shorthand, with the above example.
 
-> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-02-21`
+> `ea i/T0123456A d/2024-05-20 from/11:00 newd/2024-05-21`
 
 </box>
 
@@ -1245,7 +1245,7 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 <box>
 
 **Q**: Why is there a character limit to `NAME`?<br>
->**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify patient name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
+>**A**: This is to ensure that it complies with the Singapore standard of NRIC names which has a limit of 54 characters. As clinics have to verify a patient's name with their physical NRIC, CLInic has built in this restriction. It also ensures that the patient's name appears on the GUI well.
 
 </box>
 
@@ -1265,7 +1265,7 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 <box>
 
 **Q**: Does editing a marked appointment to the future change its status to unmarked?<br>
->**A**: No, CLInic allows you to move appointments independently of if they were marked, such that you can have flexibility in scheduling of appointments.
+>**A**: No, CLInic allows you to move appointments independent of if they were marked, such that you can have flexibility in scheduling appointments.
 
 </box>
 
