@@ -1065,6 +1065,11 @@ the same details as the current appointment.
 **Current Issues:** Currently, using the `help` command opens up a pop-up which requires the user to use the mouse and navigate to the user guide link to see the commands available. <br/>
 **Planned Enhancement:** We plan to include an in-built help message to orientate the user to the list of commands available without needing to navigate to external links. A simple list of commands could be provided in the command feedback within CLInic instead.
 
+#### 10. Improving the Dummy Data 
+**Current Issues:** Currently, the dummy data that is loaded when a user first uses CLInic shows tags that are not examples of medical allergies. <br/>
+**Planned Enhancement:** We plan to include a wider variety of dummy data, especially including the specific use cases of tags to tag medical allergies as that is one of the main scenarios we intended for it to be used for.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Effort

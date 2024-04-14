@@ -265,13 +265,13 @@ CLInic is designed to keep track of your patient data and appointment schedules.
   e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/MEDICAL_ALLERGY]` can be used as `n/John Doe t/insulin` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used zero or more times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/MEDICAL_ALLERGY]…​` can be used as ` ` (i.e. 0 times), `t/insulin`, `t/insulin t/paracetamol` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
@@ -332,10 +332,10 @@ Use this command if you wish to add a new patient to CLInic. You would be requir
 <box>
 
 Full:
->`addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​ `
+>`addPatient i/NRIC n/NAME b/DOB p/PHONE e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​ `
 
 Shorthand:
-> `ap i/NRIC n/NAME  b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​`
+> `ap i/NRIC n/NAME  b/DOB p/PHONE e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​`
 
 </box>
 
@@ -1208,8 +1208,8 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 ##### Patients
 <box>
 
-**Q**: Why are the `EMAIL` and `PHONE_NUMBER` fields compulsory?<br>
->**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE_NUMBER` can be completed with their guardian's contact details.
+**Q**: Why are the `EMAIL` and `PHONE` fields compulsory?<br>
+>**A**: Emergency contact details are necessary even for children or elderly. In such cases, their `EMAIL` and `PHONE` can be completed with their guardian's contact details.
 
 </box>
 <box>
@@ -1321,9 +1321,9 @@ Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.
 ## Command summary
 | Action            | Format                                                                                                                                                                                                                                                                                                                      |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AddPatient**    | Full: `addPatient i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​` <br> Shorthand: `ap i/NRIC n/NAME b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​`                                                                                                                               |
+| **AddPatient**    | Full: `addPatient i/NRIC n/NAME b/DOB p/PHONE e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​` <br> Shorthand: `ap i/NRIC n/NAME b/DOB p/PHONE e/EMAIL a/ADDRESS [t/MEDICAL_ALLERGY]…​`                                                                                                                                             |
 | **DeletePatient** | Full: `deletePatient i/NRIC`<br> Shorthand: `dp i/NRIC`                                                                                                                                                                                                                                                                     |                                                                 |
-| **EditPatient**   | Full: `editPatient i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE_NUMBER] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`<br> Shorthand: `ep i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE_NUMBER] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_TAG]…​`                                                                             |
+| **EditPatient**   | Full: `editPatient i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`<br> Shorthand: `ep i/NRIC [newn/NEW_NAME] [newp/NEW_PHONE] [newe/NEW_EMAIL] [newa/NEW_ADDRESS] [newt/NEW_MEDICAL_ALLERGY]…​`                                                                   |
 | **FindPatient**   | Full: `findPatient n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `findPatient i/NRIC_KEYWORD`<br>  Shorthand: `fp n/NAME_KEYWORD [MORE_NAME_KEYWORDS]` OR `fp i/NRIC_KEYWORD`                                                                                                                                                     |
 | **AddAppt**       | Full: `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> Shorthand: `aa i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`                                                                                                                                           |
 | **DeleteAppt**    | Full: `deleteAppt i/NRIC d/DATE from/START_TIME` <br> Shorthand: `da i/NRIC d/DATE from/START_TIME`                                                                                                                                                                                                                         |
