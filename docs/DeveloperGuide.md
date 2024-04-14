@@ -196,7 +196,7 @@ Those operations are exposed in the `Model` interface as `Model#hasPatientWithNr
 
 #### Example Usage Scenario
 
-1. The user executes the command with a shorthand `ap i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
+1. The user executes the command `ap i/T0123456A n/John Doe b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` (shorthand for addPatient).
 2. The `AddPatientCommand` calls `Model#hasPatientWithNric(Nric)` using `Patient#getNric()` to get the NRIC of the patient to be added. This checks if there is already a patient with an NRIC of T0123456A. If that is the case, we throw a `CommandException` highlighting to the user that the patient they are trying to add already exists in the CLInic.
 3. Suppose the patient's NRIC is not already in CLInic, the `AddPatientCommand` calls `Model#AddPatient(Patient)`, to add the patient to the `AddressBook`.
 
@@ -238,7 +238,7 @@ Those operations are exposed in the `Model` interface as `Model#hasPatientWithNr
 
 #### Example Usage Scenario
 
-1. The user executes the command with a shorthand `aa i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up`.
+1. The user executes the command with a shorthand `aa i/T0123456A d/2024-03-27 from/00:00 to/00:30 t/Medical Check-up` (shorthand for addAppt).
 2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` using `Appointment#getNric()` to get the NRIC of the patient that the appointment is for. This checks if T0123456A (NRIC) belongs to an existing patient in the system. If yes, continue. Else, throw a `CommandException` to highlight to the user that the given NRIC does not exist.
 3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists in the system. If no, continue. Else, throw a `CommandException` to highlight to the user that the appointment to be created already exists.
 4. `AddApptCommand` calls `Model#isValidApptForPatient(Appointment)` to check if the date of appointment is before the corresponding patient's date of birth. If no, continue. Else, throw a `CommandException` to highlight to the user that the date of the appointment cannot be before patient is born.
@@ -285,7 +285,7 @@ The implementation will include the following key components:
 #### Example Usage Scenario
 
 1. **Context**: User wants to edit the date of an appointment with a specific NRIC, date, start time.
-2. **User Input**: The user enters the shorthand command `ea i/ T0123456A d/ 2024-02-20 from/ 11:00 newd/ 2024-02-21`.
+2. **User Input**: The user enters the command `ea i/ T0123456A d/ 2024-02-20 from/ 11:00 newd/ 2024-02-21` (shorthand for editAppt).
 
 <puml src="diagrams/EditApptSequenceDiagram.puml" alt="EditApptSeqDiag" />
 
