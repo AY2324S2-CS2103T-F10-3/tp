@@ -14,11 +14,11 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("deletePatient i/T0123456A")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deleteAppointmentsWithNric(Nric:T0123456A)
+logic -[LOGIC_COLOR]> model : deleteAppointment(nric, date, startTime)
 activate model MODEL_COLOR
 model -[MODEL_COLOR]-> logic
 
-logic -[LOGIC_COLOR]> model : deletePatientWithNric(Nric:T0123456A)
+logic -[LOGIC_COLOR]> model : deletePatient(nric)
 
 model -[MODEL_COLOR]-> logic
 deactivate model

@@ -52,7 +52,7 @@ activate EditApptCommand
 EditApptCommand -> Model : getMatchingAppointment(targetNric, targetDate, targetStartTime)
 activate Model
 Model --> EditApptCommand
-EditApptCommand -> Model : setAppointment(Appointment, editedAppointment)
+EditApptCommand -> Model : setAppointment(appointment, editedAppointment)
 Model --> EditApptCommand
 deactivate Model
 

@@ -50,7 +50,7 @@ LogicManager -> AddApptCommand : execute(m)
 activate AddApptCommand
 
 
-AddApptCommand -> Model : addAppointment(Appointment)
+AddApptCommand -> Model : addAppointment(appointment)
 activate Model
 Model --> AddApptCommand
 deactivate Model
